@@ -268,6 +268,8 @@ body{
 .chk-btn.tirze-btn:has(input:checked){background:rgba(196,125,10,.12);border-color:rgba(196,125,10,.35);color:var(--tirze)}
 .chk-btn.combo-btn .cdot{background:var(--combo)}
 .chk-btn.combo-btn:has(input:checked){background:rgba(91,47,181,.12);border-color:rgba(91,47,181,.35);color:var(--combo)}
+.chk-btn.retra-btn .cdot{background:var(--tra)}
+.chk-btn.retra-btn:has(input:checked){background:rgba(26,158,102,.12);border-color:rgba(26,158,102,.35);color:var(--tra)}
 .chk-btn.done-btn .cdot{background:var(--enat)}
 .chk-btn.done-btn:has(input:checked){background:rgba(26,110,219,.12);border-color:rgba(26,110,219,.35);color:var(--enat)}
 
@@ -610,7 +612,7 @@ body{
 <!-- TELA 3: TIRZE/RETRA -->
 <div class="screen" id="s-tirze">
   <div class="page-title">Tirze / Retra</div>
-  <div class="page-sub">Tirze 7,5mg + Retra 2,5mg • a cada 5 dias • início 11/06</div>
+  <div class="page-sub">Tirze 5mg · Retra 2,5mg · intercaladas a cada 5 dias · início 11/06</div>
 
   <div class="init-stats">
     <h3>📊 Medidas iniciais</h3>
@@ -669,26 +671,26 @@ body{
 <!-- TELA 5: DIETA -->
 <div class="screen" id="s-diet">
   <div class="page-title">Dieta</div>
-  <div class="page-sub">Protocolo alimentar diário — ~1.440 kcal</div>
+  <div class="page-sub">Protocolo alimentar diário — ~1.630 kcal</div>
 
   <!-- TOTAIS -->
   <div class="macro-summary">
     <div class="macro-title">Totais estimados / dia</div>
     <div class="macro-grid">
       <div class="macro-box">
-        <div class="macro-val">~120</div>
+        <div class="macro-val">~166</div>
         <div class="macro-label">Prot (g)</div>
       </div>
       <div class="macro-box">
-        <div class="macro-val">~139</div>
+        <div class="macro-val">~170</div>
         <div class="macro-label">Carbs (g)</div>
       </div>
       <div class="macro-box">
-        <div class="macro-val">~43</div>
+        <div class="macro-val">~32</div>
         <div class="macro-label">Gord (g)</div>
       </div>
       <div class="macro-box kcal">
-        <div class="macro-val">1440</div>
+        <div class="macro-val">1630</div>
         <div class="macro-label">kcal</div>
       </div>
     </div>
@@ -699,19 +701,20 @@ body{
     <div class="card-header">
       <div class="card-icon">🍳</div>
       <div>
-        <div class="card-title">Café da Manhã <span class="badge badge-time">~07h</span></div>
-        <div class="card-sub">Pós-treino</div>
+        <div class="card-title">Café da Manhã <span class="badge badge-time">~09h</span></div>
+        <div class="card-sub">Primeira refeição do dia</div>
       </div>
     </div>
     <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">2 Ovos inteiros + 2 Claras</div><div class="food-qty">Proteína completa</div><div class="food-macro">~19g prot · 1g carb · 10g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Pão Integral</div><div class="food-qty">1 fatia (~25g)</div><div class="food-macro">~2g prot · 12g carb · 1g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">2 Ovos inteiros</div><div class="food-qty">Proteína + gordura boa</div><div class="food-macro">~12g prot · 1g carb · 10g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">3 Claras de ovo</div><div class="food-qty">Proteína extra, sem gordura</div><div class="food-macro">~10g prot · 1g carb · 0g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Pão de Forma Integral</div><div class="food-qty">2 fatias (~50g)</div><div class="food-macro">~6g prot · 26g carb · 2g gord</div></div></div>
     </div>
     <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~21g</span>
-      <span class="macro-chip">C: ~13g</span>
-      <span class="macro-chip">G: ~11g</span>
-      <span class="macro-chip kc">~245 kcal</span>
+      <span class="macro-chip">P: ~28g</span>
+      <span class="macro-chip">C: ~28g</span>
+      <span class="macro-chip">G: ~12g</span>
+      <span class="macro-chip kc">~315 kcal</span>
     </div>
   </div>
 
@@ -725,15 +728,16 @@ body{
       </div>
     </div>
     <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz Integral</div><div class="food-qty">150–200g cozido</div><div class="food-macro">~3g prot · 36g carb · 0,5g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Pernil Assado</div><div class="food-qty">200g — esta semana</div><div class="food-macro">~30g prot · 0g carb · 12g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Filé de Peixe</div><div class="food-qty">200g — próxima semana</div><div class="food-macro">~40g prot · 0g carb · 4g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Frango ou Carne Magra</div><div class="food-qty">150g — sobrecoxa desossada limpa</div><div class="food-macro">~28g prot · 0g carb · 7g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz</div><div class="food-qty">150g cozido</div><div class="food-macro">~3g prot · 33g carb · 0,3g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Feijão</div><div class="food-qty">50g cozido</div><div class="food-macro">~4g prot · 9g carb · 0,2g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Tomate e Pepino</div><div class="food-qty">150g</div><div class="food-macro">~1g prot · 5g carb · 0g gord</div></div></div>
     </div>
     <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~33g</span>
-      <span class="macro-chip">C: ~36g</span>
-      <span class="macro-chip">G: ~12g</span>
-      <span class="macro-chip kc">~391 kcal</span>
+      <span class="macro-chip">P: ~36g</span>
+      <span class="macro-chip">C: ~47g</span>
+      <span class="macro-chip">G: ~8g</span>
+      <span class="macro-chip kc">~415 kcal</span>
     </div>
   </div>
 
@@ -742,20 +746,21 @@ body{
     <div class="card-header">
       <div class="card-icon">🥤</div>
       <div>
-        <div class="card-title">Merenda <span class="badge badge-time">~15-16h</span></div>
-        <div class="card-sub">Shake pré-cardio</div>
+        <div class="card-title">Merenda da Tarde <span class="badge badge-time">~15-16h</span></div>
+        <div class="card-sub">Shake pré-cardio — alta proteína</div>
       </div>
     </div>
     <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Whey Protein</div><div class="food-qty">1 scoop (~30g)</div><div class="food-macro">~22g prot · 3g carb · 2g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Fruta</div><div class="food-qty">~300g</div><div class="food-macro">~2g prot · 45g carb · 0,5g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Aveia (quando usar)</div><div class="food-qty">~20g</div><div class="food-macro">~3g prot · 14g carb · 1g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Whey Protein</div><div class="food-qty">2 scoops (25g prot por dose)</div><div class="food-macro">~50g prot · 6g carb · 4g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Aveia</div><div class="food-qty">50g</div><div class="food-macro">~7g prot · 34g carb · 4g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Mamão</div><div class="food-qty">200g</div><div class="food-macro">~1g prot · 18g carb · 0,2g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Leite Desnatado</div><div class="food-qty">200ml</div><div class="food-macro">~7g prot · 10g carb · 0,5g gord</div></div></div>
     </div>
     <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~27g</span>
-      <span class="macro-chip">C: ~62g</span>
-      <span class="macro-chip">G: ~3,5g</span>
-      <span class="macro-chip kc">~387 kcal</span>
+      <span class="macro-chip">P: ~65g</span>
+      <span class="macro-chip">C: ~68g</span>
+      <span class="macro-chip">G: ~9g</span>
+      <span class="macro-chip kc">~615 kcal</span>
     </div>
   </div>
 
@@ -769,16 +774,15 @@ body{
       </div>
     </div>
     <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz Integral</div><div class="food-qty">100g cozido</div><div class="food-macro">~2g prot · 21g carb · 0,3g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Sobrecoxa Desossada</div><div class="food-qty">200g — sem pele, sem gordura</div><div class="food-macro">~34g prot · 0g carb · 6g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Salada (pepino + tomate)</div><div class="food-qty">300–400g</div><div class="food-macro">~2g prot · 8g carb · 0g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Azeite</div><div class="food-qty">Fio (~10ml)</div><div class="food-macro">0g prot · 0g carb · 10g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Peixe ou Frango</div><div class="food-qty">150g (igual ao almoço)</div><div class="food-macro">~33g prot · 0g carb · 3g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz</div><div class="food-qty">100g cozido</div><div class="food-macro">~2g prot · 22g carb · 0,2g gord</div></div></div>
+      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Tomate e Pepino</div><div class="food-qty">150g</div><div class="food-macro">~1g prot · 5g carb · 0g gord</div></div></div>
     </div>
     <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~38g</span>
-      <span class="macro-chip">C: ~29g</span>
-      <span class="macro-chip">G: ~16g</span>
-      <span class="macro-chip kc">~413 kcal</span>
+      <span class="macro-chip">P: ~36g</span>
+      <span class="macro-chip">C: ~27g</span>
+      <span class="macro-chip">G: ~3g</span>
+      <span class="macro-chip kc">~285 kcal</span>
     </div>
   </div>
 </div>
@@ -843,17 +847,17 @@ function updateDash() {
   document.getElementById('dash-supp').textContent = suppNow;
   document.getElementById('dash-supp-sub').textContent = suppSub;
 
-  // Próxima tirze
+  // Próxima tirze/retra
   const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const tDates = gerarTirzeDatas();
-  const proxTirze = tDates.find(d => { const dc = new Date(d); dc.setHours(0,0,0,0); return dc >= hoje; });
-  if (proxTirze) {
-    const dc = new Date(proxTirze); dc.setHours(0,0,0,0);
+  const tEventos = gerarTirzeEventos();
+  const proxEv = tEventos.find(ev => { const dc = new Date(ev.data); dc.setHours(0,0,0,0); return dc >= hoje; });
+  if (proxEv) {
+    const dc = new Date(proxEv.data); dc.setHours(0,0,0,0);
     const diff = Math.round((dc - hoje) / (1000*60*60*24));
-    document.getElementById('dash-tirze').textContent = `${fmtDate(proxTirze)} — ${getDayName(proxTirze)}`;
+    const label = proxEv.tipo === 'tirze' ? '💉 Tirze 5mg' : '🟢 Retra 2,5mg';
+    document.getElementById('dash-tirze').textContent = `${fmtDate(proxEv.data)} — ${getDayName(proxEv.data)} · ${label}`;
     document.getElementById('dash-tirze-sub').textContent =
-      diff === 0 ? '👉 HOJE! · Tirze 7,5mg + Retra 2,5mg'
-                 : `Em ${diff} dia${diff !== 1 ? 's' : ''} · Tirze 7,5mg + Retra 2,5mg`;
+      diff === 0 ? `👉 HOJE! · ${label}` : `Em ${diff} dia${diff !== 1 ? 's' : ''} · ${label}`;
   }
 
   // Próxima ciclo
@@ -890,13 +894,18 @@ function renderCicloBar(barId, pctId, weeksId) {
   }
 }
 
-// ── TIRZE DATES: a cada 5 dias a partir de 11/06/2026 ──
-function gerarTirzeDatas() {
-  const datas = [];
-  let d = new Date(2026, 5, 11); // 11 jun
-  const fim = new Date(2026, 9, 11); // 11 out
-  while (d <= fim) { datas.push(new Date(d)); d.setDate(d.getDate() + 5); }
-  return datas;
+// ── TIRZE/RETRA: intercaladas, Tirze 11/06 · Retra 14/06, cada 5 dias ──
+function gerarTirzeEventos() {
+  const eventos = [];
+  const fim = new Date(2026, 9, 15);
+  // Tirze 5mg: 11/06 a cada 5 dias
+  let dT = new Date(2026, 5, 11); let idxT = 0;
+  while (dT <= fim) { eventos.push({ data: new Date(dT), tipo: 'tirze', idx: idxT++ }); dT.setDate(dT.getDate() + 5); }
+  // Retra 2,5mg: 14/06 a cada 5 dias (3 dias após Tirze)
+  let dR = new Date(2026, 5, 14); let idxR = 0;
+  while (dR <= fim) { eventos.push({ data: new Date(dR), tipo: 'retra', idx: idxR++ }); dR.setDate(dR.getDate() + 5); }
+  eventos.sort((a, b) => a.data - b.data);
+  return eventos;
 }
 
 // ── CICLO DATES: Dom/Ter/Qui a partir de 31/05 ──
@@ -913,19 +922,19 @@ function gerarCicloDatas() {
 
 // ── RENDER TIRZE ──
 function renderTirze() {
-  const datas = gerarTirzeDatas();
+  const eventos = gerarTirzeEventos();
   const container = document.getElementById('tirze-list');
   container.innerHTML = '';
   let mesAtual = null;
   let cardEl = null;
 
-  datas.forEach((data, i) => {
-    const mes = data.getMonth();
+  eventos.forEach((ev, i) => {
+    const mes = ev.data.getMonth();
     if (mes !== mesAtual) {
       mesAtual = mes;
       const mh = document.createElement('div');
       mh.className = 'month-sep';
-      mh.textContent = meses[mes] + ' ' + data.getFullYear();
+      mh.textContent = meses[mes] + ' ' + ev.data.getFullYear();
       container.appendChild(mh);
       cardEl = document.createElement('div');
       cardEl.className = 'card';
@@ -933,43 +942,57 @@ function renderTirze() {
       container.appendChild(cardEl);
     }
 
-    const stored = load(`tirze_${i}`, {});
+    const storeKey = `ev_${ev.tipo}_${ev.idx}`;
+    const stored = load(storeKey, {});
     const row = document.createElement('div');
     row.className = 'entry-row';
     row.id = `trow_${i}`;
 
+    const isTirze = ev.tipo === 'tirze';
+    const btnClass = isTirze ? 'tirze-btn' : 'retra-btn';
+    const btnLabel = isTirze ? '💉 TIRZE 5mg' : '🟢 RETRA 2,5mg';
+    const dotStyle = isTirze
+      ? 'width:8px;height:8px;border-radius:50%;background:var(--tirze);flex-shrink:0'
+      : 'width:8px;height:8px;border-radius:50%;background:var(--tra);flex-shrink:0';
+    const tagStyle = isTirze
+      ? 'font-family:Space Mono,monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:rgba(196,125,10,.1);color:var(--tirze);border:1px solid rgba(196,125,10,.2)'
+      : 'font-family:Space Mono,monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:rgba(26,158,102,.1);color:var(--tra);border:1px solid rgba(26,158,102,.2)';
+    const typeTag = isTirze ? 'TIRZE' : 'RETRA';
+
     row.innerHTML = `
       <div class="entry-date-col">
-        <div class="entry-date">${fmtDate(data)}</div>
-        <div class="entry-day">${getDayName(data)}</div>
+        <div class="entry-date">${fmtDate(ev.data)}</div>
+        <div class="entry-day">${getDayName(ev.data)}</div>
       </div>
       <div class="entry-main">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="${tagStyle}">${typeTag}</span>
+        </div>
         <div class="entry-checks">
-          <label class="chk-btn combo-btn"><input type="checkbox" ${stored.combo ? 'checked' : ''} onchange="saveTirze(${i},'combo',this.checked)"><span class="cdot"></span>TIRZE+RETRA</label>
-          <label class="chk-btn tirze-btn"><input type="checkbox" ${stored.tirze ? 'checked' : ''} onchange="saveTirze(${i},'tirze',this.checked)"><span class="cdot"></span>TIRZE 7,5</label>
-          <label class="chk-btn tra-btn"><input type="checkbox" ${stored.tra ? 'checked' : ''} onchange="saveTirze(${i},'tra',this.checked)"><span class="cdot"></span>RETRA 2,5</label>
+          <label class="chk-btn ${btnClass}"><input type="checkbox" ${stored.done ? 'checked' : ''} onchange="saveTirze('${ev.tipo}',${ev.idx},'done',this.checked)"><span class="cdot"></span>${btnLabel} ✓</label>
         </div>
         <div class="mini-fields">
           <div class="mini-field">
-            <input class="mini-input" type="number" placeholder="—" step="0.1" value="${stored.peso || ''}" oninput="saveTirze(${i},'peso',this.value)" title="Peso">
+            <input class="mini-input" type="number" placeholder="—" step="0.1" value="${stored.peso || ''}" oninput="saveTirze('${ev.tipo}',${ev.idx},'peso',this.value)">
             <span class="mini-unit">kg</span>
           </div>
           <div class="mini-field">
-            <input class="mini-input" type="number" placeholder="—" step="0.5" value="${stored.cintura || ''}" oninput="saveTirze(${i},'cintura',this.value)" title="Cintura">
+            <input class="mini-input" type="number" placeholder="—" step="0.5" value="${stored.cintura || ''}" oninput="saveTirze('${ev.tipo}',${ev.idx},'cintura',this.value)">
             <span class="mini-unit">cm</span>
           </div>
         </div>
-        <textarea class="obs-mini" placeholder="observações..." oninput="saveTirze(${i},'obs',this.value)">${stored.obs || ''}</textarea>
+        <textarea class="obs-mini" placeholder="observações..." oninput="saveTirze('${ev.tipo}',${ev.idx},'obs',this.value)">${stored.obs || ''}</textarea>
       </div>
     `;
     cardEl.appendChild(row);
   });
 }
 
-function saveTirze(i, field, val) {
-  const stored = load(`tirze_${i}`, {});
+function saveTirze(tipo, idx, field, val) {
+  const storeKey = `ev_${tipo}_${idx}`;
+  const stored = load(storeKey, {});
   stored[field] = val;
-  save(`tirze_${i}`, stored);
+  save(storeKey, stored);
 }
 
 // ── RENDER CICLO ──
