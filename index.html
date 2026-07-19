@@ -2,1119 +2,462 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#2f6bff">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Leandro">
-<meta name="theme-color" content="#F7F6F3">
-<title>Leandro — Protocolos</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Protocolo · Leandro</title>
 <style>
-:root {
-  --bg: #F4F3EF;
-  --card: #FFFFFF;
-  --card2: #EEECE8;
-  --border: rgba(0,0,0,0.09);
-  --text: #1A1A1A;
-  --muted: rgba(20,20,20,0.45);
-  --enat: #1A6EDB;
-  --mast: #7B4FD4;
-  --tra: #1A9E66;
-  --tirze: #C47D0A;
-  --combo: #5B2FB5;
-  --sun: #C47D0A;
-  --gym: #C0342C;
-  --lunch: #5B2FB5;
-  --cardio: #C0562C;
-  --snack: #1A9E66;
-  --moon: #1A6EDB;
-  --accent: #1A6EDB;
-  --diet: #2E7D32;
-  --nav-h: 64px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  display:flex;
-  flex-direction:column;
-}
-
-.screen{
-  display:none;
-  flex:1;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:16px 16px calc(var(--nav-h) + var(--safe-bottom) + 16px);
-}
-.screen.active{display:block}
-
-.nav{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  height:calc(var(--nav-h) + var(--safe-bottom));
-  padding-bottom:var(--safe-bottom);
-  background:var(--card);
-  border-top:1px solid var(--border);
-  display:flex;
-  z-index:100;
-  box-shadow:0 -4px 20px rgba(0,0,0,0.06);
-}
-.nav-btn{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:2px;
-  border:none;
-  background:none;
-  cursor:pointer;
-  color:var(--muted);
-  font-family:'DM Sans',sans-serif;
-  font-size:9px;
-  font-weight:500;
-  padding:8px 2px 4px;
-  transition:color .15s;
-}
-.nav-btn.active{color:var(--accent)}
-.nav-btn .ico{font-size:18px;line-height:1}
-
-.page-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:32px;
-  letter-spacing:.02em;
-  margin-bottom:4px;
-}
-.page-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  margin-bottom:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-.card-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  background:var(--card2);
-  border-bottom:1px solid var(--border);
-}
-.card-icon{
-  width:38px;height:38px;
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;
-}
-.card-title{font-size:15px;font-weight:600;line-height:1.2}
-.card-sub{font-size:11px;color:var(--muted);margin-top:1px}
-.card-body{padding:12px 14px}
-
-.pill-item{
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  margin-bottom:7px;
-}
-.pill-item:last-child{margin-bottom:0}
-.pill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.pill-name{font-size:13px;font-weight:600;line-height:1.2}
-.pill-dose{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px}
-.pill-why{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
-
-.tip{
-  margin:0 14px 12px;
-  background:rgba(0,0,0,0.03);
-  border-radius:8px;
-  padding:8px 11px;
-  font-size:11px;
-  color:var(--muted);
-  border-left:3px solid var(--border);
-  line-height:1.5;
-}
-
-.c-sun .card-icon{background:rgba(196,125,10,.12)}
-.c-sun .card-title{color:var(--sun)}
-.c-sun .tip{border-left-color:var(--sun)}
-.c-sun .pill-dot{background:var(--sun)}
-.c-gym .card-icon{background:rgba(192,52,44,.12)}
-.c-gym .card-title{color:var(--gym)}
-.c-gym .tip{border-left-color:var(--gym)}
-.c-gym .pill-dot{background:var(--gym)}
-.c-lunch .card-icon{background:rgba(91,47,181,.12)}
-.c-lunch .card-title{color:var(--lunch)}
-.c-lunch .pill-dot{background:var(--lunch)}
-.c-cardio .card-icon{background:rgba(192,86,44,.12)}
-.c-cardio .card-title{color:var(--cardio)}
-.c-cardio .tip{border-left-color:var(--cardio)}
-.c-cardio .pill-dot{background:var(--cardio)}
-.c-snack .card-icon{background:rgba(26,158,102,.12)}
-.c-snack .card-title{color:var(--snack)}
-.c-snack .tip{border-left-color:var(--snack)}
-.c-snack .pill-dot{background:var(--snack)}
-.c-moon .card-icon{background:rgba(26,110,219,.12)}
-.c-moon .card-title{color:var(--moon)}
-.c-moon .tip{border-left-color:var(--moon)}
-.c-moon .pill-dot{background:var(--moon)}
-
-.badge{
-  display:inline-block;
-  font-family:'Space Mono',monospace;
-  font-size:10px;
-  padding:3px 9px;
-  border-radius:5px;
-  font-weight:700;
-  letter-spacing:.05em;
-}
-.badge-time{background:rgba(0,0,0,.06);color:var(--muted);margin-left:8px}
-
-/* DASHBOARD */
-.dash-welcome{
-  background:linear-gradient(135deg,#1A6EDB,#5B2FB5);
-  border-radius:18px;
-  padding:20px 18px;
-  margin-bottom:14px;
-  color:#fff;
-}
-.dash-welcome h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.02em}
-.dash-welcome p{font-size:13px;opacity:.8;margin-top:4px}
-.dash-welcome .dash-date{font-family:'Space Mono',monospace;font-size:11px;opacity:.65;margin-top:8px}
-
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.stat-box{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-.stat-box-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
-.stat-box-val{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--accent)}
-.stat-box-unit{font-size:11px;color:var(--muted);margin-top:2px}
-
-.next-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-.next-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
-.next-content{font-size:14px;font-weight:600;color:var(--text)}
-.next-detail{font-size:11px;color:var(--muted);margin-top:2px}
-
-/* CICLO PROGRESS BAR */
-.ciclo-progress{
-  background:var(--card);
-  border:1px solid rgba(26,110,219,.2);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
-}
-.ciclo-prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.ciclo-prog-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--enat);text-transform:uppercase}
-.ciclo-prog-pct{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--enat)}
-.prog-bar-bg{background:rgba(26,110,219,.1);border-radius:20px;height:8px;overflow:hidden}
-.prog-bar-fill{background:linear-gradient(90deg,var(--enat),#5B2FB5);height:100%;border-radius:20px}
-.prog-weeks{display:flex;justify-content:space-between;margin-top:6px}
-.prog-week{font-family:'Space Mono',monospace;font-size:9px;color:rgba(0,0,0,.2)}
-.prog-week.done{color:var(--enat);font-weight:700}
-
-/* TRACKER */
-.entry-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 14px;
-  border-bottom:1px solid var(--border);
-}
-.entry-row:last-child{border-bottom:none}
-.entry-date-col{flex-shrink:0;width:52px}
-.entry-date{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;line-height:1.2}
-.entry-day{font-size:10px;color:var(--muted)}
-.entry-main{flex:1;min-width:0}
-.entry-checks{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}
-.chk-btn{
-  display:flex;align-items:center;gap:4px;
-  font-size:11px;font-weight:600;
-  padding:4px 9px;
-  border-radius:6px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  cursor:pointer;
-  transition:all .15s;
-  color:var(--muted);
-  user-select:none;
-}
-.chk-btn input{display:none}
-.chk-btn .cdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.chk-btn.tra-btn .cdot{background:var(--tra)}
-.chk-btn.tra-btn:has(input:checked){background:rgba(26,158,102,.12);border-color:rgba(26,158,102,.35);color:var(--tra)}
-.chk-btn.tirze-btn .cdot{background:var(--tirze)}
-.chk-btn.tirze-btn:has(input:checked){background:rgba(196,125,10,.12);border-color:rgba(196,125,10,.35);color:var(--tirze)}
-.chk-btn.combo-btn .cdot{background:var(--combo)}
-.chk-btn.combo-btn:has(input:checked){background:rgba(91,47,181,.12);border-color:rgba(91,47,181,.35);color:var(--combo)}
-.chk-btn.retra-btn .cdot{background:var(--tra)}
-.chk-btn.retra-btn:has(input:checked){background:rgba(26,158,102,.12);border-color:rgba(26,158,102,.35);color:var(--tra)}
-.chk-btn.done-btn .cdot{background:var(--enat)}
-.chk-btn.done-btn:has(input:checked){background:rgba(26,110,219,.12);border-color:rgba(26,110,219,.35);color:var(--enat)}
-
-.mini-fields{display:flex;gap:6px}
-.mini-field{
-  display:flex;align-items:center;gap:4px;
-  background:var(--card2);
-  border:1px solid var(--border);
-  border-radius:7px;
-  padding:5px 8px;
-  flex:1;
-}
-.mini-input{
-  background:transparent;border:none;
-  color:var(--text);
-  font-family:'Space Mono',monospace;font-size:12px;
-  width:100%;outline:none;text-align:right;
-}
-.mini-input::placeholder{color:rgba(0,0,0,.2)}
-.mini-unit{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);flex-shrink:0}
-
-.side-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
-.side-chip{
-  display:flex;align-items:center;gap:3px;
-  font-size:10px;color:var(--muted);
-  padding:3px 8px;
-  border-radius:5px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  cursor:pointer;user-select:none;
-}
-.side-chip input{display:none}
-.side-chip:has(input:checked){background:rgba(26,110,219,.08);border-color:rgba(26,110,219,.25);color:var(--enat)}
-
-.week-sep{
-  display:flex;align-items:center;gap:10px;
-  margin:14px 0 8px;
-}
-.week-sep-title{
-  font-family:'Bebas Neue',sans-serif;font-size:20px;
-  color:var(--muted);white-space:nowrap;
-}
-.week-sep-line{flex:1;height:1px;background:var(--border)}
-.week-sep-tag{
-  font-family:'Space Mono',monospace;font-size:9px;
-  padding:3px 8px;border-radius:4px;
-  background:rgba(26,110,219,.08);color:var(--enat);
-  white-space:nowrap;
-}
-
-.month-sep{
-  font-family:'Bebas Neue',sans-serif;font-size:24px;
-  color:var(--muted);letter-spacing:.05em;
-  margin:16px 0 8px;
-  padding-bottom:6px;
-  border-bottom:1px solid var(--border);
-}
-
-.init-stats{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-.init-stats h3{font-family:'Space Mono',monospace;font-size:10px;font-weight:600;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.init-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.init-field{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
-.init-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
-.init-input{
-  background:transparent;border:none;
-  color:var(--text);
-  font-family:'Bebas Neue',sans-serif;font-size:26px;
-  width:100%;outline:none;
-  border-bottom:1px solid var(--border);
-  padding-bottom:1px;
-}
-.init-unit{font-size:10px;color:var(--muted);margin-top:3px}
-
-/* DOSE CARDS — 2 colunas */
-.dose-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.dose-c{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  border-top:3px solid;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);
-  text-align:center;
-}
-.dose-c.enat{border-top-color:var(--enat)}
-.dose-c.mast{border-top-color:var(--mast)}
-.dose-c-name{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
-.dose-c-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1}
-.dose-c.enat .dose-c-val{color:var(--enat)}
-.dose-c.mast .dose-c-val{color:var(--mast)}
-.dose-c-unit{font-size:10px;color:var(--muted);margin-top:3px}
-
-.obs-mini{
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:7px;padding:6px 9px;
-  color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;
-  width:100%;outline:none;resize:none;height:32px;line-height:1.4;
-  margin-top:6px;
-}
-.obs-mini::placeholder{color:rgba(0,0,0,.2)}
-
-.install-banner{
-  background:linear-gradient(135deg,rgba(26,110,219,.1),rgba(91,47,181,.1));
-  border:1px solid rgba(26,110,219,.2);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
-  display:flex;align-items:center;gap:12px;
-}
-.install-txt{flex:1}
-.install-txt h4{font-size:13px;font-weight:600;color:var(--accent)}
-.install-txt p{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
-.install-btn{
-  background:var(--accent);color:#fff;
-  border:none;border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;
-  padding:8px 14px;cursor:pointer;white-space:nowrap;
-  flex-shrink:0;
-}
-
-/* DIETA */
-.macro-summary{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-.macro-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
-.macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.macro-box{text-align:center}
-.macro-val{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;color:var(--diet)}
-.macro-label{font-size:9px;color:var(--muted);text-transform:uppercase;font-family:'Space Mono',monospace;margin-top:3px}
-.macro-box.kcal .macro-val{color:var(--accent)}
-
-.food-item{
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  margin-bottom:7px;
-}
-.food-item:last-child{margin-bottom:0}
-.food-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;background:var(--diet)}
-.food-name{font-size:13px;font-weight:600;line-height:1.2}
-.food-qty{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px}
-.food-macro{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
-
-.meal-macro-bar{
-  display:flex;gap:5px;
-  margin:0 14px 12px;
-  flex-wrap:wrap;
-}
-.macro-chip{
-  font-family:'Space Mono',monospace;
-  font-size:9px;
-  padding:3px 8px;
-  border-radius:5px;
-  background:rgba(46,125,50,.08);
-  color:var(--diet);
-  border:1px solid rgba(46,125,50,.15);
-}
-.macro-chip.kc{background:rgba(26,110,219,.08);color:var(--enat);border-color:rgba(26,110,219,.15)}
+  :root{
+    --bg:#f2f2f5;--card:#fff;--ink:#1c2431;--muted:#8a94a3;--muted2:#aab2be;--line:#ececf1;
+    --blue:#2f6bff;--purple:#7c4dff;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--teal:#0ea5a0;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;
+    padding:0 0 90px;max-width:520px;margin:0 auto}
+  .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .wrap{padding:16px}
+  .tab{display:none}.tab.on{display:block;animation:f .2s}
+  @keyframes f{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  /* header */
+  .hero{background:linear-gradient(135deg,#2f6bff,#7c4dff);color:#fff;border-radius:20px;padding:20px;margin-bottom:14px}
+  .hero h1{font-size:23px;font-weight:800;letter-spacing:-.01em}
+  .hero p{opacity:.9;font-size:13px;margin-top:2px}
+  .hero .d{font-family:var(--mono);font-size:12px;opacity:.8;margin-top:8px;text-transform:capitalize}
+  h2.page{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:2px}
+  .page-sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(20,30,50,.05),0 1px 1px rgba(20,30,50,.03)}
+  .card .lbl{margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .big{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .big small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .val-blue{color:var(--blue)}.val-purple{color:var(--purple)}.val-green{color:var(--green)}.val-orange{color:var(--orange)}
+  /* progress */
+  .pcard .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .pcard .pct{font-size:22px;font-weight:800;color:var(--blue)}
+  .track{height:9px;background:#eef0f4;border-radius:6px;overflow:hidden}
+  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2f6bff,#7c4dff)}
+  .weeks{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue)}
+  .weeks span.off{color:var(--muted2)}
+  /* compound cards */
+  .comp{position:relative;overflow:hidden}
+  .comp:before{content:'';position:absolute;left:0;top:0;right:0;height:4px}
+  .comp.blue:before{background:var(--blue)}.comp.purple:before{background:var(--purple)}.comp.orange:before{background:var(--orange)}
+  .comp .nm{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .comp .amt{font-size:26px;font-weight:800;margin:4px 0 1px}
+  .comp .sub{font-size:12px;color:var(--muted)}
+  /* application entries */
+  .entry{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+  .entry .hd{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .entry .date{font-weight:800;font-size:15px}.entry .dow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase}
+  .aplic{margin-left:auto;border:none;background:#eef1f6;color:var(--muted);font-weight:700;font-size:12.5px;
+    padding:7px 13px;border-radius:20px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:.15s}
+  .aplic .dot{width:8px;height:8px;border-radius:50%;background:var(--muted2)}
+  .aplic.done{background:#e6efff;color:var(--blue)}.aplic.done .dot{background:var(--blue)}
+  .aplic.done.tz{background:#fff2e0;color:var(--orange)}.aplic.done.tz .dot{background:var(--orange)}
+  .aplic.done.rt{background:#e4f8ec;color:var(--green)}.aplic.done.rt .dot{background:var(--green)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .chip{border:1px solid var(--line);background:#fafbfc;color:var(--muted);font-size:12px;font-weight:600;
+    padding:5px 10px;border-radius:20px;cursor:pointer;user-select:none;transition:.12s}
+  .chip.on{background:#fff0f0;border-color:#f6caca;color:#d0473f}
+  .obs{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:9px 12px;font-size:13px;
+    font-family:inherit;color:var(--ink);resize:none}
+  .obs::placeholder{color:var(--muted2)}
+  .wkhd{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink);
+    text-transform:uppercase;margin:16px 2px 10px;display:flex;align-items:center;gap:10px}
+  .wkhd .tag{margin-left:auto;font-size:11px;background:#e6efff;color:var(--blue);padding:3px 9px;border-radius:12px}
+  .wkhd .ln{flex:1;height:1px;background:var(--line)}
+  .measure-in{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:8px 11px;font-size:13px;font-family:inherit;color:var(--ink)}
+  /* supp / dieta rows */
+  .blk{margin-bottom:6px}
+  .blk .th{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--blue);margin:14px 4px 6px;display:flex;align-items:center;gap:7px}
+  .blk .th .tm{margin-left:auto;color:var(--muted2);font-weight:600}
+  .li{display:flex;gap:11px;padding:11px 4px;border-top:1px solid var(--line);align-items:flex-start}
+  .li:first-child{border-top:none}
+  .li .bullet{flex:0 0 auto;width:8px;height:8px;border-radius:50%;margin-top:6px;background:var(--muted2)}
+  .li.med .bullet{background:var(--blue)}
+  .li .n{font-weight:700;font-size:14px}.li.med .n{color:var(--blue)}
+  .li .d{font-size:12px;color:var(--muted);margin-top:1px}
+  .li .r{margin-left:auto;text-align:right;font-size:12px;color:var(--muted);white-space:nowrap;font-family:var(--mono)}
+  .macrorow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .mc{font-family:var(--mono);font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px}
+  .mc.p{background:#e4f8ec;color:#118a4e}.mc.c{background:#e6efff;color:var(--blue)}
+  .mc.g{background:#fff2e0;color:#b4740a}.mc.k{background:#efeaff;color:var(--purple)}
+  .totals{background:linear-gradient(135deg,#f0f4ff,#f6f0ff);border:1px solid #e6e2f5;border-radius:16px;padding:14px;margin-bottom:12px}
+  .totals .row{display:flex;justify-content:space-around;text-align:center}
+  .totals .row .k{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em}
+  .totals .row .v{font-size:20px;font-weight:800;margin-top:2px}
+  .now-badge{display:inline-flex;align-items:center;gap:6px;background:#e6efff;color:var(--blue);font-weight:700;
+    font-size:12px;padding:5px 11px;border-radius:20px;font-family:var(--mono)}
+  .todo{display:flex;align-items:center;gap:10px}
+  .todo .ic{font-size:20px}
+  .note{font-size:12px;color:var(--muted);padding:2px 4px 0}
+  .risk{background:#fff5f5;border:1px solid #f6d2d2;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#b23b34;margin-top:4px}
+  .risk b{color:#912b25}
+  /* bottom nav */
+  nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);display:flex;max-width:520px;margin:0 auto;padding:6px 0 env(safe-area-inset-bottom)}
+  nav button{flex:1;background:none;border:none;padding:8px 0 10px;cursor:pointer;color:var(--muted2);
+    font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.03em;display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button .ic{font-size:20px;filter:grayscale(1) opacity(.5);transition:.15s}
+  nav button.on{color:var(--blue)}nav button.on .ic{filter:none}
+  .disc{font-size:11px;color:var(--muted2);text-align:center;padding:14px 20px 4px;line-height:1.4}
 </style>
 </head>
 <body>
 
-<!-- TELA 1: DASHBOARD -->
-<div class="screen active" id="s-home">
-  <div class="dash-welcome">
-    <h2>Bom dia, Leandro! 💪</h2>
+<!-- ===================== INÍCIO ===================== -->
+<div class="tab on" id="t-inicio"><div class="wrap">
+  <div class="hero">
+    <h1>Bom dia, Leandro! 💪</h1>
     <p>Seu painel de protocolos do dia</p>
-    <div class="dash-date" id="dashDate"></div>
+    <div class="d" id="hero-date">—</div>
   </div>
 
-  <div id="installBanner" class="install-banner" style="display:none">
-    <div class="install-txt">
-      <h4>📱 Instalar no celular</h4>
-      <p>Adicione à tela inicial para acessar como app, mesmo sem internet.</p>
-    </div>
-    <button class="install-btn" id="installBtn">Instalar</button>
+  <div class="card pcard">
+    <div class="top"><span class="lbl">💉 Ciclo hormonal · 8 semanas</span><span class="pct" id="ini-pct">—</span></div>
+    <div class="track"><div class="fill" id="ini-fill"></div></div>
+    <div class="weeks" id="ini-weeks"></div>
   </div>
 
-  <div class="ciclo-progress">
-    <div class="ciclo-prog-header">
-      <div class="ciclo-prog-title">🧪 Ciclo Hormonal — 8 semanas</div>
-      <div class="ciclo-prog-pct" id="cicloPct">0%</div>
-    </div>
-    <div class="prog-bar-bg"><div class="prog-bar-fill" id="cicloBar" style="width:0%"></div></div>
-    <div class="prog-weeks" id="cicloProgWeeks"></div>
+  <div class="grid2">
+    <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso">—</div></div>
+    <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint">—</div></div>
   </div>
 
-  <div class="stat-grid">
-    <div class="stat-box">
-      <div class="stat-box-label">⚖️ Peso inicial</div>
-      <div class="stat-box-val" id="dash-peso">—</div>
-      <div class="stat-box-unit">kg registrado</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-box-label">📏 Cintura inicial</div>
-      <div class="stat-box-val" id="dash-cin">—</div>
-      <div class="stat-box-unit">cm registrado</div>
-    </div>
+  <div class="card">
+    <span class="lbl">💊 Suplementação agora</span>
+    <div class="todo"><span class="ic" id="now-ic">💊</span><div><div style="font-weight:800;font-size:15px" id="now-title">—</div><div style="font-size:12px;color:var(--muted)" id="now-sub">—</div></div></div>
   </div>
 
-  <div class="next-card">
-    <div class="next-label">💊 Suplementação agora</div>
-    <div class="next-content" id="dash-supp">Veja a aba Suplementos</div>
-    <div class="next-detail" id="dash-supp-sub"></div>
+  <div class="card">
+    <span class="lbl">💉 Próxima tirzepatida</span>
+    <div style="font-weight:800;font-size:16px" id="ini-tz">—</div>
+    <div style="font-size:12px;color:var(--muted)" id="ini-tz-sub">—</div>
   </div>
 
-  <div class="next-card">
-    <div class="next-label">💉 Próxima aplicação Tirze/Retra</div>
-    <div class="next-content" id="dash-tirze">Calculando...</div>
-    <div class="next-detail" id="dash-tirze-sub"></div>
+  <div class="card">
+    <span class="lbl">🧪 Próxima aplicação do ciclo</span>
+    <div style="font-weight:800;font-size:16px" id="ini-cy">—</div>
+    <div style="font-size:12px;color:var(--muted)" id="ini-cy-sub">—</div>
   </div>
 
-  <div class="next-card">
-    <div class="next-label">🧪 Próxima aplicação Ciclo</div>
-    <div class="next-content" id="dash-ciclo">Calculando...</div>
-    <div class="next-detail" id="dash-ciclo-sub"></div>
+  <div class="card">
+    <span class="lbl">🩸 Pendências de saúde</span>
+    <div class="li" style="border:none;padding-top:6px"><span class="bullet" style="background:var(--red)"></span><div><div class="n">Exames de sangue · 20/07</div><div class="d">Avisar o lab do uso de testosterona. Inclui PSA pela 1ª vez.</div></div></div>
+    <div class="li"><span class="bullet" style="background:var(--orange)"></span><div><div class="n">Doação de sangue</div><div class="d">Hematócrito 52%. Quanto antes melhor.</div></div></div>
   </div>
-</div>
+</div></div>
 
-<!-- TELA 2: SUPLEMENTOS -->
-<div class="screen" id="s-supl">
-  <div class="page-title">Suplementação</div>
-  <div class="page-sub">Dom/Ter/Qui • Treino 6h • Cardio 18h</div>
+<!-- ===================== SUPLEM ===================== -->
+<div class="tab" id="t-supl"><div class="wrap">
+  <h2 class="page">Suplementos</h2>
+  <div class="page-sub">Protocolo por horário · 💊 = medicamento</div>
+  <div class="card" id="supl-list"></div>
+  <div class="note">💊 Rosuvastatina, AAS e nattokinase miram o lipídico e o risco trombótico do hematócrito. AAS e nattokinase atuam os dois na coagulação: confirme a combinação com o médico.</div>
+</div></div>
 
-  <!-- PRÉ-MUSCULAÇÃO -->
-  <div class="card c-gym">
-    <div class="card-header">
-      <div class="card-icon">🏋️</div>
-      <div>
-        <div class="card-title">Pré-Musculação <span class="badge badge-time">~05h15</span></div>
-        <div class="card-sub">Antes do treino das 6h — em jejum</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">NAC</div><div class="pill-dose">600 mg — 1ª metade</div><div class="pill-why">Antioxidante pré-treino — reduz dano oxidativo.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Nattokinase</div><div class="pill-dose">200 mg</div><div class="pill-why">Fluidez sanguínea — suporte cardiovascular no ciclo. Absorção máxima em jejum.</div></div></div>
-    </div>
-    <div class="tip" style="border-left-color:var(--gym)">⚡ Tomar com água. Nattokinase absorve melhor sem alimento — ideal nesse horário.</div>
+<!-- ===================== TIRZE ===================== -->
+<div class="tab" id="t-tirze"><div class="wrap">
+  <h2 class="page">Tirzepatida</h2>
+  <div class="page-sub" id="tz-head">—</div>
+  <div class="grid3">
+    <div class="card" style="padding:13px"><span class="lbl">⚖️ Peso base</span><div class="big val-orange" id="tz-peso" style="font-size:22px">—</div></div>
+    <div class="card" style="padding:13px"><span class="lbl">📏 Cintura</span><div class="big val-orange" id="tz-cint" style="font-size:22px">—</div></div>
+    <div class="card" style="padding:13px"><span class="lbl">🎯 Meta</span><div class="big val-orange" id="tz-meta" style="font-size:22px">—</div></div>
   </div>
+  <div id="tz-entries" style="margin-top:6px"></div>
+</div></div>
 
-  <!-- CAFÉ DA MANHÃ -->
-  <div class="card c-sun">
-    <div class="card-header">
-      <div class="card-icon">☀️</div>
-      <div>
-        <div class="card-title">Café da Manhã <span class="badge badge-time">~07h</span></div>
-        <div class="card-sub">Pós-treino — suplementos lipossolúveis</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Vitamina D3 + K2 MK-7</div><div class="pill-dose">5000 UI + 200 mcg</div><div class="pill-why">Lipossolúvel — sempre com gordura.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Coenzima Q10</div><div class="pill-dose">Ver dose no rótulo</div><div class="pill-why">Suporte cardiovascular — tomar com D3.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Ômega-3</div><div class="pill-dose">Metade — 1,5–2g</div><div class="pill-why">HDL e anti-inflamatório.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Saw Palmetto</div><div class="pill-dose">500 mg (extrato)</div><div class="pill-why">Moderar DHT elevado. Com gordura.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Cardo Mariano</div><div class="pill-dose">Silimarina — 1ª dose</div><div class="pill-why">Suporte hepático matinal.</div></div></div>
-    </div>
-    <div class="tip" style="border-left-color:var(--sun)">🥑 Adicione azeite ou castanhas se o café for pobre em gordura.</div>
+<!-- ===================== CICLO ===================== -->
+<div class="tab" id="t-ciclo"><div class="wrap">
+  <h2 class="page">Ciclo hormonal</h2>
+  <div class="page-sub" id="cy-head">—</div>
+  <div class="grid3" id="cy-comps"></div>
+  <div class="card pcard" style="margin-top:12px">
+    <div class="top"><span class="lbl">Progresso</span><span class="pct" id="cy-pct">—</span></div>
+    <div class="track"><div class="fill" id="cy-fill"></div></div>
+    <div class="weeks" id="cy-weeks"></div>
   </div>
+  <div class="risk"><b>Atenção ao Stanozolol.</b> Seu Documento Mestre pede pra adiar até ALT normal e HDL melhorando; últimos exames deram HDL 16 e ALT 60. O resultado de 20/07 confirma ou dissolve esse risco.</div>
+  <div id="cy-entries" style="margin-top:8px"></div>
+</div></div>
 
-  <!-- ALMOÇO -->
-  <div class="card c-lunch">
-    <div class="card-header">
-      <div class="card-icon">🍽️</div>
-      <div>
-        <div class="card-title">Almoço <span class="badge badge-time">~12h</span></div>
-        <div class="card-sub">Vitaminas do complexo B e suporte contínuo</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Vitamina B12</div><div class="pill-dose">2000 mcg</div><div class="pill-why">Energia — evitar à noite.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Ômega-3</div><div class="pill-dose">Segunda metade — 1,5–2g</div><div class="pill-why">Segunda dose com refeição gordurosa.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Cardo Mariano</div><div class="pill-dose">2ª dose</div><div class="pill-why">Suporte hepático contínuo.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">NAC</div><div class="pill-dose">600 mg — 2ª metade</div><div class="pill-why">Nível sérico estável ao longo do dia.</div></div></div>
-    </div>
-  </div>
+<!-- ===================== DIETA ===================== -->
+<div class="tab" id="t-dieta"><div class="wrap">
+  <h2 class="page">Dieta</h2>
+  <div class="page-sub">Protocolo alimentar diário</div>
+  <div class="totals"><div class="row">
+    <div><div class="k">CARB</div><div class="v val-blue">268 g</div></div>
+    <div><div class="k">PROT</div><div class="v val-green">219 g</div></div>
+    <div><div class="k">GORD</div><div class="v val-orange">59 g</div></div>
+    <div><div class="k">KCAL</div><div class="v val-purple">~2.460</div></div>
+  </div></div>
+  <div id="diet-list"></div>
+  <div class="note">Proteína ~2,35 g/kg. Déficit ~600 kcal. Treino em jejum às 06h. GLP-1 suprime apetite: não descer abaixo de 2.000 kcal.</div>
+</div></div>
 
-  <!-- PRÉ-CARDIO -->
-  <div class="card c-cardio">
-    <div class="card-header">
-      <div class="card-icon">🚴</div>
-      <div>
-        <div class="card-title">Pré-Cardio <span class="badge badge-time">~17h15</span></div>
-        <div class="card-sub">Antes do cardio das 18h — foco no HDL</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Niacina B3</div><div class="pill-dose">500 mg–1g (se usar)</div><div class="pill-why">Melhor momento — flushing potencializa a vasodilatação do cardio.</div></div></div>
-    </div>
-    <div class="tip" style="border-left-color:var(--cardio)">🔥 O flushing dura 30–45 min e diminui com o uso. No cardio é seu aliado.</div>
-  </div>
+<div class="disc">Ferramenta organizacional, não substitui avaliação médica. Sem médico fixo acompanhando o protocolo. Dados salvos só neste aparelho.</div>
 
-  <!-- JANTAR -->
-  <div class="card c-snack">
-    <div class="card-header">
-      <div class="card-icon">🌆</div>
-      <div>
-        <div class="card-title">Jantar <span class="badge badge-time">~19h30</span></div>
-        <div class="card-sub">Pós-cardio — zinco separado dos minerais</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Zinco</div><div class="pill-dose">20 mg — longe do cálcio</div><div class="pill-why">2h longe de laticínios. Com pouca comida.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Probiótico</div><div class="pill-dose">Lactobacillus — 1 Bi UFC</div><div class="pill-why">Antes ou com a refeição. Nunca com líquidos quentes.</div></div></div>
-    </div>
-  </div>
-
-  <!-- DORMIR -->
-  <div class="card c-moon">
-    <div class="card-header">
-      <div class="card-icon">🌙</div>
-      <div>
-        <div class="card-title">Antes de Dormir <span class="badge badge-time">~21h30</span></div>
-        <div class="card-sub">Recuperação e sono profundo</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">Magnésio Treonato</div><div class="pill-dose">500 mg</div><div class="pill-why">Relaxamento muscular e sono. Nunca de manhã.</div></div></div>
-      <div class="pill-item"><div class="pill-dot"></div><div><div class="pill-name">GABA</div><div class="pill-dose">500 mg (se mantiver)</div><div class="pill-why">Com magnésio — potencializam o sono juntos.</div></div></div>
-    </div>
-    <div class="tip" style="border-left-color:var(--moon)">😴 Alternativa ao GABA: L-Teanina 200mg funciona igualmente bem.</div>
-  </div>
-</div>
-
-<!-- TELA 3: TIRZE/RETRA -->
-<div class="screen" id="s-tirze">
-  <div class="page-title">Tirze / Retra</div>
-  <div class="page-sub">Tirze 5mg · Retra 2,5mg · intercaladas a cada 5 dias · início 11/06</div>
-
-  <div class="init-stats">
-    <h3>📊 Medidas iniciais</h3>
-    <div class="init-grid">
-      <div class="init-field">
-        <div class="init-label">⚖️ Peso inicial</div>
-        <input class="init-input" id="pesoInicial" type="number" placeholder="100" step="0.1" oninput="saveInit()">
-        <div class="init-unit">kg</div>
-      </div>
-      <div class="init-field">
-        <div class="init-label">📏 Cintura</div>
-        <input class="init-input" id="cinturaInicial" type="number" placeholder="—" step="0.5" oninput="saveInit()">
-        <div class="init-unit">cm</div>
-      </div>
-      <div class="init-field">
-        <div class="init-label">🎯 Meta</div>
-        <input class="init-input" id="metaPeso" type="number" placeholder="—" step="0.5" oninput="saveInit()">
-        <div class="init-unit">kg</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="tirze-list"></div>
-</div>
-
-<!-- TELA 4: CICLO HORMONAL -->
-<div class="screen" id="s-ciclo">
-  <div class="page-title">Ciclo Hormonal</div>
-  <div class="page-sub">Dom / Ter / Qui • Noite • 8 semanas</div>
-
-  <div class="dose-strip">
-    <div class="dose-c enat">
-      <div class="dose-c-name">Enantato</div>
-      <div class="dose-c-val">0,7<small style="font-size:13px">ml</small></div>
-      <div class="dose-c-unit">Testosterona</div>
-    </div>
-    <div class="dose-c mast">
-      <div class="dose-c-name">Masteron</div>
-      <div class="dose-c-val">0,5<small style="font-size:13px">ml</small></div>
-      <div class="dose-c-unit">Drostanolona</div>
-    </div>
-  </div>
-
-  <div class="ciclo-progress">
-    <div class="ciclo-prog-header">
-      <div class="ciclo-prog-title">🧪 Ciclo — progresso</div>
-      <div class="ciclo-prog-pct" id="cicloPct2">0%</div>
-    </div>
-    <div class="prog-bar-bg"><div class="prog-bar-fill" id="cicloBar2" style="width:0%"></div></div>
-    <div class="prog-weeks" id="cicloProgWeeks2"></div>
-  </div>
-
-  <div id="ciclo-list"></div>
-</div>
-
-<!-- TELA 5: DIETA -->
-<div class="screen" id="s-diet">
-  <div class="page-title">Dieta</div>
-  <div class="page-sub">Protocolo alimentar diário — ~1.630 kcal</div>
-
-  <!-- TOTAIS -->
-  <div class="macro-summary">
-    <div class="macro-title">Totais estimados / dia</div>
-    <div class="macro-grid">
-      <div class="macro-box">
-        <div class="macro-val">~166</div>
-        <div class="macro-label">Prot (g)</div>
-      </div>
-      <div class="macro-box">
-        <div class="macro-val">~170</div>
-        <div class="macro-label">Carbs (g)</div>
-      </div>
-      <div class="macro-box">
-        <div class="macro-val">~32</div>
-        <div class="macro-label">Gord (g)</div>
-      </div>
-      <div class="macro-box kcal">
-        <div class="macro-val">1630</div>
-        <div class="macro-label">kcal</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CAFÉ DA MANHÃ -->
-  <div class="card c-sun">
-    <div class="card-header">
-      <div class="card-icon">🍳</div>
-      <div>
-        <div class="card-title">Café da Manhã <span class="badge badge-time">~09h</span></div>
-        <div class="card-sub">Primeira refeição do dia</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">2 Ovos inteiros</div><div class="food-qty">Proteína + gordura boa</div><div class="food-macro">~12g prot · 1g carb · 10g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">3 Claras de ovo</div><div class="food-qty">Proteína extra, sem gordura</div><div class="food-macro">~10g prot · 1g carb · 0g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Pão de Forma Integral</div><div class="food-qty">2 fatias (~50g)</div><div class="food-macro">~6g prot · 26g carb · 2g gord</div></div></div>
-    </div>
-    <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~28g</span>
-      <span class="macro-chip">C: ~28g</span>
-      <span class="macro-chip">G: ~12g</span>
-      <span class="macro-chip kc">~315 kcal</span>
-    </div>
-  </div>
-
-  <!-- ALMOÇO -->
-  <div class="card c-lunch">
-    <div class="card-header">
-      <div class="card-icon">🍽️</div>
-      <div>
-        <div class="card-title">Almoço <span class="badge badge-time">~12h</span></div>
-        <div class="card-sub">Refeição principal</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Frango ou Carne Magra</div><div class="food-qty">150g — sobrecoxa desossada limpa</div><div class="food-macro">~28g prot · 0g carb · 7g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz</div><div class="food-qty">150g cozido</div><div class="food-macro">~3g prot · 33g carb · 0,3g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Feijão</div><div class="food-qty">50g cozido</div><div class="food-macro">~4g prot · 9g carb · 0,2g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Tomate e Pepino</div><div class="food-qty">150g</div><div class="food-macro">~1g prot · 5g carb · 0g gord</div></div></div>
-    </div>
-    <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~36g</span>
-      <span class="macro-chip">C: ~47g</span>
-      <span class="macro-chip">G: ~8g</span>
-      <span class="macro-chip kc">~415 kcal</span>
-    </div>
-  </div>
-
-  <!-- MERENDA -->
-  <div class="card c-snack">
-    <div class="card-header">
-      <div class="card-icon">🥤</div>
-      <div>
-        <div class="card-title">Merenda da Tarde <span class="badge badge-time">~15-16h</span></div>
-        <div class="card-sub">Shake pré-cardio — alta proteína</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Whey Protein</div><div class="food-qty">2 scoops (25g prot por dose)</div><div class="food-macro">~50g prot · 6g carb · 4g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Aveia</div><div class="food-qty">50g</div><div class="food-macro">~7g prot · 34g carb · 4g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Mamão</div><div class="food-qty">200g</div><div class="food-macro">~1g prot · 18g carb · 0,2g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Leite Desnatado</div><div class="food-qty">200ml</div><div class="food-macro">~7g prot · 10g carb · 0,5g gord</div></div></div>
-    </div>
-    <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~65g</span>
-      <span class="macro-chip">C: ~68g</span>
-      <span class="macro-chip">G: ~9g</span>
-      <span class="macro-chip kc">~615 kcal</span>
-    </div>
-  </div>
-
-  <!-- JANTAR -->
-  <div class="card c-moon">
-    <div class="card-header">
-      <div class="card-icon">🌆</div>
-      <div>
-        <div class="card-title">Jantar <span class="badge badge-time">~19h30</span></div>
-        <div class="card-sub">Pós-cardio</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Peixe ou Frango</div><div class="food-qty">150g (igual ao almoço)</div><div class="food-macro">~33g prot · 0g carb · 3g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Arroz</div><div class="food-qty">100g cozido</div><div class="food-macro">~2g prot · 22g carb · 0,2g gord</div></div></div>
-      <div class="food-item"><div class="food-dot"></div><div><div class="food-name">Tomate e Pepino</div><div class="food-qty">150g</div><div class="food-macro">~1g prot · 5g carb · 0g gord</div></div></div>
-    </div>
-    <div class="meal-macro-bar">
-      <span class="macro-chip">P: ~36g</span>
-      <span class="macro-chip">C: ~27g</span>
-      <span class="macro-chip">G: ~3g</span>
-      <span class="macro-chip kc">~285 kcal</span>
-    </div>
-  </div>
-</div>
-
-<!-- BOTTOM NAV -->
-<nav class="nav">
-  <button class="nav-btn active" onclick="goTo('home',this)"><span class="ico">🏠</span>Início</button>
-  <button class="nav-btn" onclick="goTo('supl',this)"><span class="ico">💊</span>Suplem.</button>
-  <button class="nav-btn" onclick="goTo('tirze',this)"><span class="ico">💉</span>Tirze</button>
-  <button class="nav-btn" onclick="goTo('ciclo',this)"><span class="ico">🧪</span>Ciclo</button>
-  <button class="nav-btn" onclick="goTo('diet',this)"><span class="ico">🥗</span>Dieta</button>
+<nav>
+  <button class="on" data-t="inicio"><span class="ic">🏠</span>Início</button>
+  <button data-t="supl"><span class="ic">💊</span>Suplem</button>
+  <button data-t="tirze"><span class="ic">💉</span>Tirze</button>
+  <button data-t="ciclo"><span class="ic">🧪</span>Ciclo</button>
+  <button data-t="dieta"><span class="ic">🥗</span>Dieta</button>
 </nav>
 
 <script>
-// ── NAV ──
-function goTo(id, btn) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('s-' + id).classList.add('active');
-  btn.classList.add('active');
-  document.getElementById('s-' + id).scrollTop = 0;
+/* =====================================================================
+   PROTOCOLO — edite este bloco quando algo mudar. O app se redesenha.
+   ===================================================================== */
+const P = {
+  cycle:{
+    start:'2026-07-19', weeks:8, weekdays:[0,2,4], time:'Noite',
+    initial:{peso:'94,8 kg', cintura:'96,7 cm'},
+    compounds:[
+      {nm:'Enantato', sub:'Testosterona', amt:'0,7', unit:'ml', color:'blue'},
+      {nm:'Trembolona', sub:'Acetato', amt:'0,3', unit:'ml', color:'purple'},
+      {nm:'Stanozolol', sub:'Manhã · pré-treino', amt:'3', unit:'comp', color:'orange'}
+    ],
+    doseLine:'Enan 0,7ml + Trembo 0,3ml (noite) + Stano 3 comp (manhã)'
+  },
+  tirze:{
+    start:'2026-07-19', end:'2026-10-03', offsets:[0,4,9], dose:'TIRZE 5 mg',
+    head:'Tirzepatida 5 mg · esquema 1/5/10 · início 19/07',
+    peso:'94,8 kg', cintura:'96,7 cm', meta:'86,9 kg'
+  },
+  supplements:[
+    {th:'Pré-musculação', tm:'05h15 · jejum', items:[
+      {n:'NAC', d:'600 mg · antioxidante pré-treino'},
+      {n:'Nattokinase', d:'200 mg · fibrinolítico, absorve em jejum', med:true}
+    ]},
+    {th:'Café da manhã', tm:'~08h', items:[
+      {n:'D3 + K2 MK-7', d:'5000 UI + 200 mcg'},
+      {n:'Coenzima Q10', d:'cardiovascular'},
+      {n:'Ômega-3', d:'1ª dose · HDL/anti-inflamatório'},
+      {n:'Saw Palmetto', d:'500 mg · modera DHT'},
+      {n:'Cardo Mariano', d:'silimarina · 1ª dose'}
+    ]},
+    {th:'Almoço', tm:'~12h', items:[
+      {n:'Vitamina B12', d:'2000 mcg'},
+      {n:'Ômega-3', d:'2ª dose'},
+      {n:'Cardo Mariano', d:'2ª dose'},
+      {n:'NAC', d:'600 mg · 2ª dose'},
+      {n:'AAS', d:'100 mg · antiagregante · com a comida', med:true}
+    ]},
+    {th:'Pré-cardio', tm:'17h15', items:[
+      {n:'Niacina (B3)', d:'500 mg–1 g · elevar HDL (flushing ok)'}
+    ]},
+    {th:'Jantar', tm:'~19h30', items:[
+      {n:'Zinco', d:'20 mg · longe de laticínios'},
+      {n:'Probiótico', d:'Lactobacillus 1 Bi UFC · nunca com líquido quente'}
+    ]},
+    {th:'Antes de dormir', tm:'~21h30', items:[
+      {n:'Magnésio Treonato', d:'500 mg · sono/recuperação'},
+      {n:'GABA', d:'300 mg · sono (alt. teanina 200 mg)'},
+      {n:'Rosuvastatina', d:'20 mg · perfil lipídico/LDL', med:true}
+    ]}
+  ],
+  now:[
+    {h:5, ic:'🏋️', t:'Pré-musculação (jejum)', s:'NAC + Nattokinase'},
+    {h:8, ic:'☀️', t:'Café da manhã', s:'D3+K2, Q10, Ômega-3, Saw Palmetto, Cardo Mariano'},
+    {h:12, ic:'🍽️', t:'Almoço', s:'B12, Ômega-3, Cardo Mariano, NAC, AAS'},
+    {h:17, ic:'🚴', t:'Pré-cardio', s:'Niacina B3 às 17h15'},
+    {h:19, ic:'🌙', t:'Jantar', s:'Zinco, Probiótico'},
+    {h:21, ic:'😴', t:'Antes de dormir', s:'Magnésio, GABA, Rosuvastatina'}
+  ],
+  diet:[
+    {th:'Café da manhã', tm:'~08h30', items:[
+      {n:'2 ovos inteiros', d:'C1 · P13 · G10 · 145 kcal'},
+      {n:'3 claras', d:'C1 · P11 · G0 · 50 kcal'},
+      {n:'2 fatias pão integral', d:'C24 · P7 · G2 · 140 kcal'},
+      {n:'1 banana', d:'C23 · P1 · G0 · 95 kcal'}
+    ], mc:{c:49,p:32,g:12,k:430}},
+    {th:'Almoço', tm:'~12h', items:[
+      {n:'200 g frango sobrecoxa (air fryer)', d:'C0 · P50 · G16 · 345 kcal'},
+      {n:'200 g arroz integral', d:'C52 · P5 · G2 · 245 kcal'},
+      {n:'50 g feijão', d:'C7 · P2 · G0 · 38 kcal'},
+      {n:'200 g vegetais/legumes', d:'C14 · P4 · G1 · 75 kcal'}
+    ], mc:{c:73,p:61,g:19,k:705}},
+    {th:'Merenda da tarde', tm:'~15h30', items:[
+      {n:'2 doses whey', d:'C6 · P50 · G3 · 250 kcal'},
+      {n:'50 g aveia', d:'C33 · P8 · G4 · 200 kcal'},
+      {n:'200 g mamão + ½ banana', d:'C33 · P2 · G1 · 145 kcal'},
+      {n:'250 ml leite desnatado', d:'C12 · P9 · G1 · 90 kcal'}
+    ], mc:{c:84,p:69,g:9,k:685}},
+    {th:'Jantar', tm:'~19h30', items:[
+      {n:'200 g frango sobrecoxa (air fryer)', d:'C0 · P50 · G16 · 345 kcal'},
+      {n:'200 g arroz integral', d:'C52 · P5 · G2 · 245 kcal'},
+      {n:'300 g tomate + pepino', d:'C10 · P2 · G1 · 50 kcal'}
+    ], mc:{c:62,p:57,g:19,k:640}}
+  ]
+};
+const SYMPTOMS=[['Retenção','💧'],['Pressão','❤️'],['Insônia','🌙'],['Acne','🔴']];
+const STORE='leandro_v2';
+/* =================== fim do bloco editável =================== */
+
+const DAY=864e5, DOW=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const now=new Date();
+function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function fmt(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
+function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today0(){return new Date(now.getFullYear(),now.getMonth(),now.getDate());}
+function db(){try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return{}}}
+function save(o){try{localStorage.setItem(STORE,JSON.stringify(o))}catch(e){}}
+function get(k){var o=db();return o[k]||{}}
+function set(k,v){var o=db();o[k]=Object.assign(o[k]||{},v);save(o)}
+
+/* cycle application dates */
+function cycleDates(){
+  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY), out=[];
+  for(var t=s.getTime();t<end.getTime();t+=DAY){var d=new Date(t);
+    if(P.cycle.weekdays.indexOf(d.getDay())>=0) out.push(d);}
+  return out;
+}
+function tirzeDates(){
+  var s=parse(P.tirze.start), end=parse(P.tirze.end), out=[];
+  for(var k=0;k<40;k++){P.tirze.offsets.forEach(function(o){
+    var d=new Date(s.getTime()+(10*k+o)*DAY); if(d<=end) out.push(d);});}
+  out.sort(function(a,b){return a-b});return out;
 }
 
-// ── HELPERS ──
-const pad = n => String(n).padStart(2, '0');
-const diasSemana = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-
-function fmtDate(d) {
-  return `${pad(d.getDate())}/${pad(d.getMonth()+1)}`;
-}
-function getDayName(d) { return diasSemana[d.getDay()]; }
-
-// ── STORAGE ──
-function save(key, val) {
-  try { localStorage.setItem('lc_' + key, JSON.stringify(val)); } catch(e) {}
-}
-function load(key, def) {
-  try { const v = localStorage.getItem('lc_' + key); return v ? JSON.parse(v) : def; } catch(e) { return def; }
-}
-
-// ── DASHBOARD ──
-function updateDash() {
-  const now = new Date();
-  const dias = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
-  document.getElementById('dashDate').textContent =
-    `${dias[now.getDay()]}, ${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
-
-  const pi = load('init_peso', null);
-  const ci = load('init_cintura', null);
-  document.getElementById('dash-peso').textContent = pi ? pi + '' : '—';
-  document.getElementById('dash-cin').textContent = ci ? ci + '' : '—';
-
-  const h = now.getHours();
-  let suppNow = '', suppSub = '';
-  if (h < 6)       { suppNow = '🏋️ Pré-musculação (se amanhã for treino)'; suppSub = 'NAC 600mg + Nattokinase 200mg às 05h15'; }
-  else if (h < 10) { suppNow = '☀️ Café da manhã'; suppSub = 'D3+K2 · Q10 · Ômega-3 · Saw Palmetto · Cardo Mariano'; }
-  else if (h < 14) { suppNow = '🍽️ Almoço'; suppSub = 'B12 · Ômega-3 · Cardo Mariano · NAC 600mg'; }
-  else if (h < 18) { suppNow = '🚴 Pré-cardio (se hoje for dia de cardio)'; suppSub = 'Niacina B3 às 17h15'; }
-  else if (h < 21) { suppNow = '🌆 Jantar'; suppSub = 'Zinco 20mg · Probiótico'; }
-  else             { suppNow = '🌙 Antes de dormir'; suppSub = 'Magnésio Treonato · GABA'; }
-  document.getElementById('dash-supp').textContent = suppNow;
-  document.getElementById('dash-supp-sub').textContent = suppSub;
-
-  // Próxima tirze/retra
-  const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const tEventos = gerarTirzeEventos();
-  const proxEv = tEventos.find(ev => { const dc = new Date(ev.data); dc.setHours(0,0,0,0); return dc >= hoje; });
-  if (proxEv) {
-    const dc = new Date(proxEv.data); dc.setHours(0,0,0,0);
-    const diff = Math.round((dc - hoje) / (1000*60*60*24));
-    const label = proxEv.tipo === 'tirze' ? '💉 Tirze 5mg' : '🟢 Retra 2,5mg';
-    document.getElementById('dash-tirze').textContent = `${fmtDate(proxEv.data)} — ${getDayName(proxEv.data)} · ${label}`;
-    document.getElementById('dash-tirze-sub').textContent =
-      diff === 0 ? `👉 HOJE! · ${label}` : `Em ${diff} dia${diff !== 1 ? 's' : ''} · ${label}`;
-  }
-
-  // Próxima ciclo
-  const cDates = gerarCicloDatas();
-  const proxCiclo = cDates.find(d => { const dc = new Date(d); dc.setHours(0,0,0,0); return dc >= hoje; });
-  if (proxCiclo) {
-    const dc = new Date(proxCiclo); dc.setHours(0,0,0,0);
-    const diff = Math.round((dc - hoje) / (1000*60*60*24));
-    document.getElementById('dash-ciclo').textContent = `${fmtDate(proxCiclo)} — ${getDayName(proxCiclo)}`;
-    document.getElementById('dash-ciclo-sub').textContent =
-      diff === 0 ? '👉 HOJE À NOITE! · Enat 0,7ml + Mast 0,5ml'
-                 : `Em ${diff} dia${diff !== 1 ? 's' : ''} · Enat 0,7ml + Mast 0,5ml`;
-  }
+/* ---------- INÍCIO ---------- */
+function renderInicio(){
+  var opt={weekday:'long',day:'2-digit',month:'long',year:'numeric'};
+  document.getElementById('hero-date').textContent=now.toLocaleDateString('pt-BR',opt);
+  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
+  var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
+  document.getElementById('ini-pct').textContent=Math.round(pc*100)+'%';
+  document.getElementById('ini-fill').style.width=(pc*100)+'%';
+  var cur=today0()>=s?Math.min(P.cycle.weeks,Math.floor((today0()-s)/DAY/7)+1):0;
+  var wk=''; for(var i=1;i<=P.cycle.weeks;i++){wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';}
+  document.getElementById('ini-weeks').innerHTML=wk;
+  document.getElementById('ini-peso').innerHTML=P.cycle.initial.peso.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('ini-cint').innerHTML=P.cycle.initial.cintura.replace(/ (\w+)$/,' <small>$1</small>');
+  // suplementação agora
+  var h=now.getHours(), pick=P.now[0];
+  for(var j=0;j<P.now.length;j++){if(h>=P.now[j].h)pick=P.now[j];}
+  document.getElementById('now-ic').textContent=pick.ic;
+  document.getElementById('now-title').textContent=pick.t;
+  document.getElementById('now-sub').textContent=pick.s;
+  // próxima tirze
+  var tz=tirzeDates().filter(function(d){return d>=today0()});
+  if(tz.length){var d0=tz[0], dd=Math.round((d0-today0())/DAY);
+    document.getElementById('ini-tz').textContent=fmt(d0)+' · '+DOW[d0.getDay()]+' · '+P.tirze.dose;
+    document.getElementById('ini-tz-sub').textContent=dd===0?'👉 Hoje!':'em '+dd+(dd===1?' dia':' dias');}
+  // próxima ciclo
+  var cy=cycleDates().filter(function(d){return d>=today0()});
+  if(cy.length){var c0=cy[0], cd=Math.round((c0-today0())/DAY);
+    document.getElementById('ini-cy').textContent=fmt(c0)+' · '+DOW[c0.getDay()];
+    document.getElementById('ini-cy-sub').textContent=(cd===0?'👉 Hoje à noite! · ':'em '+cd+(cd===1?' dia · ':' dias · '))+P.cycle.doseLine;}
 }
 
-// ── CICLO PROGRESS BAR ──
-function renderCicloBar(barId, pctId, weeksId) {
-  const inicio = new Date(2026, 4, 31); // 31 mai
-  const hoje = new Date();
-  const diffDias = Math.floor((hoje - inicio) / (1000*60*60*24));
-  const semAtual = Math.min(Math.max(Math.ceil(diffDias / 7), 0), 8);
-  const pct = Math.round((semAtual / 8) * 100);
-
-  document.getElementById(barId).style.width = pct + '%';
-  document.getElementById(pctId).textContent = pct + '%';
-
-  const wc = document.getElementById(weeksId);
-  wc.innerHTML = '';
-  for (let i = 1; i <= 8; i++) {
-    const s = document.createElement('div');
-    s.className = 'prog-week' + (i <= semAtual ? ' done' : '');
-    s.textContent = `S${i}`;
-    wc.appendChild(s);
-  }
-}
-
-// ── TIRZE/RETRA: intercaladas, Tirze 11/06 · Retra 14/06, cada 5 dias ──
-function gerarTirzeEventos() {
-  const eventos = [];
-  const fim = new Date(2026, 9, 15);
-  // Tirze 5mg: 11/06 a cada 5 dias
-  let dT = new Date(2026, 5, 11); let idxT = 0;
-  while (dT <= fim) { eventos.push({ data: new Date(dT), tipo: 'tirze', idx: idxT++ }); dT.setDate(dT.getDate() + 5); }
-  // Retra 2,5mg: 14/06 a cada 5 dias (3 dias após Tirze)
-  let dR = new Date(2026, 5, 14); let idxR = 0;
-  while (dR <= fim) { eventos.push({ data: new Date(dR), tipo: 'retra', idx: idxR++ }); dR.setDate(dR.getDate() + 5); }
-  eventos.sort((a, b) => a.data - b.data);
-  return eventos;
-}
-
-// ── CICLO DATES: Dom/Ter/Qui a partir de 31/05 ──
-function gerarCicloDatas() {
-  const datas = [];
-  let d = new Date(2026, 4, 31);
-  const alvo = [0, 2, 4]; // Dom, Ter, Qui
-  while (datas.length < 24) {
-    if (alvo.includes(d.getDay())) datas.push(new Date(d));
-    d.setDate(d.getDate() + 1);
-  }
-  return datas;
-}
-
-// ── RENDER TIRZE ──
-function renderTirze() {
-  const eventos = gerarTirzeEventos();
-  const container = document.getElementById('tirze-list');
-  container.innerHTML = '';
-  let mesAtual = null;
-  let cardEl = null;
-
-  eventos.forEach((ev, i) => {
-    const mes = ev.data.getMonth();
-    if (mes !== mesAtual) {
-      mesAtual = mes;
-      const mh = document.createElement('div');
-      mh.className = 'month-sep';
-      mh.textContent = meses[mes] + ' ' + ev.data.getFullYear();
-      container.appendChild(mh);
-      cardEl = document.createElement('div');
-      cardEl.className = 'card';
-      cardEl.style.padding = '0';
-      container.appendChild(cardEl);
-    }
-
-    const storeKey = `ev_${ev.tipo}_${ev.idx}`;
-    const stored = load(storeKey, {});
-    const row = document.createElement('div');
-    row.className = 'entry-row';
-    row.id = `trow_${i}`;
-
-    const isTirze = ev.tipo === 'tirze';
-    const btnClass = isTirze ? 'tirze-btn' : 'retra-btn';
-    const btnLabel = isTirze ? '💉 TIRZE 5mg' : '🟢 RETRA 2,5mg';
-    const dotStyle = isTirze
-      ? 'width:8px;height:8px;border-radius:50%;background:var(--tirze);flex-shrink:0'
-      : 'width:8px;height:8px;border-radius:50%;background:var(--tra);flex-shrink:0';
-    const tagStyle = isTirze
-      ? 'font-family:Space Mono,monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:rgba(196,125,10,.1);color:var(--tirze);border:1px solid rgba(196,125,10,.2)'
-      : 'font-family:Space Mono,monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:rgba(26,158,102,.1);color:var(--tra);border:1px solid rgba(26,158,102,.2)';
-    const typeTag = isTirze ? 'TIRZE' : 'RETRA';
-
-    row.innerHTML = `
-      <div class="entry-date-col">
-        <div class="entry-date">${fmtDate(ev.data)}</div>
-        <div class="entry-day">${getDayName(ev.data)}</div>
-      </div>
-      <div class="entry-main">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-          <span style="${tagStyle}">${typeTag}</span>
-        </div>
-        <div class="entry-checks">
-          <label class="chk-btn ${btnClass}"><input type="checkbox" ${stored.done ? 'checked' : ''} onchange="saveTirze('${ev.tipo}',${ev.idx},'done',this.checked)"><span class="cdot"></span>${btnLabel} ✓</label>
-        </div>
-        <div class="mini-fields">
-          <div class="mini-field">
-            <input class="mini-input" type="number" placeholder="—" step="0.1" value="${stored.peso || ''}" oninput="saveTirze('${ev.tipo}',${ev.idx},'peso',this.value)">
-            <span class="mini-unit">kg</span>
-          </div>
-          <div class="mini-field">
-            <input class="mini-input" type="number" placeholder="—" step="0.5" value="${stored.cintura || ''}" oninput="saveTirze('${ev.tipo}',${ev.idx},'cintura',this.value)">
-            <span class="mini-unit">cm</span>
-          </div>
-        </div>
-        <textarea class="obs-mini" placeholder="observações..." oninput="saveTirze('${ev.tipo}',${ev.idx},'obs',this.value)">${stored.obs || ''}</textarea>
-      </div>
-    `;
-    cardEl.appendChild(row);
+/* ---------- SUPLEM ---------- */
+function renderSupl(){
+  var h='';
+  P.supplements.forEach(function(b){
+    h+='<div class="blk"><div class="th">'+b.th+'<span class="tm">'+b.tm+'</span></div>';
+    b.items.forEach(function(it){
+      h+='<div class="li'+(it.med?' med':'')+'"><span class="bullet"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';
+    });
+    h+='</div>';
   });
+  document.getElementById('supl-list').innerHTML=h;
 }
 
-function saveTirze(tipo, idx, field, val) {
-  const storeKey = `ev_${tipo}_${idx}`;
-  const stored = load(storeKey, {});
-  stored[field] = val;
-  save(storeKey, stored);
-}
-
-// ── RENDER CICLO ──
-function renderCiclo() {
-  const datas = gerarCicloDatas();
-  const container = document.getElementById('ciclo-list');
-  container.innerHTML = '';
-
-  for (let s = 0; s < 8; s++) {
-    const sep = document.createElement('div');
-    sep.className = 'week-sep';
-    sep.innerHTML = `
-      <div class="week-sep-title">Semana ${s + 1}</div>
-      <div class="week-sep-line"></div>
-      <div class="week-sep-tag">S${s + 1}/8</div>
-    `;
-    container.appendChild(sep);
-
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.style.padding = '0';
-
-    for (let a = 0; a < 3; a++) {
-      const idx = s * 3 + a;
-      const data = datas[idx];
-      const stored = load(`ciclo_${idx}`, {});
-      const numApp = idx + 1;
-
-      const row = document.createElement('div');
-      row.className = 'entry-row';
-      row.id = `crow_${idx}`;
-      if (stored.done) row.style.background = 'rgba(26,110,219,0.04)';
-
-      row.innerHTML = `
-        <div class="entry-date-col">
-          <div class="entry-date">${fmtDate(data)}</div>
-          <div class="entry-day">${getDayName(data)}</div>
-        </div>
-        <div class="entry-main">
-          <div class="entry-checks">
-            <label class="chk-btn done-btn"><input type="checkbox" ${stored.done ? 'checked' : ''} onchange="saveCiclo(${idx},'done',this.checked)"><span class="cdot"></span>#${numApp} Aplicou ✓</label>
-          </div>
-          <div class="side-chips">
-            <label class="side-chip"><input type="checkbox" ${stored.retencao ? 'checked' : ''} onchange="saveCiclo(${idx},'retencao',this.checked)">💧 Retenção</label>
-            <label class="side-chip"><input type="checkbox" ${stored.pressao ? 'checked' : ''} onchange="saveCiclo(${idx},'pressao',this.checked)">❤️ Pressão</label>
-            <label class="side-chip"><input type="checkbox" ${stored.insonia ? 'checked' : ''} onchange="saveCiclo(${idx},'insonia',this.checked)">🌙 Insônia</label>
-            <label class="side-chip"><input type="checkbox" ${stored.acne ? 'checked' : ''} onchange="saveCiclo(${idx},'acne',this.checked)">🔴 Acne</label>
-          </div>
-          <textarea class="obs-mini" placeholder="observações..." oninput="saveCiclo(${idx},'obs',this.value)">${stored.obs || ''}</textarea>
-        </div>
-      `;
-      card.appendChild(row);
-    }
-    container.appendChild(card);
+/* ---------- symptom/obs entry (shared) ---------- */
+function entryHTML(d, kind){
+  var st=get(key(d)+'_'+kind);
+  var chips=''; SYMPTOMS.forEach(function(sy,i){
+    chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
+  var doneClass=st.done?' done'+(kind==='tz'?' tz':(kind==='rt'?' rt':'')):'';
+  var lbl=st.done?'Aplicou ✓':'Aplicar';
+  var extra='';
+  if(kind==='tz'||kind==='rt'){
+    extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
   }
+  return '<div class="entry"><div class="hd"><div><div class="date">'+fmt(d)+'</div><div class="dow">'+DOW[d.getDay()]+'</div></div>'+
+    '<button class="aplic'+doneClass+'" data-k="'+key(d)+'_'+kind+'"><span class="dot"></span>'+lbl+'</button></div>'+
+    (kind==='tz'?'<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+P.tirze.dose+'</div>':'')+
+    extra+
+    '<div class="chips">'+chips+'</div>'+
+    '<textarea class="obs" rows="1" data-k="'+key(d)+'_'+kind+'" data-f="obs" placeholder="observações...">'+(st.obs||'')+'</textarea></div>';
 }
 
-function saveCiclo(i, field, val) {
-  const stored = load(`ciclo_${i}`, {});
-  stored[field] = val;
-  save(`ciclo_${i}`, stored);
-  if (field === 'done') {
-    const row = document.getElementById(`crow_${i}`);
-    if (row) row.style.background = val ? 'rgba(26,110,219,0.04)' : '';
-  }
+/* ---------- TIRZE ---------- */
+function renderTirze(){
+  document.getElementById('tz-head').textContent=P.tirze.head;
+  document.getElementById('tz-peso').innerHTML=P.tirze.peso.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('tz-cint').innerHTML=P.tirze.cintura.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('tz-meta').innerHTML=P.tirze.meta.replace(/ (\w+)$/,' <small>$1</small>');
+  var h=''; tirzeDates().forEach(function(d){h+=entryHTML(d,'tz');});
+  document.getElementById('tz-entries').innerHTML=h;
 }
 
-// ── INIT FIELDS ──
-function saveInit() {
-  const p = document.getElementById('pesoInicial').value;
-  const c = document.getElementById('cinturaInicial').value;
-  const m = document.getElementById('metaPeso').value;
-  if (p) save('init_peso', p);
-  if (c) save('init_cintura', c);
-  if (m) save('init_meta', m);
-  updateDash();
+/* ---------- CICLO ---------- */
+function renderCiclo(){
+  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas';
+  var cmp=''; P.cycle.compounds.forEach(function(c){
+    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div></div>';});
+  document.getElementById('cy-comps').innerHTML=cmp;
+  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
+  var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
+  document.getElementById('cy-pct').textContent=Math.round(pc*100)+'%';
+  document.getElementById('cy-fill').style.width=(pc*100)+'%';
+  var cur=today0()>=s?Math.min(P.cycle.weeks,Math.floor((today0()-s)/DAY/7)+1):0, wk='';
+  for(var i=1;i<=P.cycle.weeks;i++)wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';
+  document.getElementById('cy-weeks').innerHTML=wk;
+  // entries grouped by week
+  var dates=cycleDates(), h='';
+  var byWeek={};
+  dates.forEach(function(d){var w=Math.floor((d-s)/DAY/7)+1;(byWeek[w]=byWeek[w]||[]).push(d);});
+  Object.keys(byWeek).forEach(function(w){
+    h+='<div class="wkhd">Semana '+w+'<span class="ln"></span><span class="tag">S'+w+'/'+P.cycle.weeks+'</span></div>';
+    byWeek[w].forEach(function(d){h+=entryHTML(d,'cy');});
+  });
+  document.getElementById('cy-entries').innerHTML=h;
 }
 
-function loadInit() {
-  const p = load('init_peso', '');
-  const c = load('init_cintura', '');
-  const m = load('init_meta', '');
-  if (p) document.getElementById('pesoInicial').value = p;
-  if (c) document.getElementById('cinturaInicial').value = c;
-  if (m) document.getElementById('metaPeso').value = m;
+/* ---------- DIETA ---------- */
+function renderDieta(){
+  var h=''; P.diet.forEach(function(m){
+    h+='<div class="card"><div class="blk"><div class="th">'+m.th+'<span class="tm">'+m.tm+'</span></div>';
+    m.items.forEach(function(it){h+='<div class="li"><span class="bullet" style="background:var(--green)"></span><div><div class="n">'+it.n+'</div><div class="d">'+it.d+'</div></div></div>';});
+    h+='</div><div class="macrorow"><span class="mc c">C '+m.mc.c+'g</span><span class="mc p">P '+m.mc.p+'g</span><span class="mc g">G '+m.mc.g+'g</span><span class="mc k">'+m.mc.k+' kcal</span></div></div>';
+  });
+  document.getElementById('diet-list').innerHTML=h;
 }
 
-// ── PWA INSTALL ──
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').style.display = 'flex';
+/* ---------- interactions ---------- */
+document.addEventListener('click',function(e){
+  var ap=e.target.closest('.aplic');
+  if(ap){var k=ap.dataset.k, st=get(k); set(k,{done:!st.done});
+    ap.classList.toggle('done'); ap.querySelector('.dot');
+    ap.innerHTML='<span class="dot"></span>'+(!st.done?'Aplicou ✓':'Aplicar');
+    if(!st.done){if(k.endsWith('_tz'))ap.classList.add('tz');if(k.endsWith('_rt'))ap.classList.add('rt');}
+    return;}
+  var ch=e.target.closest('.chip');
+  if(ch){var k2=ch.dataset.k, i=ch.dataset.s, o={}; var cur=get(k2); o['s'+i]=!cur['s'+i]; set(k2,o); ch.classList.toggle('on');}
 });
-document.getElementById('installBtn').addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  document.getElementById('installBanner').style.display = 'none';
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.classList.contains('obs')){set(t.dataset.k,{obs:t.value});}
+  if(t.classList.contains('mi')){var o={};o[t.dataset.f]=t.value;set(t.dataset.k,o);}
 });
+/* nav */
+document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');document.getElementById('t-'+b.dataset.t).classList.add('on');
+  window.scrollTo(0,0);
+});});
 
-// ── INIT ──
-renderTirze();
-renderCiclo();
-loadInit();
-updateDash();
-renderCicloBar('cicloBar',  'cicloPct',  'cicloProgWeeks');
-renderCicloBar('cicloBar2', 'cicloPct2', 'cicloProgWeeks2');
-
-if ('serviceWorker' in navigator) {
-  const swCode = `
-    self.addEventListener('install', e => e.waitUntil(
-      caches.open('leandro-v3').then(c => c.addAll(['/']))
-    ));
-    self.addEventListener('fetch', e => e.respondWith(
-      caches.match(e.request).then(r => r || fetch(e.request))
-    ));
-  `;
-  const blob = new Blob([swCode], {type: 'application/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
-}
+renderInicio();renderSupl();renderTirze();renderCiclo();renderDieta();
 </script>
 </body>
 </html>
