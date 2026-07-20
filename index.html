@@ -148,7 +148,8 @@
 
   <div class="card">
     <span class="lbl">🩸 Pendências de saúde</span>
-    <div class="li" style="border:none;padding-top:6px"><span class="bullet" style="background:var(--red)"></span><div><div class="n">Exames de sangue · 20/07</div><div class="d">Avisar o lab do uso de testosterona. Inclui PSA pela 1ª vez.</div></div></div>
+    <div class="li" style="border:none;padding-top:6px"><span class="bullet" style="background:var(--green)"></span><div><div class="n">Exames de sangue · coletado 20/07</div><div class="d">Coletado, aguardando resultado. Lab avisado do uso de testosterona.</div></div></div>
+    <div class="li"><span class="bullet" style="background:var(--orange)"></span><div><div class="n">PSA / próstata · pendente</div><div class="d">Não saiu em 20/07: remarcar após ~2 dias sem ejaculação, esforço intenso ou bike.</div></div></div>
     <div class="li"><span class="bullet" style="background:var(--orange)"></span><div><div class="n">Doação de sangue</div><div class="d">Hematócrito 52%. Quanto antes melhor.</div></div></div>
   </div>
 </div></div>
@@ -171,6 +172,13 @@
     <div class="card" style="padding:13px"><span class="lbl">🎯 Meta</span><div class="big val-orange" id="tz-meta" style="font-size:22px">—</div></div>
   </div>
   <div id="tz-entries" style="margin-top:6px"></div>
+  <div class="card" style="margin-top:12px">
+    <span class="lbl">📉 Desmama · dispara em 87 kg / 12%</span>
+    <div class="li" style="border-top:none"><span class="bullet"></span><div><div class="n">Mês 1</div><div class="d">10 → 7,5 mg</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 2</div><div class="d">7,5 → 5 mg</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 3</div><div class="d">5 → 2,5 mg → suspender</div></div></div>
+  </div>
+  <div class="note">A desmama só começa ao atingir a meta (87 kg / 12%) e é feita durante o bulk (~3.300 a 3.500 kcal), quando a comida maior facilita largar o GLP-1. Subiu para 10 mg em 20/07 porque a fome voltou na dose anterior (taquifilaxia).</div>
 </div></div>
 
 <!-- ===================== CICLO ===================== -->
@@ -227,12 +235,13 @@ const P = {
     doseLine:'Enan 0,7ml + Trembo 0,3ml (noite) + Stano 3 comp (manhã)'
   },
   tirze:{
-    start:'2026-07-19', end:'2026-10-03', offsets:[0,4,9], dose:'TIRZE 5 mg',
-    head:'Tirzepatida 5 mg · esquema 1/5/10 · início 19/07',
+    start:'2026-07-19', end:'2026-10-03', offsets:[0,4,9], dose:'TIRZE 10 mg',
+    head:'Tirzepatida 10 mg · esquema 1/5/10 · início 19/07 (subiu de 5 em 20/07)',
     peso:'94,8 kg', cintura:'100 cm', meta:'86,9 kg'
   },
   supplements:[
     {th:'Pré-musculação', tm:'05h15 · jejum', items:[
+      {n:'Ioimbina HCl', d:'10 mg · queima de gordura abdominal · sobe pressão/FC, vigiar'},
       {n:'NAC', d:'600 mg · antioxidante pré-treino'},
       {n:'Nattokinase', d:'200 mg · fibrinolítico, absorve em jejum', med:true}
     ]},
@@ -264,7 +273,7 @@ const P = {
     ]}
   ],
   now:[
-    {h:5, ic:'🏋️', t:'Pré-musculação (jejum)', s:'NAC + Nattokinase'},
+    {h:5, ic:'🏋️', t:'Pré-musculação (jejum)', s:'Ioimbina + NAC + Nattokinase'},
     {h:8, ic:'☀️', t:'Café da manhã', s:'D3+K2, Q10, Ômega-3, Saw Palmetto, Cardo Mariano'},
     {h:12, ic:'🍽️', t:'Almoço', s:'B12, Ômega-3, Cardo Mariano, NAC, AAS'},
     {h:17, ic:'🚴', t:'Pré-cardio', s:'Niacina B3 às 17h15'},
