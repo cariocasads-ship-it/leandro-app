@@ -2,11 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<title>Protocolo · Leandro</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#2f6bff">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Leandro">
-<title>Protocolo · Leandro</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Protocolo">
+<meta name="mobile-web-app-capable" content="yes">
 <style>
   :root{
     --bg:#f2f2f5;--card:#fff;--ink:#1c2431;--muted:#8a94a3;--muted2:#aab2be;--line:#ececf1;
@@ -21,7 +23,6 @@
   .wrap{padding:16px}
   .tab{display:none}.tab.on{display:block;animation:f .2s}
   @keyframes f{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-  /* header */
   .hero{background:linear-gradient(135deg,#2f6bff,#7c4dff);color:#fff;border-radius:20px;padding:20px;margin-bottom:14px}
   .hero h1{font-size:23px;font-weight:800;letter-spacing:-.01em}
   .hero p{opacity:.9;font-size:13px;margin-top:2px}
@@ -34,22 +35,20 @@
   .big small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
   .val-blue{color:var(--blue)}.val-purple{color:var(--purple)}.val-green{color:var(--green)}.val-orange{color:var(--orange)}
-  /* progress */
   .pcard .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
   .pcard .pct{font-size:22px;font-weight:800;color:var(--blue)}
   .track{height:9px;background:#eef0f4;border-radius:6px;overflow:hidden}
   .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2f6bff,#7c4dff)}
   .weeks{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue)}
   .weeks span.off{color:var(--muted2)}
-  /* compound cards */
   .comp{position:relative;overflow:hidden}
   .comp:before{content:'';position:absolute;left:0;top:0;right:0;height:4px}
-  .comp.blue:before{background:var(--blue)}.comp.purple:before{background:var(--purple)}.comp.orange:before{background:var(--orange)}
+  .comp.blue:before{background:var(--blue)}.comp.purple:before{background:var(--purple)}.comp.orange:before{background:var(--orange)}.comp.green:before{background:var(--green)}
   .comp .nm{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
   .comp .amt{font-size:26px;font-weight:800;margin:4px 0 1px}
   .comp .sub{font-size:12px;color:var(--muted)}
-  /* application entries */
   .entry{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
   .entry .hd{display:flex;align-items:center;gap:12px;margin-bottom:10px}
   .entry .date{font-weight:800;font-size:15px}.entry .dow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase}
@@ -58,7 +57,6 @@
   .aplic .dot{width:8px;height:8px;border-radius:50%;background:var(--muted2)}
   .aplic.done{background:#e6efff;color:var(--blue)}.aplic.done .dot{background:var(--blue)}
   .aplic.done.tz{background:#fff2e0;color:var(--orange)}.aplic.done.tz .dot{background:var(--orange)}
-  .aplic.done.rt{background:#e4f8ec;color:var(--green)}.aplic.done.rt .dot{background:var(--green)}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
   .chip{border:1px solid var(--line);background:#fafbfc;color:var(--muted);font-size:12px;font-weight:600;
     padding:5px 10px;border-radius:20px;cursor:pointer;user-select:none;transition:.12s}
@@ -71,7 +69,6 @@
   .wkhd .tag{margin-left:auto;font-size:11px;background:#e6efff;color:var(--blue);padding:3px 9px;border-radius:12px}
   .wkhd .ln{flex:1;height:1px;background:var(--line)}
   .measure-in{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:8px 11px;font-size:13px;font-family:inherit;color:var(--ink)}
-  /* supp / dieta rows */
   .blk{margin-bottom:6px}
   .blk .th{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
     color:var(--blue);margin:14px 4px 6px;display:flex;align-items:center;gap:7px}
@@ -98,7 +95,15 @@
   .note{font-size:12px;color:var(--muted);padding:2px 4px 0}
   .risk{background:#fff5f5;border:1px solid #f6d2d2;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#b23b34;margin-top:4px}
   .risk b{color:#912b25}
-  /* bottom nav */
+  .win{background:#f0faf4;border:1px solid #c6e9d4;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#1a7a3a;margin-bottom:8px}
+  .win b{color:#146130}
+  .escada{margin-top:10px}
+  .escada .step{display:flex;align-items:center;gap:10px;padding:9px 4px;border-top:1px solid var(--line)}
+  .escada .step:first-child{border-top:none}
+  .escada .step .bar{width:4px;height:26px;border-radius:2px;flex-shrink:0}
+  .escada .step .s-phase{font-weight:700;font-size:13px}
+  .escada .step .s-kcal{font-size:12px;color:var(--muted)}
+  .escada .step .badge{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;background:#e6efff;color:var(--blue);padding:3px 8px;border-radius:10px}
   nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
     border-top:1px solid var(--line);display:flex;max-width:520px;margin:0 auto;padding:6px 0 env(safe-area-inset-bottom)}
   nav button{flex:1;background:none;border:none;padding:8px 0 10px;cursor:pointer;color:var(--muted2);
@@ -115,42 +120,57 @@
   <div class="hero">
     <h1>Bom dia, Leandro! 💪</h1>
     <p>Seu painel de protocolos do dia</p>
-    <div class="d" id="hero-date">—</div>
+    <div class="d" id="hero-date"></div>
   </div>
 
   <div class="card pcard">
-    <div class="top"><span class="lbl">💉 Ciclo hormonal · 8 semanas</span><span class="pct" id="ini-pct">—</span></div>
+    <div class="top"><span class="lbl">💉 Ciclo hormonal · 12 semanas</span><span class="pct" id="ini-pct"></span></div>
     <div class="track"><div class="fill" id="ini-fill"></div></div>
     <div class="weeks" id="ini-weeks"></div>
   </div>
 
   <div class="grid2">
-    <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso">—</div></div>
-    <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint">—</div></div>
+    <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso"></div></div>
+    <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint"></div></div>
   </div>
 
   <div class="card">
     <span class="lbl">💊 Suplementação agora</span>
-    <div class="todo"><span class="ic" id="now-ic">💊</span><div><div style="font-weight:800;font-size:15px" id="now-title">—</div><div style="font-size:12px;color:var(--muted)" id="now-sub">—</div></div></div>
+    <div class="todo"><span class="ic" id="now-ic">💊</span><div><div style="font-weight:800;font-size:15px" id="now-title"></div><div style="font-size:12px;color:var(--muted)" id="now-sub"></div></div></div>
   </div>
 
   <div class="card">
     <span class="lbl">💉 Próxima tirzepatida</span>
-    <div style="font-weight:800;font-size:16px" id="ini-tz">—</div>
-    <div style="font-size:12px;color:var(--muted)" id="ini-tz-sub">—</div>
+    <div style="font-weight:800;font-size:16px" id="ini-tz"></div>
+    <div style="font-size:12px;color:var(--muted)" id="ini-tz-sub"></div>
   </div>
 
   <div class="card">
     <span class="lbl">🧪 Próxima aplicação do ciclo</span>
-    <div style="font-weight:800;font-size:16px" id="ini-cy">—</div>
-    <div style="font-size:12px;color:var(--muted)" id="ini-cy-sub">—</div>
+    <div style="font-weight:800;font-size:16px" id="ini-cy"></div>
+    <div style="font-size:12px;color:var(--muted)" id="ini-cy-sub"></div>
   </div>
 
   <div class="card">
-    <span class="lbl">🩸 Pendências de saúde</span>
-    <div class="li" style="border:none;padding-top:6px"><span class="bullet" style="background:var(--green)"></span><div><div class="n">Exames de sangue · coletado 20/07</div><div class="d">Coletado, aguardando resultado. Lab avisado do uso de testosterona.</div></div></div>
-    <div class="li"><span class="bullet" style="background:var(--orange)"></span><div><div class="n">PSA / próstata · pendente</div><div class="d">Não saiu em 20/07: remarcar após ~2 dias sem ejaculação, esforço intenso ou bike.</div></div></div>
-    <div class="li"><span class="bullet" style="background:var(--orange)"></span><div><div class="n">Doação de sangue</div><div class="d">Hematócrito 52%. Quanto antes melhor.</div></div></div>
+    <span class="lbl">📋 Status do protocolo</span>
+    <div class="win"><b>Vitória.</b> Cintura saiu de 100 para 97 cm (linha do umbigo). Gordura corporal 17,6%. Massa magra 76,5 kg.</div>
+    <div class="risk"><b>Atenção.</b> Stanozolol suspenso em 22/08. Protocolo hormonal reformulado em 23/08 (Durateston + Masteron + Trembo + Deca).</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">🍽️ Dieta atual</span>
+    <div class="todo"><span class="ic">🥗</span><div><div style="font-weight:800;font-size:15px">~2.450 kcal (Coach)</div><div style="font-size:12px;color:var(--muted)">216g P · 278g C · 50g G</div></div></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">📉 Desmama tirze · escada calórica</span>
+    <div class="escada">
+      <div class="step"><div class="bar" style="background:var(--blue)"></div><div><div class="s-phase">Atual (7,5 mg)</div><div class="s-kcal">~2.100 base, adotado ~2.450</div></div><span class="badge">ATIVO</span></div>
+      <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 1 sem 3-4</div><div class="s-kcal">~2.300 kcal</div></div></div>
+      <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 2</div><div class="s-kcal">~2.500 kcal</div></div></div>
+      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">Mês 3</div><div class="s-kcal">~2.700 kcal</div></div></div>
+      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">Mês 4+</div><div class="s-kcal">~2.800+ kcal</div></div></div>
+    </div>
   </div>
 </div></div>
 
@@ -159,54 +179,56 @@
   <h2 class="page">Suplementos</h2>
   <div class="page-sub">Protocolo por horário · 💊 = medicamento</div>
   <div class="card" id="supl-list"></div>
-  <div class="note">💊 Rosuvastatina, AAS e nattokinase miram o lipídico e o risco trombótico do hematócrito. AAS e nattokinase atuam os dois na coagulação: confirme a combinação com o médico.</div>
+  <div class="note">Saw Palmetto mantido como adjuvante (vigiar, DHT 1.345); Finasterida 2,5 mg assumiu a proteção DHT principal. Tadalafila substituiu Ioimbina (retirada do protocolo). AAS + Nattokinase atuam na coagulação; confirmar combinação (Ht 54,5%). Whey e creatina contabilizados na dieta (lanche da tarde).</div>
 </div></div>
 
 <!-- ===================== TIRZE ===================== -->
 <div class="tab" id="t-tirze"><div class="wrap">
   <h2 class="page">Tirzepatida</h2>
-  <div class="page-sub" id="tz-head">—</div>
+  <div class="page-sub" id="tz-head"></div>
   <div class="grid3">
-    <div class="card" style="padding:13px"><span class="lbl">⚖️ Peso base</span><div class="big val-orange" id="tz-peso" style="font-size:22px">—</div></div>
-    <div class="card" style="padding:13px"><span class="lbl">📏 Cintura</span><div class="big val-orange" id="tz-cint" style="font-size:22px">—</div></div>
-    <div class="card" style="padding:13px"><span class="lbl">🎯 Meta</span><div class="big val-orange" id="tz-meta" style="font-size:22px">—</div></div>
+    <div class="card" style="padding:13px"><span class="lbl">⚖️ Peso base</span><div class="big val-orange" id="tz-peso" style="font-size:22px"></div></div>
+    <div class="card" style="padding:13px"><span class="lbl">📏 Cintura</span><div class="big val-orange" id="tz-cint" style="font-size:22px"></div></div>
+    <div class="card" style="padding:13px"><span class="lbl">🎯 Gordura</span><div class="big val-orange" id="tz-meta" style="font-size:22px"></div></div>
   </div>
   <div id="tz-entries" style="margin-top:6px"></div>
   <div class="card" style="margin-top:12px">
-    <span class="lbl">📉 Desmama · dispara em 87 kg / 12%</span>
-    <div class="li" style="border-top:none"><span class="bullet"></span><div><div class="n">Mês 1</div><div class="d">10 → 7,5 mg</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 2</div><div class="d">7,5 → 5 mg</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 3</div><div class="d">5 → 2,5 mg → suspender</div></div></div>
+    <span class="lbl">📉 Desmama · escada calórica</span>
+    <div class="li" style="border-top:none"><span class="bullet" style="background:var(--blue)"></span><div><div class="n">Fase atual</div><div class="d">7,5 mg · ~2.450 kcal (coach)</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 1 sem 3-4</div><div class="d">~2.300 kcal</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 2</div><div class="d">~2.500 kcal</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 3</div><div class="d">~2.700 kcal</div></div></div>
+    <div class="li"><span class="bullet"></span><div><div class="n">Mês 4+</div><div class="d">~2.800+ kcal</div></div></div>
   </div>
-  <div class="note">A desmama só começa ao atingir a meta (87 kg / 12%) e é feita durante o bulk (~3.300 a 3.500 kcal), quando a comida maior facilita largar o GLP-1. Subiu para 10 mg em 20/07 porque a fome voltou na dose anterior (taquifilaxia).</div>
+  <div class="note">Desmama é escada calórica gradual. Dose desceu de 10 para 7,5 mg. Dieta do coach (~2.450 kcal) já está acima do base (~2.100).</div>
 </div></div>
 
 <!-- ===================== CICLO ===================== -->
 <div class="tab" id="t-ciclo"><div class="wrap">
   <h2 class="page">Ciclo hormonal</h2>
-  <div class="page-sub" id="cy-head">—</div>
-  <div class="grid3" id="cy-comps"></div>
+  <div class="page-sub" id="cy-head"></div>
+  <div class="grid4" id="cy-comps"></div>
   <div class="card pcard" style="margin-top:12px">
-    <div class="top"><span class="lbl">Progresso</span><span class="pct" id="cy-pct">—</span></div>
+    <div class="top"><span class="lbl">Progresso</span><span class="pct" id="cy-pct"></span></div>
     <div class="track"><div class="fill" id="cy-fill"></div></div>
     <div class="weeks" id="cy-weeks"></div>
   </div>
-  <div class="risk"><b>Atenção ao Stanozolol.</b> Seu Documento Mestre pede pra adiar até ALT normal e HDL melhorando; últimos exames deram HDL 16 e ALT 60. O resultado de 20/07 confirma ou dissolve esse risco.</div>
+  <div class="risk"><b>Stanozolol suspenso 22/08.</b> Protocolo reformulado em 23/08. Compostos atuais: Durateston 375 + Masteron 150 + Trembo 150 + Deca 100 = 775 mg/sem.</div>
   <div id="cy-entries" style="margin-top:8px"></div>
 </div></div>
 
 <!-- ===================== DIETA ===================== -->
 <div class="tab" id="t-dieta"><div class="wrap">
   <h2 class="page">Dieta</h2>
-  <div class="page-sub">Protocolo alimentar diário</div>
+  <div class="page-sub">Protocolo alimentar diário · Coach</div>
   <div class="totals"><div class="row">
-    <div><div class="k">CARB</div><div class="v val-blue">268 g</div></div>
-    <div><div class="k">PROT</div><div class="v val-green">219 g</div></div>
-    <div><div class="k">GORD</div><div class="v val-orange">59 g</div></div>
-    <div><div class="k">KCAL</div><div class="v val-purple">~2.460</div></div>
+    <div><div class="k">CARB</div><div class="v val-blue">278 g</div></div>
+    <div><div class="k">PROT</div><div class="v val-green">216 g</div></div>
+    <div><div class="k">GORD</div><div class="v val-orange">50 g</div></div>
+    <div><div class="k">KCAL</div><div class="v val-purple">~2.450</div></div>
   </div></div>
   <div id="diet-list"></div>
-  <div class="note">Proteína ~2,35 g/kg. Déficit ~600 kcal. Treino em jejum às 06h. GLP-1 suprime apetite: não descer abaixo de 2.000 kcal.</div>
+  <div class="note">Proteína ~2,3 g/kg. Dieta ajustada pelo coach. Arroz reduzido de 300 para 200g. Gorduras aumentadas (azeite + pasta de amendoim).</div>
 </div></div>
 
 <div class="disc">Ferramenta organizacional, não substitui avaliação médica. Sem médico fixo acompanhando o protocolo. Dados salvos só neste aparelho.</div>
@@ -225,89 +247,94 @@
    ===================================================================== */
 const P = {
   cycle:{
-    start:'2026-07-19', weeks:8, weekdays:[0,2,4], time:'Noite',
-    initial:{peso:'94,8 kg', cintura:'100 cm'},
+    start:'2026-08-23', weeks:12, weekdays:[0,2,4], time:'Noite',
+    initial:{peso:'92,9 kg', cintura:'97 cm'},
     compounds:[
-      {nm:'Enantato', sub:'Testosterona', amt:'0,7', unit:'ml', color:'blue'},
-      {nm:'Trembolona', sub:'Acetato', amt:'0,3', unit:'ml', color:'purple'},
-      {nm:'Stanozolol', sub:'Manhã · pré-treino', amt:'3', unit:'comp', color:'orange'}
+      {nm:'Durateston',sub:'Testosterona blend',amt:'125',unit:'mg',freq:'3x',total:'375',color:'blue'},
+      {nm:'Masteron',sub:'Drostanolona',amt:'50',unit:'mg',freq:'3x',total:'150',color:'purple'},
+      {nm:'Trembolona',sub:'Acetato',amt:'50',unit:'mg',freq:'3x',total:'150',color:'orange'},
+      {nm:'Deca',sub:'Nandrolona · só Dom',amt:'100',unit:'mg',freq:'1x',total:'100',color:'green'}
     ],
-    doseLine:'Enan 0,7ml + Trembo 0,3ml (noite) + Stano 3 comp (manhã)'
+    doseLine:'Durateston 125 + Masteron 50 + Trembo 50 (noite) · Deca 100 só domingo'
   },
   tirze:{
-    start:'2026-07-19', end:'2026-10-03', offsets:[0,4,9], dose:'TIRZE 10 mg',
-    head:'Tirzepatida 10 mg · esquema 1/5/10 · início 19/07 (subiu de 5 em 20/07)',
-    peso:'94,8 kg', cintura:'100 cm', meta:'86,9 kg'
+    start:'2026-08-22', end:'2026-11-30', interval:5, dose:'TIRZE 7,5 mg',
+    head:'Tirzepatida 7,5 mg · desmama · escada calórica',
+    peso:'92,9 kg', cintura:'97 cm', meta:'17,6%'
   },
   supplements:[
-    {th:'Pré-musculação', tm:'05h15 · jejum', items:[
-      {n:'Ioimbina HCl', d:'10 mg · queima de gordura abdominal · sobe pressão/FC, vigiar'},
-      {n:'NAC', d:'600 mg · antioxidante pré-treino'},
-      {n:'Nattokinase', d:'200 mg · fibrinolítico, absorve em jejum', med:true}
+    {th:'Pré-musculação',tm:'05h15 · jejum',items:[
+      {n:'Tadalafila',d:'5 mg · vasodilatação, fluxo sanguíneo',med:true},
+      {n:'NAC',d:'600 mg · antioxidante (1ª dose)'},
+      {n:'Nattokinase',d:'200 mg · fibrinolítico, tomar sozinho',med:true}
     ]},
-    {th:'Café da manhã', tm:'~08h', items:[
-      {n:'D3 + K2 MK-7', d:'5000 UI + 200 mcg'},
-      {n:'Coenzima Q10', d:'cardiovascular'},
-      {n:'Ômega-3', d:'1ª dose · HDL/anti-inflamatório'},
-      {n:'Saw Palmetto', d:'500 mg · modera DHT'},
-      {n:'Cardo Mariano', d:'silimarina · 1ª dose'}
+    {th:'Café da manhã',tm:'08h · com refeição',items:[
+      {n:'D3 + K2 MK-7',d:'5000 UI + 200 mcg · osso/imunidade'},
+      {n:'Coenzima Q10',d:'cardiovascular'},
+      {n:'Ômega-3',d:'1ª dose · HDL/anti-inflamatório'},
+      {n:'Saw Palmetto',d:'500 mg · DHT (vigiar, 1.345)'},
+      {n:'Cardo Mariano',d:'1ª dose · silimarina/fígado'}
     ]},
-    {th:'Almoço', tm:'~12h', items:[
-      {n:'Vitamina B12', d:'2000 mcg'},
-      {n:'Ômega-3', d:'2ª dose'},
-      {n:'Cardo Mariano', d:'2ª dose'},
-      {n:'NAC', d:'600 mg · 2ª dose'},
-      {n:'AAS', d:'100 mg · antiagregante · com a comida', med:true}
+    {th:'Almoço',tm:'12h · com refeição',items:[
+      {n:'Vitamina B12',d:'2000 mcg · reduzir dose'},
+      {n:'Ômega-3',d:'2ª dose'},
+      {n:'Cardo Mariano',d:'2ª dose'},
+      {n:'NAC',d:'600 mg · 2ª dose, nível estável'},
+      {n:'AAS',d:'100 mg · antiagregante, com comida',med:true}
     ]},
-    {th:'Pré-cardio', tm:'17h15', items:[
-      {n:'Niacina (B3)', d:'500 mg–1 g · elevar HDL (flushing ok)'}
+    {th:'Pré-cardio',tm:'17h15',items:[
+      {n:'Niacina (B3)',d:'500 mg a 1 g · elevar HDL (flushing ok)'}
     ]},
-    {th:'Jantar', tm:'~19h30', items:[
-      {n:'Zinco', d:'20 mg · longe de laticínios'},
-      {n:'Probiótico', d:'Lactobacillus 1 Bi UFC · nunca com líquido quente'}
+    {th:'Jantar',tm:'19h30 · com refeição',items:[
+      {n:'Zinco',d:'20 mg · longe de laticínios'},
+      {n:'Probiótico',d:'1 Bi UFC · Lactobacillus, nunca com líquido quente'}
     ]},
-    {th:'Antes de dormir', tm:'~21h30', items:[
-      {n:'Magnésio Treonato', d:'500 mg · sono/recuperação'},
-      {n:'GABA', d:'300 mg · sono (alt. teanina 200 mg)'},
-      {n:'Rosuvastatina', d:'20 mg · perfil lipídico/LDL', med:true}
+    {th:'Antes de dormir',tm:'~21h30',items:[
+      {n:'Magnésio Treonato',d:'500 mg · sono/recuperação'},
+      {n:'GABA',d:'300 mg · sono (alt. teanina 200 mg)'},
+      {n:'Rosuvastatina',d:'20 mg · perfil lipídico/LDL',med:true},
+      {n:'Finasterida',d:'2,5 mg · inibidor 5-alfa redutase/DHT',med:true}
     ]}
   ],
   now:[
-    {h:5, ic:'🏋️', t:'Pré-musculação (jejum)', s:'Ioimbina + NAC + Nattokinase'},
-    {h:8, ic:'☀️', t:'Café da manhã', s:'D3+K2, Q10, Ômega-3, Saw Palmetto, Cardo Mariano'},
-    {h:12, ic:'🍽️', t:'Almoço', s:'B12, Ômega-3, Cardo Mariano, NAC, AAS'},
-    {h:17, ic:'🚴', t:'Pré-cardio', s:'Niacina B3 às 17h15'},
-    {h:19, ic:'🌙', t:'Jantar', s:'Zinco, Probiótico'},
-    {h:21, ic:'😴', t:'Antes de dormir', s:'Magnésio, GABA, Rosuvastatina'}
+    {h:5,ic:'🏋️',t:'Pré-musculação (jejum)',s:'Tadalafila + NAC + Nattokinase'},
+    {h:8,ic:'☀️',t:'Café da manhã',s:'D3+K2 + CoQ10 + Ômega-3 + Saw Palmetto + Cardo Mariano'},
+    {h:12,ic:'🍽️',t:'Almoço',s:'B12 + Ômega-3 + Cardo Mariano + NAC + AAS'},
+    {h:17,ic:'🚴',t:'Pré-cardio',s:'Niacina (B3)'},
+    {h:19,ic:'🍲',t:'Jantar',s:'Zinco + Probiótico'},
+    {h:21,ic:'😴',t:'Antes de dormir',s:'Magnésio + GABA + Rosuvastatina + Finasterida'}
   ],
   diet:[
-    {th:'Café da manhã', tm:'~08h30', items:[
-      {n:'2 ovos inteiros', d:'C1 · P13 · G10 · 145 kcal'},
-      {n:'3 claras', d:'C1 · P11 · G0 · 50 kcal'},
-      {n:'2 fatias pão integral', d:'C24 · P7 · G2 · 140 kcal'},
-      {n:'1 banana', d:'C23 · P1 · G0 · 95 kcal'}
-    ], mc:{c:49,p:32,g:12,k:430}},
-    {th:'Almoço', tm:'~12h', items:[
-      {n:'200 g frango sobrecoxa (air fryer)', d:'C0 · P50 · G16 · 345 kcal'},
-      {n:'200 g arroz integral', d:'C52 · P5 · G2 · 245 kcal'},
-      {n:'50 g feijão', d:'C7 · P2 · G0 · 38 kcal'},
-      {n:'200 g vegetais/legumes', d:'C14 · P4 · G1 · 75 kcal'}
-    ], mc:{c:73,p:61,g:19,k:705}},
-    {th:'Merenda da tarde', tm:'~15h30', items:[
-      {n:'2 doses whey', d:'C6 · P50 · G3 · 250 kcal'},
-      {n:'50 g aveia', d:'C33 · P8 · G4 · 200 kcal'},
-      {n:'200 g mamão + ½ banana', d:'C33 · P2 · G1 · 145 kcal'},
-      {n:'250 ml leite desnatado', d:'C12 · P9 · G1 · 90 kcal'}
-    ], mc:{c:84,p:69,g:9,k:685}},
-    {th:'Jantar', tm:'~19h30', items:[
-      {n:'200 g frango sobrecoxa (air fryer)', d:'C0 · P50 · G16 · 345 kcal'},
-      {n:'200 g arroz integral', d:'C52 · P5 · G2 · 245 kcal'},
-      {n:'300 g tomate + pepino', d:'C10 · P2 · G1 · 50 kcal'}
-    ], mc:{c:62,p:57,g:19,k:640}}
+    {th:'Café da manhá',tm:'~08h30',items:[
+      {n:'2 ovos inteiros + 3 claras',d:'P34 · C2 · G10 · 195 kcal'},
+      {n:'4 fatias pão de forma integral',d:'P10 · C48 · G2 · 280 kcal'},
+      {n:'1 banana',d:'P1 · C26 · G0 · 71 kcal'}
+    ],mc:{c:76,p:34,g:12,k:546}},
+    {th:'Almoço',tm:'~12h',items:[
+      {n:'150g frango grelhado',d:'P45 · C0 · G4 · 220 kcal'},
+      {n:'200g arroz branco',d:'P5 · C56 · G1 · 260 kcal'},
+      {n:'100g feijão',d:'P5 · C12 · G0 · 77 kcal'},
+      {n:'150g vegetais (brócolis, abobrinha)',d:'P3 · C6 · G0 · 40 kcal'},
+      {n:'10g azeite',d:'P0 · C0 · G10 · 90 kcal'}
+    ],mc:{c:78,p:60,g:15,k:702}},
+    {th:'Lanche da tarde',tm:'~15h30',items:[
+      {n:'2 doses whey (60g)',d:'P50 · C6 · G2 · 240 kcal'},
+      {n:'50g aveia',d:'P7 · C30 · G4 · 190 kcal'},
+      {n:'100g mamão',d:'P1 · C11 · G0 · 40 kcal'},
+      {n:'170g iogurte zero gordura',d:'P7 · C8 · G0 · 60 kcal'},
+      {n:'15g pasta de amendoim',d:'P4 · C3 · G8 · 92 kcal'}
+    ],mc:{c:60,p:67,g:14,k:622}},
+    {th:'Jantar',tm:'~19h30',items:[
+      {n:'150g frango grelhado',d:'P45 · C0 · G4 · 220 kcal'},
+      {n:'200g arroz branco',d:'P5 · C56 · G1 · 260 kcal'},
+      {n:'150g vegetais',d:'P3 · C6 · G0 · 40 kcal'},
+      {n:'5g azeite',d:'P0 · C0 · G5 · 45 kcal'}
+    ],mc:{c:64,p:55,g:9,k:580}}
   ]
 };
-const SYMPTOMS=[['Retenção','💧'],['Pressão','❤️'],['Insônia','🌙'],['Acne','🔴']];
-const STORE='leandro_v2';
+const SYMPTOMS=[['Retenção','💧'],['Pressão','❤️'],['Insônia','🌙'],['Acne','🔴'],['Libido+','🔥'],['Libido-','❄️'],['Sudorese','💦']];
+const TZ_SYMPTOMS=[['Náusea','🤢'],['Refluxo','🔥'],['Saciedade+','✅'],['Fadiga','😴'],['Dor abdominal','⚡']];
+const STORE='leandro_v3';
 /* =================== fim do bloco editável =================== */
 
 const DAY=864e5, DOW=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
@@ -321,7 +348,6 @@ function save(o){try{localStorage.setItem(STORE,JSON.stringify(o))}catch(e){}}
 function get(k){var o=db();return o[k]||{}}
 function set(k,v){var o=db();o[k]=Object.assign(o[k]||{},v);save(o)}
 
-/* cycle application dates */
 function cycleDates(){
   var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY), out=[];
   for(var t=s.getTime();t<end.getTime();t+=DAY){var d=new Date(t);
@@ -329,10 +355,10 @@ function cycleDates(){
   return out;
 }
 function tirzeDates(){
-  var s=parse(P.tirze.start), end=parse(P.tirze.end), out=[];
-  for(var k=0;k<40;k++){P.tirze.offsets.forEach(function(o){
-    var d=new Date(s.getTime()+(10*k+o)*DAY); if(d<=end) out.push(d);});}
-  out.sort(function(a,b){return a-b});return out;
+  var s=parse(P.tirze.start), end=parse(P.tirze.end), iv=P.tirze.interval, out=[];
+  for(var i=0;i<200;i++){
+    var d=new Date(s.getTime()+i*iv*DAY); if(d>end) break; out.push(d);}
+  return out;
 }
 
 /* ---------- INÍCIO ---------- */
@@ -348,18 +374,15 @@ function renderInicio(){
   document.getElementById('ini-weeks').innerHTML=wk;
   document.getElementById('ini-peso').innerHTML=P.cycle.initial.peso.replace(/ (\w+)$/,' <small>$1</small>');
   document.getElementById('ini-cint').innerHTML=P.cycle.initial.cintura.replace(/ (\w+)$/,' <small>$1</small>');
-  // suplementação agora
   var h=now.getHours(), pick=P.now[0];
   for(var j=0;j<P.now.length;j++){if(h>=P.now[j].h)pick=P.now[j];}
   document.getElementById('now-ic').textContent=pick.ic;
   document.getElementById('now-title').textContent=pick.t;
   document.getElementById('now-sub').textContent=pick.s;
-  // próxima tirze
   var tz=tirzeDates().filter(function(d){return d>=today0()});
   if(tz.length){var d0=tz[0], dd=Math.round((d0-today0())/DAY);
     document.getElementById('ini-tz').textContent=fmt(d0)+' · '+DOW[d0.getDay()]+' · '+P.tirze.dose;
     document.getElementById('ini-tz-sub').textContent=dd===0?'👉 Hoje!':'em '+dd+(dd===1?' dia':' dias');}
-  // próxima ciclo
   var cy=cycleDates().filter(function(d){return d>=today0()});
   if(cy.length){var c0=cy[0], cd=Math.round((c0-today0())/DAY);
     document.getElementById('ini-cy').textContent=fmt(c0)+' · '+DOW[c0.getDay()];
@@ -379,20 +402,26 @@ function renderSupl(){
   document.getElementById('supl-list').innerHTML=h;
 }
 
-/* ---------- symptom/obs entry (shared) ---------- */
+/* ---------- entry with symptoms/obs ---------- */
 function entryHTML(d, kind){
   var st=get(key(d)+'_'+kind);
-  var chips=''; SYMPTOMS.forEach(function(sy,i){
+  var syms=kind==='tz'?TZ_SYMPTOMS:SYMPTOMS;
+  var chips=''; syms.forEach(function(sy,i){
     chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
-  var doneClass=st.done?' done'+(kind==='tz'?' tz':(kind==='rt'?' rt':'')):'';
+  var doneClass=st.done?' done'+(kind==='tz'?' tz':''):'';
   var lbl=st.done?'Aplicou ✓':'Aplicar';
+  var hasDeca=kind==='cy'&&(new Date(parse(key(d).replace(/-/g,'/').replace(/\//g,'-')))).getDay?false:false;
+  // detect sunday for deca
+  var isDom=d.getDay()===0;
+  var doseInfo=kind==='cy'?(isDom?'Durateston 125 + Masteron 50 + Trembo 50 + Deca 100':'Durateston 125 + Masteron 50 + Trembo 50'):'';
   var extra='';
-  if(kind==='tz'||kind==='rt'){
+  if(kind==='tz'||kind==='cy'){
     extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
   }
   return '<div class="entry"><div class="hd"><div><div class="date">'+fmt(d)+'</div><div class="dow">'+DOW[d.getDay()]+'</div></div>'+
     '<button class="aplic'+doneClass+'" data-k="'+key(d)+'_'+kind+'"><span class="dot"></span>'+lbl+'</button></div>'+
     (kind==='tz'?'<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+P.tirze.dose+'</div>':'')+
+    (doseInfo?'<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px">'+doseInfo+'</div>':'')+
     extra+
     '<div class="chips">'+chips+'</div>'+
     '<textarea class="obs" rows="1" data-k="'+key(d)+'_'+kind+'" data-f="obs" placeholder="observações...">'+(st.obs||'')+'</textarea></div>';
@@ -403,16 +432,16 @@ function renderTirze(){
   document.getElementById('tz-head').textContent=P.tirze.head;
   document.getElementById('tz-peso').innerHTML=P.tirze.peso.replace(/ (\w+)$/,' <small>$1</small>');
   document.getElementById('tz-cint').innerHTML=P.tirze.cintura.replace(/ (\w+)$/,' <small>$1</small>');
-  document.getElementById('tz-meta').innerHTML=P.tirze.meta.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('tz-meta').innerHTML=P.tirze.meta;
   var h=''; tirzeDates().forEach(function(d){h+=entryHTML(d,'tz');});
   document.getElementById('tz-entries').innerHTML=h;
 }
 
 /* ---------- CICLO ---------- */
 function renderCiclo(){
-  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas';
+  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · 775 mg/sem';
   var cmp=''; P.cycle.compounds.forEach(function(c){
-    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div></div>';});
+    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+c.freq+' = '+c.total+' mg</div></div>';});
   document.getElementById('cy-comps').innerHTML=cmp;
   var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
   var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
@@ -421,7 +450,6 @@ function renderCiclo(){
   var cur=today0()>=s?Math.min(P.cycle.weeks,Math.floor((today0()-s)/DAY/7)+1):0, wk='';
   for(var i=1;i<=P.cycle.weeks;i++)wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';
   document.getElementById('cy-weeks').innerHTML=wk;
-  // entries grouped by week
   var dates=cycleDates(), h='';
   var byWeek={};
   dates.forEach(function(d){var w=Math.floor((d-s)/DAY/7)+1;(byWeek[w]=byWeek[w]||[]).push(d);});
@@ -446,9 +474,9 @@ function renderDieta(){
 document.addEventListener('click',function(e){
   var ap=e.target.closest('.aplic');
   if(ap){var k=ap.dataset.k, st=get(k); set(k,{done:!st.done});
-    ap.classList.toggle('done'); ap.querySelector('.dot');
+    ap.classList.toggle('done');
     ap.innerHTML='<span class="dot"></span>'+(!st.done?'Aplicou ✓':'Aplicar');
-    if(!st.done){if(k.endsWith('_tz'))ap.classList.add('tz');if(k.endsWith('_rt'))ap.classList.add('rt');}
+    if(!st.done&&k.endsWith('_tz'))ap.classList.add('tz');
     return;}
   var ch=e.target.closest('.chip');
   if(ch){var k2=ch.dataset.k, i=ch.dataset.s, o={}; var cur=get(k2); o['s'+i]=!cur['s'+i]; set(k2,o); ch.classList.toggle('on');}
@@ -458,7 +486,6 @@ document.addEventListener('input',function(e){
   if(t.classList.contains('obs')){set(t.dataset.k,{obs:t.value});}
   if(t.classList.contains('mi')){var o={};o[t.dataset.f]=t.value;set(t.dataset.k,o);}
 });
-/* nav */
 document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){
   document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});
   document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
