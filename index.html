@@ -154,7 +154,12 @@
   <div class="card">
     <span class="lbl">📋 Status do protocolo</span>
     <div class="win"><b>Vitória.</b> Cintura saiu de 100 para 97 cm (linha do umbigo). Gordura corporal 17,6%. Massa magra 76,5 kg.</div>
-    <div class="risk"><b>Atenção.</b> Stanozolol suspenso em 22/08. Protocolo hormonal reformulado em 23/08 (Durateston + Masteron + Trembo + Deca).</div>
+    <div class="risk"><b>Atenção.</b> Protocolo enxugado em 06/10. Cortados: Durateston, Masteron, Trembolona e Stanozolol. Mantidos: Enantato de testosterona 250 + Deca 200 = 450 mg/sem.</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">🌙 Momento atual</span>
+    <div style="font-size:13px;color:var(--ink)">Fase de recuo consciente: desmama de tirzepatida junto a um momento pessoal. Treino priorizando presença sobre carga.</div>
   </div>
 
   <div class="card">
@@ -165,7 +170,7 @@
   <div class="card">
     <span class="lbl">📉 Desmama tirze · escada calórica</span>
     <div class="escada">
-      <div class="step"><div class="bar" style="background:var(--blue)"></div><div><div class="s-phase">Atual (7,5 mg)</div><div class="s-kcal">~2.100 base, adotado ~2.450</div></div><span class="badge">ATIVO</span></div>
+      <div class="step"><div class="bar" style="background:var(--blue)"></div><div><div class="s-phase">Atual (5 mg)</div><div class="s-kcal">~2.100 base, adotado ~2.450</div></div><span class="badge">ATIVO</span></div>
       <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 1 sem 3-4</div><div class="s-kcal">~2.300 kcal</div></div></div>
       <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 2</div><div class="s-kcal">~2.500 kcal</div></div></div>
       <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">Mês 3</div><div class="s-kcal">~2.700 kcal</div></div></div>
@@ -194,26 +199,26 @@
   <div id="tz-entries" style="margin-top:6px"></div>
   <div class="card" style="margin-top:12px">
     <span class="lbl">📉 Desmama · escada calórica</span>
-    <div class="li" style="border-top:none"><span class="bullet" style="background:var(--blue)"></span><div><div class="n">Fase atual</div><div class="d">7,5 mg · ~2.450 kcal (coach)</div></div></div>
+    <div class="li" style="border-top:none"><span class="bullet" style="background:var(--blue)"></span><div><div class="n">Fase atual</div><div class="d">5 mg · ~2.450 kcal (coach)</div></div></div>
     <div class="li"><span class="bullet"></span><div><div class="n">Mês 1 sem 3-4</div><div class="d">~2.300 kcal</div></div></div>
     <div class="li"><span class="bullet"></span><div><div class="n">Mês 2</div><div class="d">~2.500 kcal</div></div></div>
     <div class="li"><span class="bullet"></span><div><div class="n">Mês 3</div><div class="d">~2.700 kcal</div></div></div>
     <div class="li"><span class="bullet"></span><div><div class="n">Mês 4+</div><div class="d">~2.800+ kcal</div></div></div>
   </div>
-  <div class="note">Desmama é escada calórica gradual. Dose desceu de 10 para 7,5 mg. Dieta do coach (~2.450 kcal) já está acima do base (~2.100).</div>
+  <div class="note">Desmama é escada calórica gradual. Dose desceu para 5 mg em 06/10 e fica 6 semanas (até ~17/11); depois 2,5 mg. Dieta do coach (~2.450 kcal) já está acima do base (~2.100).</div>
 </div></div>
 
 <!-- ===================== CICLO ===================== -->
 <div class="tab" id="t-ciclo"><div class="wrap">
   <h2 class="page">Ciclo hormonal</h2>
   <div class="page-sub" id="cy-head"></div>
-  <div class="grid4" id="cy-comps"></div>
+  <div class="grid2" id="cy-comps"></div>
   <div class="card pcard" style="margin-top:12px">
     <div class="top"><span class="lbl">Progresso</span><span class="pct" id="cy-pct"></span></div>
     <div class="track"><div class="fill" id="cy-fill"></div></div>
     <div class="weeks" id="cy-weeks"></div>
   </div>
-  <div class="risk"><b>Stanozolol suspenso 22/08.</b> Protocolo reformulado em 23/08. Compostos atuais: Durateston 375 + Masteron 150 + Trembo 150 + Deca 100 = 775 mg/sem.</div>
+  <div class="risk"><b>Protocolo enxugado em 06/10.</b> Cortados: Durateston, Masteron, Trembolona e Stanozolol. Atuais: Enantato 250 + Deca 200 = 450 mg/sem, 0,5 ml de cada no domingo e na quarta.</div>
   <div id="cy-entries" style="margin-top:8px"></div>
 </div></div>
 
@@ -247,19 +252,23 @@
    ===================================================================== */
 const P = {
   cycle:{
-    start:'2026-08-23', weeks:12, weekdays:[0,2,4], time:'Noite',
+    start:'2026-08-23', weeks:12, weekdays:[0,3], time:'Noite',
     initial:{peso:'92,9 kg', cintura:'97 cm'},
     compounds:[
-      {nm:'Durateston',sub:'Testosterona blend',amt:'125',unit:'mg',freq:'3x',total:'375',color:'blue'},
-      {nm:'Masteron',sub:'Drostanolona',amt:'50',unit:'mg',freq:'3x',total:'150',color:'purple'},
-      {nm:'Trembolona',sub:'Acetato',amt:'50',unit:'mg',freq:'3x',total:'150',color:'orange'},
-      {nm:'Deca',sub:'Nandrolona · só Dom',amt:'100',unit:'mg',freq:'1x',total:'100',color:'green'}
+      {nm:'Enantato de Testo',sub:'Testosterona · 0,5 ml',amt:'125',unit:'mg',freq:'2x',total:'250',color:'blue'},
+      {nm:'Deca',sub:'Nandrolona · 0,5 ml',amt:'100',unit:'mg',freq:'2x',total:'200',color:'green'}
     ],
-    doseLine:'Durateston 125 + Masteron 50 + Trembo 50 (noite) · Deca 100 só domingo'
+    doseLine:'Enantato 125 + Deca 100 (0,5 ml de cada) · Dom e Qua'
   },
   tirze:{
-    start:'2026-08-22', end:'2026-11-30', interval:5, dose:'TIRZE 7,5 mg',
-    head:'Tirzepatida 7,5 mg · desmama · escada calórica',
+    start:'2026-08-22', end:'2026-11-30', interval:5,
+    doses:[
+      {from:'2026-08-22', mg:'7,5 mg'},
+      {from:'2026-10-06', mg:'5 mg'},
+      {from:'2026-11-18', mg:'2,5 mg'}
+    ],
+    dose:'TIRZE 5 mg',
+    head:'Tirzepatida · desmama · 5 mg até ~17/11, depois 2,5 mg',
     peso:'92,9 kg', cintura:'97 cm', meta:'17,6%'
   },
   supplements:[
@@ -360,6 +369,11 @@ function tirzeDates(){
     var d=new Date(s.getTime()+i*iv*DAY); if(d>end) break; out.push(d);}
   return out;
 }
+function tzDoseFor(d){
+  var ds=P.tirze.doses, pick=(ds&&ds.length)?ds[0].mg:(P.tirze.dose||'').replace('TIRZE ','');
+  if(ds){for(var i=0;i<ds.length;i++){if(d>=parse(ds[i].from))pick=ds[i].mg;}}
+  return 'TIRZE '+pick;
+}
 
 /* ---------- INÍCIO ---------- */
 function renderInicio(){
@@ -381,7 +395,7 @@ function renderInicio(){
   document.getElementById('now-sub').textContent=pick.s;
   var tz=tirzeDates().filter(function(d){return d>=today0()});
   if(tz.length){var d0=tz[0], dd=Math.round((d0-today0())/DAY);
-    document.getElementById('ini-tz').textContent=fmt(d0)+' · '+DOW[d0.getDay()]+' · '+P.tirze.dose;
+    document.getElementById('ini-tz').textContent=fmt(d0)+' · '+DOW[d0.getDay()]+' · '+tzDoseFor(d0);
     document.getElementById('ini-tz-sub').textContent=dd===0?'👉 Hoje!':'em '+dd+(dd===1?' dia':' dias');}
   var cy=cycleDates().filter(function(d){return d>=today0()});
   if(cy.length){var c0=cy[0], cd=Math.round((c0-today0())/DAY);
@@ -410,17 +424,14 @@ function entryHTML(d, kind){
     chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
   var doneClass=st.done?' done'+(kind==='tz'?' tz':''):'';
   var lbl=st.done?'Aplicou ✓':'Aplicar';
-  var hasDeca=kind==='cy'&&(new Date(parse(key(d).replace(/-/g,'/').replace(/\//g,'-')))).getDay?false:false;
-  // detect sunday for deca
-  var isDom=d.getDay()===0;
-  var doseInfo=kind==='cy'?(isDom?'Durateston 125 + Masteron 50 + Trembo 50 + Deca 100':'Durateston 125 + Masteron 50 + Trembo 50'):'';
+  var doseInfo=kind==='cy'?'Enantato 125 (0,5 ml) + Deca 100 (0,5 ml)':'';
   var extra='';
   if(kind==='tz'||kind==='cy'){
     extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
   }
   return '<div class="entry"><div class="hd"><div><div class="date">'+fmt(d)+'</div><div class="dow">'+DOW[d.getDay()]+'</div></div>'+
     '<button class="aplic'+doneClass+'" data-k="'+key(d)+'_'+kind+'"><span class="dot"></span>'+lbl+'</button></div>'+
-    (kind==='tz'?'<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+P.tirze.dose+'</div>':'')+
+    (kind==='tz'?'<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+tzDoseFor(d)+'</div>':'')+
     (doseInfo?'<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px">'+doseInfo+'</div>':'')+
     extra+
     '<div class="chips">'+chips+'</div>'+
@@ -439,7 +450,8 @@ function renderTirze(){
 
 /* ---------- CICLO ---------- */
 function renderCiclo(){
-  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · 775 mg/sem';
+  var wkTotal=P.cycle.compounds.reduce(function(a,c){return a+(parseInt(c.total,10)||0)},0);
+  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · '+wkTotal+' mg/sem';
   var cmp=''; P.cycle.compounds.forEach(function(c){
     cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+c.freq+' = '+c.total+' mg</div></div>';});
   document.getElementById('cy-comps').innerHTML=cmp;
