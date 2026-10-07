@@ -1,1 +1,0 @@
-ok - teste de publicacao automatica via n8n
