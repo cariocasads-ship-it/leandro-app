@@ -154,7 +154,7 @@
   <div class="card">
     <span class="lbl">📋 Status do protocolo</span>
     <div class="win"><b>Vitória.</b> Cintura saiu de 100 para 97 cm (linha do umbigo). Gordura corporal 17,6%. Massa magra 76,5 kg.</div>
-    <div class="risk"><b>Atenção.</b> Protocolo enxugado em 06/10. Cortados: Durateston, Masteron, Trembolona e Stanozolol. Mantidos: Enantato de testosterona 250 + Deca 200 = 450 mg/sem.</div>
+    <div class="risk"><b>Novo ciclo em 11/10.</b> Enantato 0,4 + Deca 0,5 + Trembolona 0,5 ml, 3x/semana (dom, ter, qui, à noite). Contagem reiniciada nesta data.</div>
   </div>
 
   <div class="card">
@@ -212,13 +212,13 @@
 <div class="tab" id="t-ciclo"><div class="wrap">
   <h2 class="page">Ciclo hormonal</h2>
   <div class="page-sub" id="cy-head"></div>
-  <div class="grid2" id="cy-comps"></div>
+  <div class="grid3" id="cy-comps"></div>
   <div class="card pcard" style="margin-top:12px">
     <div class="top"><span class="lbl">Progresso</span><span class="pct" id="cy-pct"></span></div>
     <div class="track"><div class="fill" id="cy-fill"></div></div>
     <div class="weeks" id="cy-weeks"></div>
   </div>
-  <div class="risk"><b>Protocolo enxugado em 06/10.</b> Cortados: Durateston, Masteron, Trembolona e Stanozolol. Atuais: Enantato 250 + Deca 200 = 450 mg/sem, 0,5 ml de cada no domingo e na quarta.</div>
+  <div class="risk"><b>Novo ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,5 ml + Trembolona 0,5 ml, 3x por semana (domingo, terça e quinta à noite). Contagem e progresso reiniciados nesta data.</div>
   <div id="cy-entries" style="margin-top:8px"></div>
 </div></div>
 
@@ -252,13 +252,14 @@
    ===================================================================== */
 const P = {
   cycle:{
-    start:'2026-08-23', weeks:12, weekdays:[0,3], time:'Noite',
+    start:'2026-10-11', weeks:12, weekdays:[0,2,4], time:'Noite',
     initial:{peso:'92,9 kg', cintura:'97 cm'},
     compounds:[
-      {nm:'Enantato de Testo',sub:'Testosterona · 0,5 ml',amt:'125',unit:'mg',freq:'2x',total:'250',color:'blue'},
-      {nm:'Deca',sub:'Nandrolona · 0,5 ml',amt:'100',unit:'mg',freq:'2x',total:'200',color:'green'}
+      {nm:'Enantato de Testo',sub:'Testosterona · ~100 mg',amt:'0,4',unit:'ml',freq:'3x',total:'1,2 ml',mg:'300',color:'blue'},
+      {nm:'Deca',sub:'Nandrolona · ~100 mg',amt:'0,5',unit:'ml',freq:'3x',total:'1,5 ml',mg:'300',color:'green'},
+      {nm:'Trembolona',sub:'Acetato · ~50 mg',amt:'0,5',unit:'ml',freq:'3x',total:'1,5 ml',mg:'150',color:'orange'}
     ],
-    doseLine:'Enantato 125 + Deca 100 (0,5 ml de cada) · Dom e Qua'
+    doseLine:'Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui'
   },
   tirze:{
     start:'2026-08-22', end:'2026-11-30', interval:5,
@@ -424,7 +425,7 @@ function entryHTML(d, kind){
     chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
   var doneClass=st.done?' done'+(kind==='tz'?' tz':''):'';
   var lbl=st.done?'Aplicou ✓':'Aplicar';
-  var doseInfo=kind==='cy'?'Enantato 125 (0,5 ml) + Deca 100 (0,5 ml)':'';
+  var doseInfo=kind==='cy'?'Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml':'';
   var extra='';
   if(kind==='tz'||kind==='cy'){
     extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
@@ -450,10 +451,10 @@ function renderTirze(){
 
 /* ---------- CICLO ---------- */
 function renderCiclo(){
-  var wkTotal=P.cycle.compounds.reduce(function(a,c){return a+(parseInt(c.total,10)||0)},0);
-  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · '+wkTotal+' mg/sem';
+  var wkTotal=P.cycle.compounds.reduce(function(a,c){return a+(parseInt(c.mg,10)||0)},0);
+  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · ~'+wkTotal+' mg/sem';
   var cmp=''; P.cycle.compounds.forEach(function(c){
-    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+c.freq+' = '+c.total+' mg</div></div>';});
+    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+c.freq+' = '+c.total+'/sem</div></div>';});
   document.getElementById('cy-comps').innerHTML=cmp;
   var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
   var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
