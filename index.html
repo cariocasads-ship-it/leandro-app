@@ -182,7 +182,9 @@
 <!-- ===================== SUPLEM ===================== -->
 <div class="tab" id="t-supl"><div class="wrap">
   <h2 class="page">Suplementos</h2>
-  <div class="page-sub">Protocolo por horário · 💊 = medicamento</div>
+  <div class="page-sub">Revisão em 3 faixas · exame de sangue em 16/10</div>
+  <div id="sup-tiers"></div>
+  <div class="wkhd" style="margin-top:18px">Por horário<span class="ln"></span><span class="tag">💊 medicamento</span></div>
   <div class="card" id="supl-list"></div>
   <div class="note">Saw Palmetto mantido como adjuvante (vigiar, DHT 1.345); Finasterida 2,5 mg assumiu a proteção DHT principal. Tadalafila substituiu Ioimbina (retirada do protocolo). AAS + Nattokinase atuam na coagulação; confirmar combinação (Ht 54,5%). Whey e creatina contabilizados na dieta (lanche da tarde).</div>
 </div></div>
@@ -272,6 +274,31 @@ const P = {
     head:'Tirzepatida · desmama · 5 mg até ~17/11, depois 2,5 mg',
     peso:'92,9 kg', cintura:'97 cm', meta:'17,6%'
   },
+  supTiers:[
+    {faixa:'Essenciais',cor:'green',nota:'Manter. As medicações seguram riscos reais do ciclo; mexer nelas é decisão médica.',items:[
+      {n:'Rosuvastatina 20 mg',d:'colesterol / LDL',med:true},
+      {n:'AAS 100 mg',d:'afina o sangue (Ht 54,5%)',med:true},
+      {n:'Nattokinase 200 mg',d:'afina o sangue · checar combinação c/ AAS',med:true},
+      {n:'Finasterida 2,5 mg',d:'segura o DHT (1.345)',med:true},
+      {n:'Tadalafila 5 mg',d:'fluxo e pressão',med:true},
+      {n:'Ômega-3',d:'lipídios / anti-inflamatório'},
+      {n:'D3 + K2',d:'osso / imunidade'},
+      {n:'Magnésio Treonato',d:'sono / recuperação'},
+      {n:'L-leucina',d:'síntese proteica'}
+    ]},
+    {faixa:'Em revisão',cor:'orange',nota:'Decidir com o exame de 16/10.',items:[
+      {n:'Niacina (B3)',d:'HDL · evidência fraca, ver lipidograma'},
+      {n:'NAC + Cardo Mariano',d:'fígado · provável enxugar pra 1, ver TGO/TGP'},
+      {n:'Vitamina B12',d:'ver nível antes de manter 2000 mcg'},
+      {n:'Coenzima Q10',d:'faz sentido junto da estatina, revisar'},
+      {n:'Zinco 20 mg',d:'ok, revisar necessidade'}
+    ]},
+    {faixa:'Opcionais',cor:'muted',nota:'Candidatos a corte já, de baixo impacto.',items:[
+      {n:'Saw Palmetto',d:'redundante com a finasterida'},
+      {n:'GABA',d:'evidência fraca, magnésio já cobre o sono'},
+      {n:'Probiótico',d:'benefício difuso, corte de baixo impacto'}
+    ]}
+  ],
   supplements:[
     {th:'Pré-musculação',tm:'05h15 · jejum',items:[
       {n:'Tadalafila',d:'5 mg · vasodilatação, fluxo sanguíneo',med:true},
@@ -516,7 +543,20 @@ document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('
   window.scrollTo(0,0);
 });});
 
-renderInicio();renderSupl();renderTirze();renderCiclo();renderDieta();
+function renderTiers(){
+  var cmap={green:'var(--green)',orange:'var(--orange)',muted:'var(--muted2)'};
+  var h='';
+  P.supTiers.forEach(function(t){
+    var c=cmap[t.cor]||'var(--muted2)';
+    h+='<div class="card" style="border-left:4px solid '+c+'"><div class="lbl" style="color:'+c+'">'+t.faixa+'</div>';
+    t.items.forEach(function(it){
+      h+='<div class="li"><span class="bullet" style="background:'+c+'"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';
+    });
+    h+='<div class="note" style="margin-top:8px">'+t.nota+'</div></div>';
+  });
+  document.getElementById('sup-tiers').innerHTML=h;
+}
+renderInicio();renderSupl();renderTiers();renderTirze();renderCiclo();renderDieta();
 </script>
 </body>
 </html>
