@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Protocolo · Cliente</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#2f6bff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Protocolo">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root{
+    --bg:#f2f2f5;--card:#fff;--ink:#1c2431;--muted:#8a94a3;--muted2:#aab2be;--line:#ececf1;
+    --blue:#2f6bff;--purple:#7c4dff;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--teal:#0ea5a0;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;
+    padding:0 0 90px;max-width:520px;margin:0 auto}
+  .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .wrap{padding:16px}
+  .tab{display:none}.tab.on{display:block;animation:f .2s}
+  @keyframes f{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .hero{background:linear-gradient(135deg,#2f6bff,#7c4dff);color:#fff;border-radius:20px;padding:20px;margin-bottom:14px}
+  .hero h1{font-size:23px;font-weight:800;letter-spacing:-.01em}
+  .hero p{opacity:.9;font-size:13px;margin-top:2px}
+  .hero .d{font-family:var(--mono);font-size:12px;opacity:.8;margin-top:8px;text-transform:capitalize}
+  h2.page{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:2px}
+  .page-sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(20,30,50,.05),0 1px 1px rgba(20,30,50,.03)}
+  .card .lbl{margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .big{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .big small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .val-blue{color:var(--blue)}.val-purple{color:var(--purple)}.val-green{color:var(--green)}.val-orange{color:var(--orange)}
+  .track{height:9px;background:#eef0f4;border-radius:6px;overflow:hidden}
+  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2f6bff,#7c4dff)}
+  .entry{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+  .entry .hd{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .entry .date{font-weight:800;font-size:15px}.entry .dow{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase}
+  .aplic{margin-left:auto;border:none;background:#eef1f6;color:var(--muted);font-weight:700;font-size:12.5px;
+    padding:7px 13px;border-radius:20px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:.15s}
+  .aplic .dot{width:8px;height:8px;border-radius:50%;background:var(--muted2)}
+  .aplic.done{background:#fff2e0;color:var(--orange)}.aplic.done .dot{background:var(--orange)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .chip{border:1px solid var(--line);background:#fafbfc;color:var(--muted);font-size:12px;font-weight:600;
+    padding:5px 10px;border-radius:20px;cursor:pointer;user-select:none;transition:.12s}
+  .chip.on{background:#fff0f0;border-color:#f6caca;color:#d0473f}
+  .obs{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:9px 12px;font-size:13px;
+    font-family:inherit;color:var(--ink);resize:none}
+  .obs::placeholder{color:var(--muted2)}
+  .wkhd{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink);
+    text-transform:uppercase;margin:16px 2px 10px;display:flex;align-items:center;gap:10px}
+  .wkhd .tag{margin-left:auto;font-size:11px;background:#fff2e0;color:var(--orange);padding:3px 9px;border-radius:12px}
+  .wkhd .ln{flex:1;height:1px;background:var(--line)}
+  .measure-in{width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:8px 11px;font-size:13px;font-family:inherit;color:var(--ink)}
+  .blk{margin-bottom:6px}
+  .blk .th{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--blue);margin:14px 4px 6px;display:flex;align-items:center;gap:7px}
+  .blk .th .tm{margin-left:auto;color:var(--muted2);font-weight:600}
+  .li{display:flex;gap:11px;padding:11px 4px;border-top:1px solid var(--line);align-items:flex-start}
+  .li:first-child{border-top:none}
+  .li .bullet{flex:0 0 auto;width:8px;height:8px;border-radius:50%;margin-top:6px;background:var(--muted2)}
+  .li .n{font-weight:700;font-size:14px}
+  .li .d{font-size:12px;color:var(--muted);margin-top:1px}
+  .macrorow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .mc{font-family:var(--mono);font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px}
+  .mc.p{background:#e4f8ec;color:#118a4e}.mc.c{background:#e6efff;color:var(--blue)}
+  .mc.g{background:#fff2e0;color:#b4740a}.mc.k{background:#efeaff;color:var(--purple)}
+  .totals{background:linear-gradient(135deg,#f0f4ff,#f6f0ff);border:1px solid #e6e2f5;border-radius:16px;padding:14px;margin-bottom:12px}
+  .totals .row{display:flex;justify-content:space-around;text-align:center}
+  .totals .row .k{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em}
+  .totals .row .v{font-size:20px;font-weight:800;margin-top:2px}
+  .todo{display:flex;align-items:center;gap:10px}
+  .todo .ic{font-size:20px}
+  .note{font-size:12px;color:var(--muted);padding:2px 4px 0}
+  .risk{background:#fff5f5;border:1px solid #f6d2d2;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#b23b34;margin-top:4px}
+  .risk b{color:#912b25}
+  .win{background:#f0faf4;border:1px solid #c6e9d4;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#1a7a3a;margin-bottom:8px}
+  .win b{color:#146130}
+  .escada{margin-top:10px}
+  .escada .step{display:flex;align-items:center;gap:10px;padding:9px 4px;border-top:1px solid var(--line)}
+  .escada .step:first-child{border-top:none}
+  .escada .step .bar{width:4px;height:26px;border-radius:2px;flex-shrink:0}
+  .escada .step .s-phase{font-weight:700;font-size:13px}
+  .escada .step .s-kcal{font-size:12px;color:var(--muted)}
+  .escada .step .badge{margin-left:auto;font-family:var(--mono);font-size:10px;font-weight:700;background:#fff2e0;color:var(--orange);padding:3px 8px;border-radius:10px}
+  nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);display:flex;max-width:520px;margin:0 auto;padding:6px 0 env(safe-area-inset-bottom)}
+  nav button{flex:1;background:none;border:none;padding:8px 0 10px;cursor:pointer;color:var(--muted2);
+    font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.03em;display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button .ic{font-size:20px;filter:grayscale(1) opacity(.5);transition:.15s}
+  nav button.on{color:var(--blue)}nav button.on .ic{filter:none}
+  .disc{font-size:11px;color:var(--muted2);text-align:center;padding:14px 20px 4px;line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- ===================== INÍCIO ===================== -->
+<div class="tab on" id="t-inicio"><div class="wrap">
+  <div class="hero">
+    <h1 id="hero-hi"></h1>
+    <p>Seu painel de recomposição</p>
+    <div class="d" id="hero-date"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso"></div></div>
+    <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint"></div></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">🕐 Agora</span>
+    <div class="todo"><span class="ic" id="now-ic">💧</span><div><div style="font-weight:800;font-size:15px" id="now-title"></div><div style="font-size:12px;color:var(--muted)" id="now-sub"></div></div></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">💉 Próxima aplicação · Monjaro</span>
+    <div style="font-weight:800;font-size:16px" id="ini-tz"></div>
+    <div style="font-size:12px;color:var(--muted)" id="ini-tz-sub"></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">🥗 Dieta do dia</span>
+    <div class="todo"><span class="ic">🍽️</span><div><div style="font-weight:800;font-size:15px" id="ini-kcal"></div><div style="font-size:12px;color:var(--muted)" id="ini-macros"></div></div></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">🎯 Objetivo</span>
+    <div class="win"><b>Recomposição.</b> Perder gordura preservando músculo, com foco em baixar a cintura (base 94 cm) sem dieta extrema. O Monjaro ajuda no apetite; a proteína alta protege o músculo.</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">💡 Regras com o Monjaro</span>
+    <div style="font-size:13px;color:var(--ink)">Proteína primeiro em cada refeição: se encher no meio, o essencial já foi. Em dia de enjoo, puxar proteína pelo líquido (whey, iogurte, ovos). Caprichar na água e nos legumes contra a prisão de ventre. Comer devagar, em porção menor.</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">📈 Titulação da dose</span>
+    <div class="escada">
+      <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Atual · 2,5 mg</div><div class="s-kcal">semanas 1 a 4 · dose de entrada</div></div><span class="badge">ATIVO</span></div>
+      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">5 mg</div><div class="s-kcal">a partir de ~08/11</div></div></div>
+      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">7,5 mg</div><div class="s-kcal">a partir de ~06/12 (se precisar subir)</div></div></div>
+      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">10 mg</div><div class="s-kcal">a partir de ~03/01 (se precisar subir)</div></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ===================== DIETA ===================== -->
+<div class="tab" id="t-dieta"><div class="wrap">
+  <h2 class="page">Dieta</h2>
+  <div class="page-sub">Protocolo alimentar diário · recomposição</div>
+  <div class="totals"><div class="row">
+    <div><div class="k">CARB</div><div class="v val-blue">145 g</div></div>
+    <div><div class="k">PROT</div><div class="v val-green">135 g</div></div>
+    <div><div class="k">GORD</div><div class="v val-orange">50 g</div></div>
+    <div><div class="k">KCAL</div><div class="v val-purple">~1.600</div></div>
+  </div></div>
+  <div id="diet-list"></div>
+  <div class="note">Proteína ~2 g/kg (135 g) para proteger o músculo no déficit. A ceia é opcional: com ela o dia fecha ~1.605 kcal, sem ela ~1.465 kcal nos dias em que o Monjaro cortar a fome. Melhor pular a ceia do que forçar comida com enjoo. Pesar e medir a cintura 1x por semana.</div>
+</div></div>
+
+<!-- ===================== SUPLEMENTOS ===================== -->
+<div class="tab" id="t-supl"><div class="wrap">
+  <h2 class="page">Suplementos</h2>
+  <div class="page-sub">Enxuto e seguro para a fase de perda · GLP-1</div>
+  <div id="sup-tiers"></div>
+  <div class="note">O papel aqui é proteger músculo, micronutrientes e intestino durante a perda, não acelerar queima. Tomar cápsulas com comida e espalhadas no dia, porque o Monjaro deixa o estômago mais lento. Vale um exame de sangue base (vitamina D, B12, ferritina, TSH) para mirar certo. Perda rápida aumenta risco de cálculo na vesícula; manter proteína e gordura adequadas, como a dieta já faz, ajuda a reduzir.</div>
+</div></div>
+
+<!-- ===================== MONJARO ===================== -->
+<div class="tab" id="t-tirze"><div class="wrap">
+  <h2 class="page">Monjaro</h2>
+  <div class="page-sub" id="tz-head"></div>
+  <div class="grid3">
+    <div class="card" style="padding:13px"><span class="lbl">⚖️ Peso base</span><div class="big val-orange" id="tz-peso" style="font-size:22px"></div></div>
+    <div class="card" style="padding:13px"><span class="lbl">📏 Cintura</span><div class="big val-orange" id="tz-cint" style="font-size:22px"></div></div>
+    <div class="card" style="padding:13px"><span class="lbl">🎯 Foco</span><div class="big val-orange" id="tz-meta" style="font-size:16px"></div></div>
+  </div>
+  <div class="risk" style="margin-top:12px"><b>Semanal, não a cada 5 dias.</b> A tirzepatida tem meia-vida de ~5 dias, e é por isso que a aplicação é 1x por semana. Aplicar a cada 5 dias acumula a dose e piora o enjoo, ainda mais no começo. Primeira dose em 11/10.</div>
+  <div id="tz-entries" style="margin-top:8px"></div>
+</div></div>
+
+<div class="disc">Ferramenta organizacional, não substitui avaliação médica. O ideal é ter um prescritor acompanhando o uso do Monjaro. Dados salvos só neste aparelho.</div>
+
+<nav>
+  <button class="on" data-t="inicio"><span class="ic">🏠</span>Início</button>
+  <button data-t="dieta"><span class="ic">🥗</span>Dieta</button>
+  <button data-t="supl"><span class="ic">💊</span>Suplem</button>
+  <button data-t="tirze"><span class="ic">💉</span>Monjaro</button>
+</nav>
+
+<script>
+/* =====================================================================
+   PROTOCOLO DA CLIENTE — edite este bloco quando algo mudar.
+   Troque "nome" pelo nome dela. O app se redesenha sozinho.
+   ===================================================================== */
+const P = {
+  nome:'Kemilly',          /* <<< nome da cliente */
+  perfil:{peso:'67,6 kg', cintura:'94 cm'},
+  tirze:{
+    start:'2026-10-11', end:'2027-03-15', interval:7,
+    doses:[
+      {from:'2026-10-11', mg:'2,5 mg'},
+      {from:'2026-11-08', mg:'5 mg'},
+      {from:'2026-12-06', mg:'7,5 mg'},
+      {from:'2027-01-03', mg:'10 mg'}
+    ],
+    head:'Tirzepatida · semanal · titulação a partir de 11/10',
+    peso:'67,6 kg', cintura:'94 cm', meta:'Recomp.'
+  },
+  meta:{kcal:'~1.600 kcal', macros:'135g P · 145g C · 50g G'},
+  now:[
+    {h:5,ic:'💧',t:'Ao acordar',s:'1 copo de água · proteína é prioridade o dia todo'},
+    {h:8,ic:'☀️',t:'Café da manhã',s:'Ovos + pão integral + mamão'},
+    {h:12,ic:'🍽️',t:'Almoço',s:'Frango + arroz + feijão + salada'},
+    {h:16,ic:'🥤',t:'Lanche da tarde',s:'Whey + leite + fruta'},
+    {h:20,ic:'🍲',t:'Jantar',s:'Peixe ou patinho + arroz ou batata-doce + legumes'},
+    {h:22,ic:'🌙',t:'Ceia opcional',s:'Iogurte ou caseína, só se bater fome'}
+  ],
+  diet:[
+    {th:'Café da manhã',tm:'~08h',items:[
+      {n:'2 ovos inteiros',d:'mexidos ou cozidos · P12 · C1 · G10 · 155 kcal'},
+      {n:'1 fatia de pão integral + requeijão light',d:'P5 · C14 · G3 · 100 kcal'},
+      {n:'1 fatia de mamão (150 g)',d:'P1 · C15 · G0 · 60 kcal'}
+    ],mc:{c:30,p:18,g:13,k:315}},
+    {th:'Almoço',tm:'~12h30',items:[
+      {n:'130 g de frango (grelhado ou air fryer)',d:'P40 · C0 · G4 · 215 kcal'},
+      {n:'4 col. de arroz (100 g)',d:'P2 · C28 · G0 · 130 kcal'},
+      {n:'1 concha de feijão',d:'P4 · C12 · G0 · 70 kcal'},
+      {n:'Salada à vontade + 1 col. chá de azeite',d:'P1 · C6 · G8 · 100 kcal'}
+    ],mc:{c:46,p:47,g:12,k:515}},
+    {th:'Lanche da tarde',tm:'~16h',items:[
+      {n:'1 scoop de whey + 150 ml de leite desnatado',d:'P28 · C9 · G2 · 175 kcal'},
+      {n:'1 banana pequena',d:'P1 · C20 · G0 · 80 kcal'}
+    ],mc:{c:29,p:29,g:2,k:255}},
+    {th:'Jantar',tm:'~20h',items:[
+      {n:'120 g de peixe (tilápia) ou patinho moído magro',d:'P27 · C0 · G8 · 185 kcal'},
+      {n:'70 g de arroz ou 100 g de batata-doce',d:'P2 · C22 · G0 · 100 kcal'},
+      {n:'Legumes refogados + 1 col. chá de azeite',d:'P2 · C8 · G7 · 95 kcal'}
+    ],mc:{c:30,p:31,g:15,k:380}},
+    {th:'Ceia opcional',tm:'~22h · só com fome',items:[
+      {n:'1 iogurte natural (150 g) ou 1 scoop de caseína',d:'P12 · C10 · G6 · 140 kcal'}
+    ],mc:{c:10,p:12,g:6,k:140}}
+  ],
+  supTiers:[
+    {faixa:'Essenciais',cor:'green',nota:'A base. Whey e creatina protegem o músculo; o resto cuida da saúde durante a perda.',items:[
+      {n:'Whey protein',d:'1 a 2 scoops/dia · atingir os 135 g de proteína nos dias de pouca fome'},
+      {n:'Creatina monohidratada',d:'3 g/dia, todo dia · preserva músculo e força no déficit (não precisa saturar)'},
+      {n:'Psyllium (fibra)',d:'~5 g em bastante água · contra a prisão de ventre, longe dos remédios'},
+      {n:'Magnésio',d:'200 a 300 mg à noite · sono, cãibra e intestino (citrato solta mais)'},
+      {n:'Vitamina D3',d:'1.000 a 2.000 UI/dia · osso e imunidade (idealmente dosar no sangue)'},
+      {n:'Ômega-3',d:'~1 g de EPA+DHA/dia · olhar a soma EPA+DHA no rótulo'}
+    ]},
+    {faixa:'Opcionais',cor:'orange',nota:'Por preferência ou orçamento. Entram depois, conforme o exame e a vontade dela.',items:[
+      {n:'Multivitamínico feminino',d:'1x/dia com refeição · seguro contra lacunas, já que ela come bem menos'},
+      {n:'Colágeno + vitamina C',d:'~10 g/dia · cabelo, pele e unha; evidência modesta'},
+      {n:'Eletrólitos',d:'só se aparecer cãibra ou tontura no começo'}
+    ]},
+    {faixa:'Evitar',cor:'red',nota:'O que não deve entrar. Emagrecer com saúde não passa por pílula de queima.',items:[
+      {n:'Termogênico / fat burner',d:'no GLP-1 não precisa e soma risco cardiovascular'},
+      {n:'Ferro sem exame',d:'só com ferritina baixa comprovada; ferro a mais faz mal'},
+      {n:'B12 sem exame',d:'dosar antes de suplementar'}
+    ]}
+  ]
+};
+const TZ_SYMPTOMS=[['Náusea','🤢'],['Refluxo','🔥'],['Saciedade+','✅'],['Fadiga','😴'],['Dor abdominal','⚡'],['Prisão de ventre','🧱']];
+const STORE='kemilly_monjaro_v1';
+/* =================== fim do bloco editável =================== */
+
+const DAY=864e5, DOW=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const now=new Date();
+function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function fmt(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
+function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today0(){return new Date(now.getFullYear(),now.getMonth(),now.getDate());}
+function db(){try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return{}}}
+function save(o){try{localStorage.setItem(STORE,JSON.stringify(o))}catch(e){}}
+function get(k){var o=db();return o[k]||{}}
+function set(k,v){var o=db();o[k]=Object.assign(o[k]||{},v);save(o)}
+
+function tirzeDates(){
+  var s=parse(P.tirze.start), end=parse(P.tirze.end), iv=P.tirze.interval, out=[];
+  for(var i=0;i<200;i++){var d=new Date(s.getTime()+i*iv*DAY); if(d>end) break; out.push(d);}
+  return out;
+}
+function tzDoseFor(d){
+  var ds=P.tirze.doses, pick=(ds&&ds.length)?ds[0].mg:'';
+  if(ds){for(var i=0;i<ds.length;i++){if(d>=parse(ds[i].from))pick=ds[i].mg;}}
+  return pick;
+}
+
+/* ---------- INÍCIO ---------- */
+function renderInicio(){
+  var hh=now.getHours(), greet=hh<12?'Bom dia':(hh<18?'Boa tarde':'Boa noite');
+  document.getElementById('hero-hi').textContent=greet+(P.nome?(', '+P.nome):'')+'! 💪';
+  var opt={weekday:'long',day:'2-digit',month:'long',year:'numeric'};
+  document.getElementById('hero-date').textContent=now.toLocaleDateString('pt-BR',opt);
+  document.getElementById('ini-peso').innerHTML=P.perfil.peso.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('ini-cint').innerHTML=P.perfil.cintura.replace(/ (\w+)$/,' <small>$1</small>');
+  var h=now.getHours(), pick=P.now[0];
+  for(var j=0;j<P.now.length;j++){if(h>=P.now[j].h)pick=P.now[j];}
+  document.getElementById('now-ic').textContent=pick.ic;
+  document.getElementById('now-title').textContent=pick.t;
+  document.getElementById('now-sub').textContent=pick.s;
+  document.getElementById('ini-kcal').textContent=P.meta.kcal;
+  document.getElementById('ini-macros').textContent=P.meta.macros;
+  var tz=tirzeDates().filter(function(d){return d>=today0()});
+  if(tz.length){var d0=tz[0], dd=Math.round((d0-today0())/DAY);
+    document.getElementById('ini-tz').textContent=fmt(d0)+' · '+DOW[d0.getDay()]+' · '+tzDoseFor(d0);
+    document.getElementById('ini-tz-sub').textContent=dd===0?'👉 Hoje!':'em '+dd+(dd===1?' dia':' dias');}
+  else{document.getElementById('ini-tz').textContent='—';document.getElementById('ini-tz-sub').textContent='titulação concluída';}
+}
+
+/* ---------- entry ---------- */
+function entryHTML(d){
+  var st=get(key(d)+'_tz');
+  var chips=''; TZ_SYMPTOMS.forEach(function(sy,i){
+    chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_tz" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
+  var doneClass=st.done?' done':'';
+  var lbl=st.done?'Aplicou ✓':'Aplicar';
+  var extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_tz" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_tz" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
+  return '<div class="entry"><div class="hd"><div><div class="date">'+fmt(d)+'</div><div class="dow">'+DOW[d.getDay()]+'</div></div>'+
+    '<button class="aplic'+doneClass+'" data-k="'+key(d)+'_tz"><span class="dot"></span>'+lbl+'</button></div>'+
+    '<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+tzDoseFor(d)+'</div>'+
+    extra+
+    '<div class="chips">'+chips+'</div>'+
+    '<textarea class="obs" rows="1" data-k="'+key(d)+'_tz" data-f="obs" placeholder="observações...">'+(st.obs||'')+'</textarea></div>';
+}
+
+/* ---------- MONJARO ---------- */
+function renderTirze(){
+  document.getElementById('tz-head').textContent=P.tirze.head;
+  document.getElementById('tz-peso').innerHTML=P.tirze.peso.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('tz-cint').innerHTML=P.tirze.cintura.replace(/ (\w+)$/,' <small>$1</small>');
+  document.getElementById('tz-meta').innerHTML=P.tirze.meta;
+  var dates=tirzeDates(), h='', s=parse(P.tirze.start);
+  var byWeek={};
+  dates.forEach(function(d){var w=Math.floor((d-s)/DAY/7)+1;(byWeek[w]=byWeek[w]||[]).push(d);});
+  Object.keys(byWeek).forEach(function(w){
+    h+='<div class="wkhd">Semana '+w+'<span class="ln"></span><span class="tag">'+tzDoseFor(byWeek[w][0])+'</span></div>';
+    byWeek[w].forEach(function(d){h+=entryHTML(d);});
+  });
+  document.getElementById('tz-entries').innerHTML=h;
+}
+
+/* ---------- DIETA ---------- */
+function renderDieta(){
+  var h=''; P.diet.forEach(function(m){
+    h+='<div class="card"><div class="blk"><div class="th">'+m.th+'<span class="tm">'+m.tm+'</span></div>';
+    m.items.forEach(function(it){h+='<div class="li"><span class="bullet" style="background:var(--green)"></span><div><div class="n">'+it.n+'</div><div class="d">'+it.d+'</div></div></div>';});
+    h+='</div><div class="macrorow"><span class="mc c">C '+m.mc.c+'g</span><span class="mc p">P '+m.mc.p+'g</span><span class="mc g">G '+m.mc.g+'g</span><span class="mc k">'+m.mc.k+' kcal</span></div></div>';
+  });
+  document.getElementById('diet-list').innerHTML=h;
+}
+
+/* ---------- interactions ---------- */
+document.addEventListener('click',function(e){
+  var ap=e.target.closest('.aplic');
+  if(ap){var k=ap.dataset.k, st=get(k); set(k,{done:!st.done});
+    ap.classList.toggle('done');
+    ap.innerHTML='<span class="dot"></span>'+(!st.done?'Aplicou ✓':'Aplicar');
+    return;}
+  var ch=e.target.closest('.chip');
+  if(ch){var k2=ch.dataset.k, i=ch.dataset.s, o={}; var cur=get(k2); o['s'+i]=!cur['s'+i]; set(k2,o); ch.classList.toggle('on');}
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.classList.contains('obs')){set(t.dataset.k,{obs:t.value});}
+  if(t.classList.contains('mi')){var o={};o[t.dataset.f]=t.value;set(t.dataset.k,o);}
+});
+document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');document.getElementById('t-'+b.dataset.t).classList.add('on');
+  window.scrollTo(0,0);
+});});
+
+/* ---------- SUPLEMENTOS ---------- */
+function renderTiers(){
+  var cmap={green:'var(--green)',orange:'var(--orange)',red:'var(--red)',muted:'var(--muted2)'};
+  var h='';
+  P.supTiers.forEach(function(t){
+    var c=cmap[t.cor]||'var(--muted2)';
+    h+='<div class="card" style="border-left:4px solid '+c+'"><div class="lbl" style="color:'+c+'">'+t.faixa+'</div>';
+    t.items.forEach(function(it){
+      h+='<div class="li"><span class="bullet" style="background:'+c+'"></span><div><div class="n">'+it.n+'</div><div class="d">'+it.d+'</div></div></div>';
+    });
+    h+='<div class="note" style="margin-top:8px">'+t.nota+'</div></div>';
+  });
+  document.getElementById('sup-tiers').innerHTML=h;
+}
+renderInicio();renderTirze();renderDieta();renderTiers();
+</script>
+</body>
+</html>
