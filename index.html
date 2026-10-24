@@ -111,6 +111,24 @@
   nav button .ic{font-size:20px;filter:grayscale(1) opacity(.5);transition:.15s}
   nav button.on{color:var(--blue)}nav button.on .ic{filter:none}
   .disc{font-size:11px;color:var(--muted2);text-align:center;padding:14px 20px 4px;line-height:1.4}
+  .wk-rule{display:flex;gap:10px;padding:9px 2px;border-top:1px solid var(--line);align-items:flex-start}
+  .wk-rule:first-child{border-top:none}
+  .wk-rule .tg{flex:0 0 auto;width:9px;height:9px;border-radius:3px;margin-top:4px}
+  .wk-rule .ri{font-weight:700;font-size:13px}
+  .wk-rule .ra{font-size:12px;color:var(--muted);margin-top:1px}
+  .wk-form{display:flex;gap:8px;margin:6px 0 2px}
+  .wk-form input{flex:1;border:1px solid var(--line);background:#fafbfc;border-radius:12px;padding:9px 11px;font-size:13px;font-family:inherit;color:var(--ink)}
+  .wk-btn{border:none;background:linear-gradient(135deg,#2f6bff,#7c4dff);color:#fff;font-weight:700;font-size:13px;padding:9px 15px;border-radius:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
+  .wk-verdict{border-radius:14px;padding:12px 14px;font-size:13px;margin-bottom:10px}
+  .wk-verdict .vt{font-weight:800;font-size:14px;display:flex;align-items:center;gap:7px;margin-bottom:3px}
+  .wk-hist .hr{display:flex;align-items:center;gap:7px;padding:9px 2px;border-top:1px solid var(--line);font-size:13px}
+  .wk-hist .hr:first-child{border-top:none}
+  .wk-hist .hd2{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:40px}
+  .wk-hist .hv{font-weight:700;font-size:13px}
+  .dl{font-family:var(--mono);font-size:11px;font-weight:700}
+  .dl.up{color:var(--red)}.dl.down{color:var(--green)}.dl.flat{color:var(--muted2)}
+  .dl.pu{color:var(--blue)}.dl.pd{color:var(--orange)}
+  .del{margin-left:auto;border:none;background:none;color:var(--muted2);font-size:16px;cursor:pointer;padding:0 2px;line-height:1}
 </style>
 </head>
 <body>
@@ -132,6 +150,24 @@
   <div class="grid2">
     <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso"></div></div>
     <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint"></div></div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">📊 Leitura da semana</span>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Jejum, de manhã, depois do banheiro. Decida pela tendência de 3 a 4 semanas, nunca por um dia.</div>
+    <div class="wk-form">
+      <input id="wk-peso" inputmode="decimal" placeholder="peso kg">
+      <input id="wk-cint" inputmode="decimal" placeholder="cintura cm">
+      <button class="wk-btn" id="wk-add">Registrar</button>
+    </div>
+    <div id="wk-verdict"></div>
+    <div class="wk-hist" id="wk-hist"></div>
+    <div style="border-top:1px solid var(--line);margin-top:10px;padding-top:4px">
+      <div class="wk-rule"><span class="tg" style="background:var(--green)"></span><div><div class="ri">Só o peso subiu, cintura parada</div><div class="ra">É o alvo. Mantenha a comida como está.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--red)"></span><div><div class="ri">Peso e cintura subindo juntos</div><div class="ra">Superávit grande. Tire ~150 a 200 kcal (ex.: menos tapioca ou 1 scoop), sem zerar.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--blue)"></span><div><div class="ri">Tudo parado por ~3 semanas</div><div class="ra">Suba ~150 a 200 kcal e observe.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--orange)"></span><div><div class="ri">Peso caiu</div><div class="ra">Você recuou de novo. Retome o superávit, sem susto.</div></div></div>
+    </div>
   </div>
 
   <div class="card">
@@ -556,7 +592,70 @@ function renderTiers(){
   });
   document.getElementById('sup-tiers').innerHTML=h;
 }
-renderInicio();renderSupl();renderTiers();renderTirze();renderCiclo();renderDieta();
+/* ---------- LEITURA DA SEMANA ---------- */
+function wkGet(){var o=db();return Array.isArray(o._weekly)?o._weekly:[]}
+function wkSave(arr){var o=db();o._weekly=arr;save(o)}
+function wkNum(v){if(v==null||v==='')return NaN;return parseFloat(String(v).replace(',','.'))}
+function br(n,dec){return n.toFixed(dec==null?1:dec).replace('.',',')}
+function deltaSpan(delta,unit,isPeso){
+  if(isNaN(delta))return '';
+  var a=Math.abs(delta), cls, arrow;
+  if(a<0.1){cls='flat';arrow='•';}
+  else if(delta>0){arrow='▲';cls=isPeso?'pu':'up';}
+  else{arrow='▼';cls=isPeso?'pd':'down';}
+  return ' <span class="dl '+cls+'">'+arrow+br(a)+unit+'</span>';
+}
+function avg(arr,f){var s=0,n=0;arr.forEach(function(e){var v=wkNum(e[f]);if(!isNaN(v)){s+=v;n++;}});return n?s/n:NaN;}
+function verdictHTML(arr){
+  if(arr.length<2){
+    return '<div class="wk-verdict" style="background:#f2f4f8;color:var(--muted)">Registre pelo menos 2 semanas (de preferência 3 a 4) para a leitura de tendência aparecer aqui.</div>';
+  }
+  var dP,dC,janela;
+  if(arr.length>=4){
+    var rec=arr.slice(-2), old=arr.slice(-4,-2);
+    dP=avg(rec,'peso')-avg(old,'peso'); dC=avg(rec,'cint')-avg(old,'cint'); janela='média das últimas 2 vs 2 anteriores';
+  }else{
+    var last=arr[arr.length-1], first=arr[0];
+    dP=wkNum(last.peso)-wkNum(first.peso); dC=wkNum(last.cint)-wkNum(first.cint); janela='poucos dados ainda, leitura provisória';
+  }
+  var bg,col,icon,ttl,act;
+  if(!isNaN(dP)&&dP<=-0.3){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
+  else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos tapioca ou 1 scoop de whey), sem zerar a comida.';}
+  else if(!isNaN(dC)&&dC>=1.0){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Cintura subindo com o peso parado';act='Não suba a comida. Provável água, intestino ou medida; segure e remeça na próxima semana. Se persistir 2 semanas, tire ~150 kcal.';}
+  else if(!isNaN(dP)&&dP>=0.3){bg='#f0faf4';col='#1a7a3a';icon='🟢';ttl='Só o peso subiu, cintura segurando';act='É exatamente o alvo. Mantenha a comida como está e não mexa.';}
+  else{bg='#e6efff';col='#2f6bff';icon='🔵';ttl='Praticamente parado';act=(arr.length>=3?'Já faz algumas semanas assim. Suba ~150 a 200 kcal e observe.':'Segure mais 1 a 2 semanas antes de mexer na comida.');}
+  return '<div class="wk-verdict" style="background:'+bg+';color:'+col+'"><div class="vt">'+icon+' '+ttl+'</div>'+act+
+    '<div style="font-size:11px;opacity:.75;margin-top:5px">Δ peso '+(isNaN(dP)?'—':br(dP)+' kg')+' · Δ cintura '+(isNaN(dC)?'—':br(dC)+' cm')+' ('+janela+')</div></div>';
+}
+function renderWeekly(){
+  var arr=wkGet().slice().sort(function(a,b){return a.d<b.d?-1:1});
+  document.getElementById('wk-verdict').innerHTML=verdictHTML(arr);
+  var hh='';
+  for(var i=arr.length-1;i>=0&&i>=arr.length-8;i--){
+    var e=arr[i], prev=arr[i-1];
+    var dp=prev?wkNum(e.peso)-wkNum(prev.peso):NaN, dc=prev?wkNum(e.cint)-wkNum(prev.cint):NaN;
+    hh+='<div class="hr"><span class="hd2">'+fmt(parse(e.d))+'</span>'+
+      '<span class="hv">'+(isNaN(wkNum(e.peso))?'—':br(wkNum(e.peso))+' kg')+'</span>'+deltaSpan(dp,'kg',true)+
+      '<span class="hv" style="margin-left:9px">'+(isNaN(wkNum(e.cint))?'—':br(wkNum(e.cint))+' cm')+'</span>'+deltaSpan(dc,'cm',false)+
+      '<button class="del" data-wd="'+e.d+'" title="remover">×</button></div>';
+  }
+  document.getElementById('wk-hist').innerHTML=hh||'<div class="note" style="padding:6px 2px">Sem registros ainda. Lance a primeira medida de jejum acima.</div>';
+}
+document.getElementById('wk-add').addEventListener('click',function(){
+  var pEl=document.getElementById('wk-peso'), cEl=document.getElementById('wk-cint');
+  var p=pEl.value.trim(), c=cEl.value.trim();
+  if(!p&&!c)return;
+  var arr=wkGet(), k=key(today0()), found=false;
+  arr.forEach(function(e){if(e.d===k){e.peso=p;e.cint=c;found=true;}});
+  if(!found)arr.push({d:k,peso:p,cint:c});
+  wkSave(arr); pEl.value='';cEl.value=''; renderWeekly();
+});
+document.addEventListener('click',function(e){
+  var db2=e.target.closest('.del');
+  if(db2){var d=db2.dataset.wd; wkSave(wkGet().filter(function(x){return x.d!==d})); renderWeekly();}
+});
+
+renderInicio();renderSupl();renderTiers();renderTirze();renderCiclo();renderDieta();renderWeekly();
 </script>
 </body>
 </html>
