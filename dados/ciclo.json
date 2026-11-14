@@ -1,0 +1,83 @@
+{
+ "start": "2026-10-11",
+ "weeks": 12,
+ "weekdays": [
+  0,
+  2,
+  4
+ ],
+ "time": "Noite",
+ "initial": {
+  "peso": "92,9 kg",
+  "cintura": "97 cm"
+ },
+ "compounds": [
+  {
+   "nm": "Enantato de Testo",
+   "sub": "Testosterona · ~100 mg",
+   "amt": "0,4",
+   "unit": "ml",
+   "freq": "3x",
+   "total": "1,2 ml",
+   "mg": "300",
+   "color": "blue"
+  },
+  {
+   "nm": "Deca",
+   "sub": "Nandrolona · ~140 mg",
+   "amt": "0,7",
+   "unit": "ml",
+   "freq": "3x",
+   "total": "2,1 ml",
+   "mg": "420",
+   "color": "green"
+  },
+  {
+   "nm": "Trembolona",
+   "sub": "Acetato · ~50 mg",
+   "amt": "0,5",
+   "unit": "ml",
+   "freq": "3x",
+   "total": "1,5 ml",
+   "mg": "150",
+   "color": "orange"
+  }
+ ],
+ "doseLine": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml (noite) · Dom/Ter/Qui",
+ "doseChange": {
+  "date": "2026-11-09",
+  "before": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml",
+  "after": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml"
+ },
+ "risco": "<b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,7 ml + Trembolona 0,5 ml, 3x por semana (domingo, terça e quinta à noite). Deca subiu de 0,5 para 0,7 ml em 09/11 (~140 mg/aplicação, ~420 mg/sem).",
+ "symptoms": [
+  [
+   "Retenção",
+   "💧"
+  ],
+  [
+   "Pressão",
+   "❤️"
+  ],
+  [
+   "Insônia",
+   "🌙"
+  ],
+  [
+   "Acne",
+   "🔴"
+  ],
+  [
+   "Libido+",
+   "🔥"
+  ],
+  [
+   "Libido-",
+   "❄️"
+  ],
+  [
+   "Sudorese",
+   "💦"
+  ]
+ ]
+}

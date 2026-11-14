@@ -1,0 +1,156 @@
+{
+ "versao": "reequilíbrio 14/11",
+ "totais": {
+  "c": 279,
+  "p": 217,
+  "g": 85,
+  "kcalLabel": "~2.760"
+ },
+ "refeicoes": [
+  {
+   "th": "Pré-treino",
+   "tm": "~05h",
+   "items": [
+    {
+     "n": "1 banana média",
+     "d": "glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal"
+    }
+   ],
+   "mc": {
+    "c": 23,
+    "p": 1,
+    "g": 0,
+    "k": 90
+   }
+  },
+  {
+   "th": "Pós-treino",
+   "tm": "~08h",
+   "items": [
+    {
+     "n": "Overnight 150 g",
+     "d": "porção do preparo · P19 · C30 · G3 · 225 kcal"
+    }
+   ],
+   "mc": {
+    "c": 30,
+    "p": 19,
+    "g": 3,
+    "k": 225
+   }
+  },
+  {
+   "th": "Café da manhã",
+   "tm": "~09h",
+   "items": [
+    {
+     "n": "3 ovos inteiros",
+     "d": "P18 · C1 · G15 · 215 kcal"
+    },
+    {
+     "n": "2 fatias pão integral",
+     "d": "P6 · C24 · G2 · 140 kcal"
+    }
+   ],
+   "mc": {
+    "c": 25,
+    "p": 24,
+    "g": 17,
+    "k": 355
+   }
+  },
+  {
+   "th": "Almoço",
+   "tm": "~12h",
+   "items": [
+    {
+     "n": "250 g arroz branco",
+     "d": "P6 · C70 · G1 · 325 kcal"
+    },
+    {
+     "n": "150 g frango (peito, air fryer)",
+     "d": "P46 · C0 · G5 · 248 kcal"
+    },
+    {
+     "n": "200 g legumes (quiabo + abóbora)",
+     "d": "P3 · C14 · G0 · 70 kcal"
+    },
+    {
+     "n": "15 g azeite",
+     "d": "P0 · C0 · G15 · 135 kcal"
+    }
+   ],
+   "mc": {
+    "c": 84,
+    "p": 55,
+    "g": 21,
+    "k": 778
+   }
+  },
+  {
+   "th": "Merenda da tarde",
+   "tm": "~15h",
+   "items": [
+    {
+     "n": "200 g açaí (polpa) com adoçante",
+     "d": "P2 · C13 · G8 · 125 kcal"
+    },
+    {
+     "n": "25 g amendoim torrado",
+     "d": "P6 · C4 · G12 · 145 kcal · por cima do açaí, pela textura e gordura boa"
+    }
+   ],
+   "mc": {
+    "c": 17,
+    "p": 8,
+    "g": 20,
+    "k": 270
+   }
+  },
+  {
+   "th": "Pré-cardio",
+   "tm": "~17h30",
+   "items": [
+    {
+     "n": "2 scoops whey + 200 ml leite",
+     "d": "P55 · C16 · G3 · 308 kcal"
+    }
+   ],
+   "mc": {
+    "c": 16,
+    "p": 55,
+    "g": 3,
+    "k": 308
+   }
+  },
+  {
+   "th": "Jantar",
+   "tm": "~20h",
+   "items": [
+    {
+     "n": "250 g arroz branco",
+     "d": "P6 · C70 · G1 · 325 kcal"
+    },
+    {
+     "n": "150 g frango (peito, air fryer)",
+     "d": "P46 · C0 · G5 · 248 kcal"
+    },
+    {
+     "n": "200 g legumes",
+     "d": "P3 · C14 · G0 · 70 kcal"
+    },
+    {
+     "n": "15 g azeite",
+     "d": "P0 · C0 · G15 · 135 kcal"
+    }
+   ],
+   "mc": {
+    "c": 84,
+    "p": 55,
+    "g": 21,
+    "k": 778
+   }
+  }
+ ],
+ "nota": "Reequilíbrio de 14/11: proteína desceu de 272 para 212 g (2,28 g/kg, dentro do teto útil mesmo em ciclo) e a gordura subiu de 60 para 86 g por fontes insaturadas (azeite, amendoim, gema), nas mesmas ~2.760 kcal. O frango caiu de 200 para 150 g por refeição; a PTS da merenda saiu e entrou 25 g de amendoim; o carbo ficou quase igual (283 g). Overnight: 250 g aveia + 700 ml leite desnatado + 3 scoops whey, descansa 6 h, rende ~7 porções de 150 g. Pesar e medir a cintura 1x/semana. Objetivo: ganhar músculo sem subir a cintura (97 cm). O carbo só sobe (rumo a 4 g/kg) se a cintura ficar parada 3 semanas; se o umbigo subir, o superávit é que está grande, não o arranjo dos macros."
+}

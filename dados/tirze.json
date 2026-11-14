@@ -1,0 +1,70 @@
+{
+ "start": "2026-08-22",
+ "end": "2026-11-30",
+ "interval": 5,
+ "doses": [
+  {
+   "from": "2026-08-22",
+   "mg": "7,5 mg"
+  },
+  {
+   "from": "2026-10-06",
+   "mg": "5 mg"
+  },
+  {
+   "from": "2026-11-18",
+   "mg": "2,5 mg"
+  }
+ ],
+ "dose": "TIRZE 5 mg",
+ "head": "Tirzepatida · desmama · 5 mg até ~17/11, depois 2,5 mg",
+ "peso": "92,9 kg",
+ "cintura": "97 cm",
+ "meta": "17,6%",
+ "escada": [
+  {
+   "fase": "Atual (5 mg)",
+   "kcal": "~2.100 base, adotado ~2.760",
+   "ativo": true
+  },
+  {
+   "fase": "Mês 1 sem 3-4",
+   "kcal": "~2.300 kcal"
+  },
+  {
+   "fase": "Mês 2",
+   "kcal": "~2.500 kcal"
+  },
+  {
+   "fase": "Mês 3",
+   "kcal": "~2.700 kcal"
+  },
+  {
+   "fase": "Mês 4+",
+   "kcal": "~2.800+ kcal"
+  }
+ ],
+ "nota": "Desmama é escada calórica gradual. Dose desceu para 5 mg em 06/10 e fica 6 semanas (até ~17/11); depois 2,5 mg. Dieta reequilibrada (~2.760 kcal) acompanha a volta de cardio e intensidade.",
+ "symptoms": [
+  [
+   "Náusea",
+   "🤢"
+  ],
+  [
+   "Refluxo",
+   "🔥"
+  ],
+  [
+   "Saciedade+",
+   "✅"
+  ],
+  [
+   "Fadiga",
+   "😴"
+  ],
+  [
+   "Dor abdominal",
+   "⚡"
+  ]
+ ]
+}

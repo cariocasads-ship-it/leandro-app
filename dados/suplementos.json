@@ -1,0 +1,281 @@
+{
+ "sub": "Revisão em 3 faixas · exame de sangue em 16/10",
+ "tiers": [
+  {
+   "faixa": "Essenciais",
+   "cor": "green",
+   "nota": "Manter. As medicações seguram riscos reais do ciclo; mexer nelas é decisão médica.",
+   "items": [
+    {
+     "n": "Rosuvastatina 20 mg",
+     "d": "colesterol / LDL",
+     "med": true
+    },
+    {
+     "n": "AAS 100 mg",
+     "d": "afina o sangue (Ht 54,5%)",
+     "med": true
+    },
+    {
+     "n": "Nattokinase 200 mg",
+     "d": "afina o sangue · checar combinação c/ AAS",
+     "med": true
+    },
+    {
+     "n": "Finasterida 2,5 mg",
+     "d": "segura o DHT (1.345)",
+     "med": true
+    },
+    {
+     "n": "Tadalafila 5 mg",
+     "d": "fluxo e pressão",
+     "med": true
+    },
+    {
+     "n": "Ômega-3",
+     "d": "lipídios / anti-inflamatório"
+    },
+    {
+     "n": "D3 + K2",
+     "d": "osso / imunidade"
+    },
+    {
+     "n": "Magnésio Treonato",
+     "d": "sono / recuperação"
+    },
+    {
+     "n": "L-leucina",
+     "d": "síntese proteica"
+    }
+   ]
+  },
+  {
+   "faixa": "Em revisão",
+   "cor": "orange",
+   "nota": "Decidir com o exame de 16/10.",
+   "items": [
+    {
+     "n": "Niacina (B3)",
+     "d": "HDL · evidência fraca, ver lipidograma"
+    },
+    {
+     "n": "NAC + Cardo Mariano",
+     "d": "fígado · provável enxugar pra 1, ver TGO/TGP"
+    },
+    {
+     "n": "Vitamina B12",
+     "d": "ver nível antes de manter 2000 mcg"
+    },
+    {
+     "n": "Coenzima Q10",
+     "d": "faz sentido junto da estatina, revisar"
+    },
+    {
+     "n": "Zinco 20 mg",
+     "d": "ok, revisar necessidade"
+    }
+   ]
+  },
+  {
+   "faixa": "Opcionais",
+   "cor": "muted",
+   "nota": "Candidatos a corte já, de baixo impacto.",
+   "items": [
+    {
+     "n": "Saw Palmetto",
+     "d": "redundante com a finasterida"
+    },
+    {
+     "n": "GABA",
+     "d": "evidência fraca, magnésio já cobre o sono"
+    },
+    {
+     "n": "Probiótico",
+     "d": "benefício difuso, corte de baixo impacto"
+    }
+   ]
+  }
+ ],
+ "horarios": [
+  {
+   "th": "Pré-musculação",
+   "tm": "05h15 · jejum",
+   "items": [
+    {
+     "n": "Tadalafila",
+     "d": "5 mg · vasodilatação, fluxo sanguíneo",
+     "med": true
+    },
+    {
+     "n": "NAC",
+     "d": "600 mg · antioxidante (1ª dose)"
+    },
+    {
+     "n": "Nattokinase",
+     "d": "200 mg · fibrinolítico, tomar sozinho",
+     "med": true
+    }
+   ]
+  },
+  {
+   "th": "Café da manhã",
+   "tm": "08h · com refeição",
+   "items": [
+    {
+     "n": "D3 + K2 MK-7",
+     "d": "5000 UI + 200 mcg · osso/imunidade"
+    },
+    {
+     "n": "Coenzima Q10",
+     "d": "cardiovascular"
+    },
+    {
+     "n": "Ômega-3",
+     "d": "1ª dose · HDL/anti-inflamatório"
+    },
+    {
+     "n": "Saw Palmetto",
+     "d": "500 mg · DHT (vigiar, 1.345)"
+    },
+    {
+     "n": "Cardo Mariano",
+     "d": "1ª dose · silimarina/fígado"
+    },
+    {
+     "n": "L-leucina",
+     "d": "5 g · síntese proteica (complementa o whey vegetal)"
+    }
+   ]
+  },
+  {
+   "th": "Almoço",
+   "tm": "12h · com refeição",
+   "items": [
+    {
+     "n": "Vitamina B12",
+     "d": "2000 mcg · reduzir dose"
+    },
+    {
+     "n": "Ômega-3",
+     "d": "2ª dose"
+    },
+    {
+     "n": "Cardo Mariano",
+     "d": "2ª dose"
+    },
+    {
+     "n": "NAC",
+     "d": "600 mg · 2ª dose, nível estável"
+    },
+    {
+     "n": "AAS",
+     "d": "100 mg · antiagregante, com comida",
+     "med": true
+    }
+   ]
+  },
+  {
+   "th": "Merenda da tarde",
+   "tm": "~15h · com o açaí",
+   "items": [
+    {
+     "n": "L-leucina",
+     "d": "5 g · 2ª dose, síntese proteica"
+    }
+   ]
+  },
+  {
+   "th": "Pré-cardio",
+   "tm": "17h15",
+   "items": [
+    {
+     "n": "Niacina (B3)",
+     "d": "500 mg a 1 g · elevar HDL (flushing ok)"
+    }
+   ]
+  },
+  {
+   "th": "Jantar",
+   "tm": "19h30 · com refeição",
+   "items": [
+    {
+     "n": "Zinco",
+     "d": "20 mg · longe de laticínios"
+    },
+    {
+     "n": "Probiótico",
+     "d": "1 Bi UFC · Lactobacillus, nunca com líquido quente"
+    }
+   ]
+  },
+  {
+   "th": "Antes de dormir",
+   "tm": "~21h30",
+   "items": [
+    {
+     "n": "Magnésio Treonato",
+     "d": "500 mg · sono/recuperação"
+    },
+    {
+     "n": "GABA",
+     "d": "300 mg · sono (alt. teanina 200 mg)"
+    },
+    {
+     "n": "Rosuvastatina",
+     "d": "20 mg · perfil lipídico/LDL",
+     "med": true
+    },
+    {
+     "n": "Finasterida",
+     "d": "2,5 mg · inibidor 5-alfa redutase/DHT",
+     "med": true
+    }
+   ]
+  }
+ ],
+ "now": [
+  {
+   "h": 5,
+   "ic": "🏋️",
+   "t": "Pré-musculação (jejum)",
+   "s": "Tadalafila + NAC + Nattokinase"
+  },
+  {
+   "h": 8,
+   "ic": "☀️",
+   "t": "Café da manhã",
+   "s": "D3+K2 + CoQ10 + Ômega-3 + Saw Palmetto + Cardo Mariano + L-leucina"
+  },
+  {
+   "h": 12,
+   "ic": "🍽️",
+   "t": "Almoço",
+   "s": "B12 + Ômega-3 + Cardo Mariano + NAC + AAS"
+  },
+  {
+   "h": 15,
+   "ic": "🥤",
+   "t": "Merenda da tarde",
+   "s": "Açaí c/ adoçante + amendoim 25 g · L-leucina 5 g"
+  },
+  {
+   "h": 17,
+   "ic": "🚴",
+   "t": "Pré-cardio",
+   "s": "Niacina (B3)"
+  },
+  {
+   "h": 19,
+   "ic": "🍲",
+   "t": "Jantar",
+   "s": "Zinco + Probiótico"
+  },
+  {
+   "h": 21,
+   "ic": "😴",
+   "t": "Antes de dormir",
+   "s": "Magnésio + GABA + Rosuvastatina + Finasterida"
+  }
+ ],
+ "nota": "Saw Palmetto mantido como adjuvante (vigiar, DHT 1.345); Finasterida 2,5 mg assumiu a proteção DHT principal. Tadalafila substituiu Ioimbina (retirada do protocolo). AAS + Nattokinase atuam na coagulação; confirmar combinação (Ht 54,5%). Whey e creatina contabilizados na dieta (lanche da tarde)."
+}
