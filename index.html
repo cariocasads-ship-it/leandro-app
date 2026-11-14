@@ -129,6 +129,9 @@
   .dl.up{color:var(--red)}.dl.down{color:var(--green)}.dl.flat{color:var(--muted2)}
   .dl.pu{color:var(--blue)}.dl.pd{color:var(--orange)}
   .del{margin-left:auto;border:none;background:none;color:var(--muted2);font-size:16px;cursor:pointer;padding:0 2px;line-height:1}
+
+  .loading{padding:60px 20px;text-align:center;color:var(--muted);font-size:13px}
+  .loaderr{margin:16px;background:#fff5f5;border:1px solid #f6d2d2;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#b23b34}
 </style>
 </head>
 <body>
@@ -140,18 +143,15 @@
     <p>Seu painel de protocolos do dia</p>
     <div class="d" id="hero-date"></div>
   </div>
-
   <div class="card pcard">
-    <div class="top"><span class="lbl">💉 Ciclo hormonal · 12 semanas</span><span class="pct" id="ini-pct"></span></div>
+    <div class="top"><span class="lbl">💉 Ciclo hormonal · <span id="ini-wk-total"></span> semanas</span><span class="pct" id="ini-pct"></span></div>
     <div class="track"><div class="fill" id="ini-fill"></div></div>
     <div class="weeks" id="ini-weeks"></div>
   </div>
-
   <div class="grid2">
     <div class="card"><span class="lbl">⚖️ Peso base</span><div class="big val-blue" id="ini-peso"></div></div>
     <div class="card"><span class="lbl">📏 Cintura base</span><div class="big val-blue" id="ini-cint"></div></div>
   </div>
-
   <div class="card">
     <span class="lbl">📊 Leitura da semana</span>
     <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Jejum, de manhã, depois do banheiro. Decida pela tendência de 3 a 4 semanas, nunca por um dia.</div>
@@ -169,60 +169,47 @@
       <div class="wk-rule"><span class="tg" style="background:var(--orange)"></span><div><div class="ri">Peso caiu</div><div class="ra">Você recuou de novo. Retome o superávit, sem susto.</div></div></div>
     </div>
   </div>
-
   <div class="card">
     <span class="lbl">💊 Suplementação agora</span>
     <div class="todo"><span class="ic" id="now-ic">💊</span><div><div style="font-weight:800;font-size:15px" id="now-title"></div><div style="font-size:12px;color:var(--muted)" id="now-sub"></div></div></div>
   </div>
-
   <div class="card">
     <span class="lbl">💉 Próxima tirzepatida</span>
     <div style="font-weight:800;font-size:16px" id="ini-tz"></div>
     <div style="font-size:12px;color:var(--muted)" id="ini-tz-sub"></div>
   </div>
-
   <div class="card">
     <span class="lbl">🧪 Próxima aplicação do ciclo</span>
     <div style="font-weight:800;font-size:16px" id="ini-cy"></div>
     <div style="font-size:12px;color:var(--muted)" id="ini-cy-sub"></div>
   </div>
-
   <div class="card">
     <span class="lbl">📋 Status do protocolo</span>
-    <div class="win"><b>Vitória.</b> Cintura saiu de 100 para 97 cm (linha do umbigo). Gordura corporal 17,6%. Massa magra 76,5 kg.</div>
-    <div class="risk"><b>Ciclo desde 11/10.</b> Enantato 0,4 + Deca 0,7 + Trembolona 0,5 ml, 3x/semana (dom, ter, qui, à noite). Deca subiu de 0,5 para 0,7 ml em 09/11; vigiar retenção e pressão nas próximas semanas.</div>
+    <div class="win" id="ini-win"></div>
+    <div class="risk" id="ini-risk"></div>
   </div>
-
   <div class="card">
     <span class="lbl">🌙 Momento atual</span>
-    <div style="font-size:13px;color:var(--ink)">Fase de recuo consciente: desmama de tirzepatida junto a um momento pessoal. Treino priorizando presença sobre carga.</div>
+    <div style="font-size:13px;color:var(--ink)" id="ini-momento"></div>
   </div>
-
   <div class="card">
     <span class="lbl">🍽️ Dieta atual</span>
-    <div class="todo"><span class="ic">🥗</span><div><div style="font-weight:800;font-size:15px">~2.760 kcal (reequilíbrio 14/11)</div><div style="font-size:12px;color:var(--muted)">212g P · 283g C · 86g G</div></div></div>
+    <div class="todo"><span class="ic">🥗</span><div><div style="font-weight:800;font-size:15px" id="ini-diet-kcal"></div><div style="font-size:12px;color:var(--muted)" id="ini-diet-macros"></div></div></div>
   </div>
-
   <div class="card">
     <span class="lbl">📉 Desmama tirze · escada calórica</span>
-    <div class="escada">
-      <div class="step"><div class="bar" style="background:var(--blue)"></div><div><div class="s-phase">Atual (5 mg)</div><div class="s-kcal">~2.100 base, adotado ~2.760</div></div><span class="badge">ATIVO</span></div>
-      <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 1 sem 3-4</div><div class="s-kcal">~2.300 kcal</div></div></div>
-      <div class="step"><div class="bar" style="background:var(--orange)"></div><div><div class="s-phase">Mês 2</div><div class="s-kcal">~2.500 kcal</div></div></div>
-      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">Mês 3</div><div class="s-kcal">~2.700 kcal</div></div></div>
-      <div class="step"><div class="bar" style="background:var(--muted2)"></div><div><div class="s-phase">Mês 4+</div><div class="s-kcal">~2.800+ kcal</div></div></div>
-    </div>
+    <div class="escada" id="ini-escada"></div>
   </div>
 </div></div>
 
 <!-- ===================== SUPLEM ===================== -->
 <div class="tab" id="t-supl"><div class="wrap">
   <h2 class="page">Suplementos</h2>
-  <div class="page-sub">Revisão em 3 faixas · exame de sangue em 16/10</div>
+  <div class="page-sub" id="sup-sub"></div>
   <div id="sup-tiers"></div>
   <div class="wkhd" style="margin-top:18px">Por horário<span class="ln"></span><span class="tag">💊 medicamento</span></div>
   <div class="card" id="supl-list"></div>
-  <div class="note">Saw Palmetto mantido como adjuvante (vigiar, DHT 1.345); Finasterida 2,5 mg assumiu a proteção DHT principal. Tadalafila substituiu Ioimbina (retirada do protocolo). AAS + Nattokinase atuam na coagulação; confirmar combinação (Ht 54,5%). Whey e creatina contabilizados na dieta (lanche da tarde).</div>
+  <div class="note" id="sup-nota"></div>
 </div></div>
 
 <!-- ===================== TIRZE ===================== -->
@@ -237,13 +224,9 @@
   <div id="tz-entries" style="margin-top:6px"></div>
   <div class="card" style="margin-top:12px">
     <span class="lbl">📉 Desmama · escada calórica</span>
-    <div class="li" style="border-top:none"><span class="bullet" style="background:var(--blue)"></span><div><div class="n">Fase atual</div><div class="d">5 mg · ~2.760 kcal (reequilíbrio 14/11)</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 1 sem 3-4</div><div class="d">~2.300 kcal</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 2</div><div class="d">~2.500 kcal</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 3</div><div class="d">~2.700 kcal</div></div></div>
-    <div class="li"><span class="bullet"></span><div><div class="n">Mês 4+</div><div class="d">~2.800+ kcal</div></div></div>
+    <div id="tz-escada"></div>
   </div>
-  <div class="note">Desmama é escada calórica gradual. Dose desceu para 5 mg em 06/10 e fica 6 semanas (até ~17/11); depois 2,5 mg. Dieta reequilibrada (~2.760 kcal) acompanha a volta de cardio e intensidade.</div>
+  <div class="note" id="tz-nota"></div>
 </div></div>
 
 <!-- ===================== CICLO ===================== -->
@@ -256,22 +239,22 @@
     <div class="track"><div class="fill" id="cy-fill"></div></div>
     <div class="weeks" id="cy-weeks"></div>
   </div>
-  <div class="risk"><b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,7 ml + Trembolona 0,5 ml, 3x por semana (domingo, terça e quinta à noite). Deca subiu de 0,5 para 0,7 ml em 09/11 (~140 mg/aplicação, ~420 mg/sem).</div>
+  <div class="risk" id="cy-risco"></div>
   <div id="cy-entries" style="margin-top:8px"></div>
 </div></div>
 
 <!-- ===================== DIETA ===================== -->
 <div class="tab" id="t-dieta"><div class="wrap">
   <h2 class="page">Dieta</h2>
-  <div class="page-sub">Protocolo alimentar diário · Coach</div>
+  <div class="page-sub" id="diet-sub">Protocolo alimentar diário · Coach</div>
   <div class="totals"><div class="row">
-    <div><div class="k">CARB</div><div class="v val-blue">283 g</div></div>
-    <div><div class="k">PROT</div><div class="v val-green">212 g</div></div>
-    <div><div class="k">GORD</div><div class="v val-orange">86 g</div></div>
-    <div><div class="k">KCAL</div><div class="v val-purple">~2.760</div></div>
+    <div><div class="k">CARB</div><div class="v val-blue" id="tot-c"></div></div>
+    <div><div class="k">PROT</div><div class="v val-green" id="tot-p"></div></div>
+    <div><div class="k">GORD</div><div class="v val-orange" id="tot-g"></div></div>
+    <div><div class="k">KCAL</div><div class="v val-purple" id="tot-k"></div></div>
   </div></div>
   <div id="diet-list"></div>
-  <div class="note">Reequilíbrio de 14/11: proteína desceu de 272 para 212 g (2,28 g/kg, dentro do teto útil mesmo em ciclo) e a gordura subiu de 60 para 86 g por fontes insaturadas (azeite, amendoim, gema), nas mesmas ~2.760 kcal. O frango caiu de 200 para 150 g por refeição; a PTS da merenda saiu e entrou 25 g de amendoim; o carbo ficou quase igual (283 g). Overnight: 250 g aveia + 700 ml leite desnatado + 3 scoops whey, descansa 6 h, rende ~7 porções de 150 g. Pesar e medir a cintura 1x/semana. Objetivo: ganhar músculo sem subir a cintura (97 cm). O carbo só sobe (rumo a 4 g/kg) se a cintura ficar parada 3 semanas; se o umbigo subir, o superávit é que está grande, não o arranjo dos macros.</div>
+  <div class="note" id="diet-nota"></div>
 </div></div>
 
 <div class="disc">Ferramenta organizacional, não substitui avaliação médica. Sem médico fixo acompanhando o protocolo. Dados salvos só neste aparelho.</div>
@@ -286,141 +269,13 @@
 
 <script>
 /* =====================================================================
-   PROTOCOLO — edite este bloco quando algo mudar. O app se redesenha.
+   ESQUELETO — não precisa editar. Os dados ficam em dados/*.json:
+   dieta.json · suplementos.json · ciclo.json · tirze.json · inicio.json
    ===================================================================== */
-const P = {
-  cycle:{
-    start:'2026-10-11', weeks:12, weekdays:[0,2,4], time:'Noite',
-    initial:{peso:'92,9 kg', cintura:'97 cm'},
-    compounds:[
-      {nm:'Enantato de Testo',sub:'Testosterona · ~100 mg',amt:'0,4',unit:'ml',freq:'3x',total:'1,2 ml',mg:'300',color:'blue'},
-      {nm:'Deca',sub:'Nandrolona · ~140 mg',amt:'0,7',unit:'ml',freq:'3x',total:'2,1 ml',mg:'420',color:'green'},
-      {nm:'Trembolona',sub:'Acetato · ~50 mg',amt:'0,5',unit:'ml',freq:'3x',total:'1,5 ml',mg:'150',color:'orange'}
-    ],
-    doseLine:'Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml (noite) · Dom/Ter/Qui'
-  },
-  tirze:{
-    start:'2026-08-22', end:'2026-11-30', interval:5,
-    doses:[
-      {from:'2026-08-22', mg:'7,5 mg'},
-      {from:'2026-10-06', mg:'5 mg'},
-      {from:'2026-11-18', mg:'2,5 mg'}
-    ],
-    dose:'TIRZE 5 mg',
-    head:'Tirzepatida · desmama · 5 mg até ~17/11, depois 2,5 mg',
-    peso:'92,9 kg', cintura:'97 cm', meta:'17,6%'
-  },
-  supTiers:[
-    {faixa:'Essenciais',cor:'green',nota:'Manter. As medicações seguram riscos reais do ciclo; mexer nelas é decisão médica.',items:[
-      {n:'Rosuvastatina 20 mg',d:'colesterol / LDL',med:true},
-      {n:'AAS 100 mg',d:'afina o sangue (Ht 54,5%)',med:true},
-      {n:'Nattokinase 200 mg',d:'afina o sangue · checar combinação c/ AAS',med:true},
-      {n:'Finasterida 2,5 mg',d:'segura o DHT (1.345)',med:true},
-      {n:'Tadalafila 5 mg',d:'fluxo e pressão',med:true},
-      {n:'Ômega-3',d:'lipídios / anti-inflamatório'},
-      {n:'D3 + K2',d:'osso / imunidade'},
-      {n:'Magnésio Treonato',d:'sono / recuperação'},
-      {n:'L-leucina',d:'síntese proteica'}
-    ]},
-    {faixa:'Em revisão',cor:'orange',nota:'Decidir com o exame de 16/10.',items:[
-      {n:'Niacina (B3)',d:'HDL · evidência fraca, ver lipidograma'},
-      {n:'NAC + Cardo Mariano',d:'fígado · provável enxugar pra 1, ver TGO/TGP'},
-      {n:'Vitamina B12',d:'ver nível antes de manter 2000 mcg'},
-      {n:'Coenzima Q10',d:'faz sentido junto da estatina, revisar'},
-      {n:'Zinco 20 mg',d:'ok, revisar necessidade'}
-    ]},
-    {faixa:'Opcionais',cor:'muted',nota:'Candidatos a corte já, de baixo impacto.',items:[
-      {n:'Saw Palmetto',d:'redundante com a finasterida'},
-      {n:'GABA',d:'evidência fraca, magnésio já cobre o sono'},
-      {n:'Probiótico',d:'benefício difuso, corte de baixo impacto'}
-    ]}
-  ],
-  supplements:[
-    {th:'Pré-musculação',tm:'05h15 · jejum',items:[
-      {n:'Tadalafila',d:'5 mg · vasodilatação, fluxo sanguíneo',med:true},
-      {n:'NAC',d:'600 mg · antioxidante (1ª dose)'},
-      {n:'Nattokinase',d:'200 mg · fibrinolítico, tomar sozinho',med:true}
-    ]},
-    {th:'Café da manhã',tm:'08h · com refeição',items:[
-      {n:'D3 + K2 MK-7',d:'5000 UI + 200 mcg · osso/imunidade'},
-      {n:'Coenzima Q10',d:'cardiovascular'},
-      {n:'Ômega-3',d:'1ª dose · HDL/anti-inflamatório'},
-      {n:'Saw Palmetto',d:'500 mg · DHT (vigiar, 1.345)'},
-      {n:'Cardo Mariano',d:'1ª dose · silimarina/fígado'},
-      {n:'L-leucina',d:'5 g · síntese proteica (complementa o whey vegetal)'}
-    ]},
-    {th:'Almoço',tm:'12h · com refeição',items:[
-      {n:'Vitamina B12',d:'2000 mcg · reduzir dose'},
-      {n:'Ômega-3',d:'2ª dose'},
-      {n:'Cardo Mariano',d:'2ª dose'},
-      {n:'NAC',d:'600 mg · 2ª dose, nível estável'},
-      {n:'AAS',d:'100 mg · antiagregante, com comida',med:true}
-    ]},
-    {th:'Merenda da tarde',tm:'~15h · com o açaí',items:[
-      {n:'L-leucina',d:'5 g · 2ª dose, síntese proteica'}
-    ]},
-    {th:'Pré-cardio',tm:'17h15',items:[
-      {n:'Niacina (B3)',d:'500 mg a 1 g · elevar HDL (flushing ok)'}
-    ]},
-    {th:'Jantar',tm:'19h30 · com refeição',items:[
-      {n:'Zinco',d:'20 mg · longe de laticínios'},
-      {n:'Probiótico',d:'1 Bi UFC · Lactobacillus, nunca com líquido quente'}
-    ]},
-    {th:'Antes de dormir',tm:'~21h30',items:[
-      {n:'Magnésio Treonato',d:'500 mg · sono/recuperação'},
-      {n:'GABA',d:'300 mg · sono (alt. teanina 200 mg)'},
-      {n:'Rosuvastatina',d:'20 mg · perfil lipídico/LDL',med:true},
-      {n:'Finasterida',d:'2,5 mg · inibidor 5-alfa redutase/DHT',med:true}
-    ]}
-  ],
-  now:[
-    {h:5,ic:'🏋️',t:'Pré-musculação (jejum)',s:'Tadalafila + NAC + Nattokinase'},
-    {h:8,ic:'☀️',t:'Café da manhã',s:'D3+K2 + CoQ10 + Ômega-3 + Saw Palmetto + Cardo Mariano + L-leucina'},
-    {h:12,ic:'🍽️',t:'Almoço',s:'B12 + Ômega-3 + Cardo Mariano + NAC + AAS'},
-    {h:15,ic:'🥤',t:'Merenda da tarde',s:'Açaí c/ adoçante + amendoim 25 g · L-leucina 5 g'},
-    {h:17,ic:'🚴',t:'Pré-cardio',s:'Niacina (B3)'},
-    {h:19,ic:'🍲',t:'Jantar',s:'Zinco + Probiótico'},
-    {h:21,ic:'😴',t:'Antes de dormir',s:'Magnésio + GABA + Rosuvastatina + Finasterida'}
-  ],
-  diet:[
-    {th:'Pré-treino',tm:'~05h',items:[
-      {n:'1 banana média',d:'glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal'}
-    ],mc:{c:23,p:1,g:0,k:90}},
-    {th:'Pós-treino',tm:'~08h',items:[
-      {n:'Overnight 150 g',d:'porção do preparo · P19 · C30 · G3 · 225 kcal'}
-    ],mc:{c:30,p:19,g:3,k:225}},
-    {th:'Café da manhã',tm:'~09h',items:[
-      {n:'3 ovos inteiros',d:'P18 · C1 · G15 · 215 kcal'},
-      {n:'2 fatias pão integral',d:'P6 · C24 · G2 · 140 kcal'}
-    ],mc:{c:25,p:24,g:17,k:355}},
-    {th:'Almoço',tm:'~12h',items:[
-      {n:'250 g arroz branco',d:'P6 · C70 · G1 · 325 kcal'},
-      {n:'150 g frango (peito, air fryer)',d:'P46 · C0 · G5 · 248 kcal'},
-      {n:'200 g legumes (quiabo + abóbora)',d:'P3 · C14 · G0 · 70 kcal'},
-      {n:'15 g azeite',d:'P0 · C0 · G15 · 135 kcal'}
-    ],mc:{c:84,p:55,g:21,k:778}},
-    {th:'Merenda da tarde',tm:'~15h',items:[
-      {n:'200 g açaí (polpa) com adoçante',d:'P2 · C13 · G8 · 125 kcal'},
-      {n:'25 g amendoim torrado',d:'P6 · C4 · G12 · 145 kcal · por cima do açaí, pela textura e gordura boa'}
-    ],mc:{c:17,p:8,g:20,k:270}},
-    {th:'Pré-cardio',tm:'~17h30',items:[
-      {n:'2 scoops whey + 200 ml leite',d:'P55 · C16 · G3 · 308 kcal'}
-    ],mc:{c:16,p:55,g:3,k:308}},
-    {th:'Jantar',tm:'~20h',items:[
-      {n:'250 g arroz branco',d:'P6 · C70 · G1 · 325 kcal'},
-      {n:'150 g frango (peito, air fryer)',d:'P46 · C0 · G5 · 248 kcal'},
-      {n:'200 g legumes',d:'P3 · C14 · G0 · 70 kcal'},
-      {n:'15 g azeite',d:'P0 · C0 · G15 · 135 kcal'}
-    ],mc:{c:84,p:55,g:21,k:778}}
-  ]
-};
-const SYMPTOMS=[['Retenção','💧'],['Pressão','❤️'],['Insônia','🌙'],['Acne','🔴'],['Libido+','🔥'],['Libido-','❄️'],['Sudorese','💦']];
-const TZ_SYMPTOMS=[['Náusea','🤢'],['Refluxo','🔥'],['Saciedade+','✅'],['Fadiga','😴'],['Dor abdominal','⚡']];
 const STORE='leandro_v3';
-/* =================== fim do bloco editável =================== */
-
 const DAY=864e5, DOW=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 const now=new Date();
+let D={};   // dados carregados
 function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
 function fmt(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0');}
 function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
@@ -429,40 +284,50 @@ function db(){try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){re
 function save(o){try{localStorage.setItem(STORE,JSON.stringify(o))}catch(e){}}
 function get(k){var o=db();return o[k]||{}}
 function set(k,v){var o=db();o[k]=Object.assign(o[k]||{},v);save(o)}
+function big(el,txt){document.getElementById(el).innerHTML=String(txt).replace(/ (\w+)$/,' <small>$1</small>');}
 
 function cycleDates(){
-  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY), out=[];
-  for(var t=s.getTime();t<end.getTime();t+=DAY){var d=new Date(t);
-    if(P.cycle.weekdays.indexOf(d.getDay())>=0) out.push(d);}
+  var c=D.ciclo, s=parse(c.start), end=new Date(s.getTime()+c.weeks*7*DAY), out=[];
+  for(var t=s.getTime();t<end.getTime();t+=DAY){var d=new Date(t); if(c.weekdays.indexOf(d.getDay())>=0) out.push(d);}
   return out;
 }
 function tirzeDates(){
-  var s=parse(P.tirze.start), end=parse(P.tirze.end), iv=P.tirze.interval, out=[];
-  for(var i=0;i<200;i++){
-    var d=new Date(s.getTime()+i*iv*DAY); if(d>end) break; out.push(d);}
+  var t=D.tirze, s=parse(t.start), end=parse(t.end), out=[];
+  for(var i=0;i<200;i++){var d=new Date(s.getTime()+i*t.interval*DAY); if(d>end) break; out.push(d);}
   return out;
 }
 function tzDoseFor(d){
-  var ds=P.tirze.doses, pick=(ds&&ds.length)?ds[0].mg:(P.tirze.dose||'').replace('TIRZE ','');
+  var ds=D.tirze.doses, pick=(ds&&ds.length)?ds[0].mg:(D.tirze.dose||'').replace('TIRZE ','');
   if(ds){for(var i=0;i<ds.length;i++){if(d>=parse(ds[i].from))pick=ds[i].mg;}}
   return 'TIRZE '+pick;
+}
+function escadaHTML(list, cls){
+  var h=''; list.forEach(function(s,i){
+    var col=s.ativo?'var(--blue)':(i<=2?'var(--orange)':'var(--muted2)');
+    if(cls==='li'){
+      h+='<div class="li"'+(i===0?' style="border-top:none"':'')+'><span class="bullet"'+(s.ativo?' style="background:var(--blue)"':'')+'></span><div><div class="n">'+(s.ativo?'Fase atual':s.fase)+'</div><div class="d">'+(s.ativo?(D.tirze.doses.slice(-1)[0]?'':'')+s.kcal.replace('base, adotado','·'):s.kcal)+'</div></div></div>';
+    }else{
+      h+='<div class="step"><div class="bar" style="background:'+col+'"></div><div><div class="s-phase">'+s.fase+'</div><div class="s-kcal">'+s.kcal+'</div></div>'+(s.ativo?'<span class="badge">ATIVO</span>':'')+'</div>';
+    }
+  });
+  return h;
 }
 
 /* ---------- INÍCIO ---------- */
 function renderInicio(){
-  var opt={weekday:'long',day:'2-digit',month:'long',year:'numeric'};
-  document.getElementById('hero-date').textContent=now.toLocaleDateString('pt-BR',opt);
-  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
+  var c=D.ciclo, I=D.inicio;
+  document.getElementById('hero-date').textContent=now.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('ini-wk-total').textContent=c.weeks;
+  var s=parse(c.start), end=new Date(s.getTime()+c.weeks*7*DAY);
   var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
   document.getElementById('ini-pct').textContent=Math.round(pc*100)+'%';
   document.getElementById('ini-fill').style.width=(pc*100)+'%';
-  var cur=today0()>=s?Math.min(P.cycle.weeks,Math.floor((today0()-s)/DAY/7)+1):0;
-  var wk=''; for(var i=1;i<=P.cycle.weeks;i++){wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';}
+  var cur=today0()>=s?Math.min(c.weeks,Math.floor((today0()-s)/DAY/7)+1):0, wk='';
+  for(var i=1;i<=c.weeks;i++){wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';}
   document.getElementById('ini-weeks').innerHTML=wk;
-  document.getElementById('ini-peso').innerHTML=P.cycle.initial.peso.replace(/ (\w+)$/,' <small>$1</small>');
-  document.getElementById('ini-cint').innerHTML=P.cycle.initial.cintura.replace(/ (\w+)$/,' <small>$1</small>');
-  var h=now.getHours(), pick=P.now[0];
-  for(var j=0;j<P.now.length;j++){if(h>=P.now[j].h)pick=P.now[j];}
+  big('ini-peso',c.initial.peso); big('ini-cint',c.initial.cintura);
+  var h=now.getHours(), pick=D.suplementos.now[0];
+  D.suplementos.now.forEach(function(n){if(h>=n.h)pick=n;});
   document.getElementById('now-ic').textContent=pick.ic;
   document.getElementById('now-title').textContent=pick.t;
   document.getElementById('now-sub').textContent=pick.s;
@@ -473,31 +338,47 @@ function renderInicio(){
   var cy=cycleDates().filter(function(d){return d>=today0()});
   if(cy.length){var c0=cy[0], cd=Math.round((c0-today0())/DAY);
     document.getElementById('ini-cy').textContent=fmt(c0)+' · '+DOW[c0.getDay()];
-    document.getElementById('ini-cy-sub').textContent=(cd===0?'👉 Hoje à noite! · ':'em '+cd+(cd===1?' dia · ':' dias · '))+P.cycle.doseLine;}
+    document.getElementById('ini-cy-sub').textContent=(cd===0?'👉 Hoje à noite! · ':'em '+cd+(cd===1?' dia · ':' dias · '))+c.doseLine;}
+  document.getElementById('ini-win').innerHTML=I.win;
+  document.getElementById('ini-risk').innerHTML=I.risk;
+  document.getElementById('ini-momento').innerHTML=I.momento;
+  var t=dietTotals();
+  document.getElementById('ini-diet-kcal').textContent='~'+t.kLabel+' kcal ('+D.dieta.versao+')';
+  document.getElementById('ini-diet-macros').textContent=t.p+'g P · '+t.c+'g C · '+t.g+'g G';
+  document.getElementById('ini-escada').innerHTML=escadaHTML(D.tirze.escada,'step');
 }
 
 /* ---------- SUPLEM ---------- */
 function renderSupl(){
+  var S=D.suplementos, cmap={green:'var(--green)',orange:'var(--orange)',muted:'var(--muted2)'};
+  document.getElementById('sup-sub').textContent=S.sub||'';
   var h='';
-  P.supplements.forEach(function(b){
-    h+='<div class="blk"><div class="th">'+b.th+'<span class="tm">'+b.tm+'</span></div>';
-    b.items.forEach(function(it){
-      h+='<div class="li'+(it.med?' med':'')+'"><span class="bullet"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';
-    });
-    h+='</div>';
+  S.tiers.forEach(function(t){
+    var c=cmap[t.cor]||'var(--muted2)';
+    h+='<div class="card" style="border-left:4px solid '+c+'"><div class="lbl" style="color:'+c+'">'+t.faixa+'</div>';
+    t.items.forEach(function(it){h+='<div class="li"><span class="bullet" style="background:'+c+'"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';});
+    h+='<div class="note" style="margin-top:8px">'+t.nota+'</div></div>';
   });
-  document.getElementById('supl-list').innerHTML=h;
+  document.getElementById('sup-tiers').innerHTML=h;
+  var g='';
+  S.horarios.forEach(function(b){
+    g+='<div class="blk"><div class="th">'+b.th+'<span class="tm">'+b.tm+'</span></div>';
+    b.items.forEach(function(it){g+='<div class="li'+(it.med?' med':'')+'"><span class="bullet"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';});
+    g+='</div>';
+  });
+  document.getElementById('supl-list').innerHTML=g;
+  document.getElementById('sup-nota').textContent=S.nota||'';
 }
 
-/* ---------- entry with symptoms/obs ---------- */
+/* ---------- entrada com sintomas/obs ---------- */
 function entryHTML(d, kind){
   var st=get(key(d)+'_'+kind);
-  var syms=kind==='tz'?TZ_SYMPTOMS:SYMPTOMS;
-  var chips=''; syms.forEach(function(sy,i){
-    chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
+  var syms=kind==='tz'?D.tirze.symptoms:D.ciclo.symptoms;
+  var chips=''; syms.forEach(function(sy,i){chips+='<span class="chip'+(st['s'+i]?' on':'')+'" data-k="'+key(d)+'_'+kind+'" data-s="'+i+'">'+sy[1]+' '+sy[0]+'</span>';});
   var doneClass=st.done?' done'+(kind==='tz'?' tz':''):'';
   var lbl=st.done?'Aplicou ✓':'Aplicar';
-  var doseInfo=kind==='cy'?(d>=parse('2026-11-09')?'Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml':'Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml'):'';
+  var doseInfo='';
+  if(kind==='cy'){var dc=D.ciclo.doseChange; doseInfo=(dc&&d<parse(dc.date))?dc.before:(dc?dc.after:D.ciclo.doseLine);}
   var extra='';
   if(kind==='tz'||kind==='cy'){
     extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
@@ -506,65 +387,116 @@ function entryHTML(d, kind){
     '<button class="aplic'+doneClass+'" data-k="'+key(d)+'_'+kind+'"><span class="dot"></span>'+lbl+'</button></div>'+
     (kind==='tz'?'<div style="font-weight:700;color:var(--orange);margin-bottom:10px">💉 '+tzDoseFor(d)+'</div>':'')+
     (doseInfo?'<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px">'+doseInfo+'</div>':'')+
-    extra+
-    '<div class="chips">'+chips+'</div>'+
+    extra+'<div class="chips">'+chips+'</div>'+
     '<textarea class="obs" rows="1" data-k="'+key(d)+'_'+kind+'" data-f="obs" placeholder="observações...">'+(st.obs||'')+'</textarea></div>';
 }
 
 /* ---------- TIRZE ---------- */
 function renderTirze(){
-  document.getElementById('tz-head').textContent=P.tirze.head;
-  document.getElementById('tz-peso').innerHTML=P.tirze.peso.replace(/ (\w+)$/,' <small>$1</small>');
-  document.getElementById('tz-cint').innerHTML=P.tirze.cintura.replace(/ (\w+)$/,' <small>$1</small>');
-  document.getElementById('tz-meta').innerHTML=P.tirze.meta;
+  var T=D.tirze;
+  document.getElementById('tz-head').textContent=T.head;
+  big('tz-peso',T.peso); big('tz-cint',T.cintura);
+  document.getElementById('tz-meta').innerHTML=T.meta;
   var h=''; tirzeDates().forEach(function(d){h+=entryHTML(d,'tz');});
   document.getElementById('tz-entries').innerHTML=h;
+  var e=''; T.escada.forEach(function(s,i){
+    e+='<div class="li"'+(i===0?' style="border-top:none"':'')+'><span class="bullet"'+(s.ativo?' style="background:var(--blue)"':'')+'></span><div><div class="n">'+(s.ativo?'Fase atual':s.fase)+'</div><div class="d">'+(s.ativo?s.fase.replace('Atual ','')+' · '+s.kcal.split(', adotado ')[1]+' kcal ('+D.dieta.versao+')':s.kcal)+'</div></div></div>';
+  });
+  document.getElementById('tz-escada').innerHTML=e;
+  document.getElementById('tz-nota').textContent=T.nota||'';
 }
 
 /* ---------- CICLO ---------- */
 function renderCiclo(){
-  var wkTotal=P.cycle.compounds.reduce(function(a,c){return a+(parseInt(c.mg,10)||0)},0);
-  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return P.cycle.weekdays.indexOf(i)>=0}).join(' / ')+' · '+P.cycle.time+' · '+P.cycle.weeks+' semanas · ~'+wkTotal+' mg/sem';
-  var cmp=''; P.cycle.compounds.forEach(function(c){
-    cmp+='<div class="card comp '+c.color+'" style="padding:13px"><div class="nm">'+c.nm+'</div><div class="amt val-'+c.color+'">'+c.amt+'<span style="font-size:13px"> '+c.unit+'</span></div><div class="sub">'+c.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+c.freq+' = '+c.total+'/sem</div></div>';});
+  var c=D.ciclo;
+  var wkTotal=c.compounds.reduce(function(a,x){return a+(parseInt(x.mg,10)||0)},0);
+  document.getElementById('cy-head').textContent=DOW.filter(function(_,i){return c.weekdays.indexOf(i)>=0}).join(' / ')+' · '+c.time+' · '+c.weeks+' semanas · ~'+wkTotal+' mg/sem';
+  var cmp=''; c.compounds.forEach(function(x){
+    cmp+='<div class="card comp '+x.color+'" style="padding:13px"><div class="nm">'+x.nm+'</div><div class="amt val-'+x.color+'">'+x.amt+'<span style="font-size:13px"> '+x.unit+'</span></div><div class="sub">'+x.sub+'</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">'+x.freq+' = '+x.total+'/sem</div></div>';});
   document.getElementById('cy-comps').innerHTML=cmp;
-  var s=parse(P.cycle.start), end=new Date(s.getTime()+P.cycle.weeks*7*DAY);
+  var s=parse(c.start), end=new Date(s.getTime()+c.weeks*7*DAY);
   var pc=Math.max(0,Math.min(1,(today0()-s)/(end-s)));
   document.getElementById('cy-pct').textContent=Math.round(pc*100)+'%';
   document.getElementById('cy-fill').style.width=(pc*100)+'%';
-  var cur=today0()>=s?Math.min(P.cycle.weeks,Math.floor((today0()-s)/DAY/7)+1):0, wk='';
-  for(var i=1;i<=P.cycle.weeks;i++)wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';
+  var cur=today0()>=s?Math.min(c.weeks,Math.floor((today0()-s)/DAY/7)+1):0, wk='';
+  for(var i=1;i<=c.weeks;i++)wk+='<span class="'+(i<=cur?'':'off')+'">S'+i+'</span>';
   document.getElementById('cy-weeks').innerHTML=wk;
-  var dates=cycleDates(), h='';
-  var byWeek={};
-  dates.forEach(function(d){var w=Math.floor((d-s)/DAY/7)+1;(byWeek[w]=byWeek[w]||[]).push(d);});
+  document.getElementById('cy-risco').innerHTML=c.risco||'';
+  var byWeek={}, h='';
+  cycleDates().forEach(function(d){var w=Math.floor((d-s)/DAY/7)+1;(byWeek[w]=byWeek[w]||[]).push(d);});
   Object.keys(byWeek).forEach(function(w){
-    h+='<div class="wkhd">Semana '+w+'<span class="ln"></span><span class="tag">S'+w+'/'+P.cycle.weeks+'</span></div>';
+    h+='<div class="wkhd">Semana '+w+'<span class="ln"></span><span class="tag">S'+w+'/'+c.weeks+'</span></div>';
     byWeek[w].forEach(function(d){h+=entryHTML(d,'cy');});
   });
   document.getElementById('cy-entries').innerHTML=h;
 }
 
 /* ---------- DIETA ---------- */
+function dietTotals(){
+  var t=D.dieta.refeicoes.reduce(function(a,m){return {c:a.c+m.mc.c,p:a.p+m.mc.p,g:a.g+m.mc.g,k:a.k+m.mc.k}},{c:0,p:0,g:0,k:0});
+  t.kLabel=String(Math.round(t.k/10)*10).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+  return t;
+}
 function renderDieta(){
-  var h=''; P.diet.forEach(function(m){
+  var t=dietTotals();
+  document.getElementById('tot-c').textContent=t.c+' g';
+  document.getElementById('tot-p').textContent=t.p+' g';
+  document.getElementById('tot-g').textContent=t.g+' g';
+  document.getElementById('tot-k').textContent='~'+t.kLabel;
+  var h=''; D.dieta.refeicoes.forEach(function(m){
     h+='<div class="card"><div class="blk"><div class="th">'+m.th+'<span class="tm">'+m.tm+'</span></div>';
     m.items.forEach(function(it){h+='<div class="li"><span class="bullet" style="background:var(--green)"></span><div><div class="n">'+it.n+'</div><div class="d">'+it.d+'</div></div></div>';});
     h+='</div><div class="macrorow"><span class="mc c">C '+m.mc.c+'g</span><span class="mc p">P '+m.mc.p+'g</span><span class="mc g">G '+m.mc.g+'g</span><span class="mc k">'+m.mc.k+' kcal</span></div></div>';
   });
   document.getElementById('diet-list').innerHTML=h;
+  document.getElementById('diet-nota').textContent=D.dieta.nota||'';
 }
 
-/* ---------- interactions ---------- */
+/* ---------- LEITURA DA SEMANA ---------- */
+function wkGet(){var o=db();return Array.isArray(o._weekly)?o._weekly:[]}
+function wkSave(arr){var o=db();o._weekly=arr;save(o)}
+function wkNum(v){if(v==null||v==='')return NaN;return parseFloat(String(v).replace(',','.'))}
+function br(n,dec){return n.toFixed(dec==null?1:dec).replace('.',',')}
+function deltaSpan(delta,unit,isPeso){
+  if(isNaN(delta))return '';
+  var a=Math.abs(delta), cls, arrow;
+  if(a<0.1){cls='flat';arrow='•';} else if(delta>0){arrow='▲';cls=isPeso?'pu':'up';} else{arrow='▼';cls=isPeso?'pd':'down';}
+  return ' <span class="dl '+cls+'">'+arrow+br(a)+unit+'</span>';
+}
+function avg(arr,f){var s=0,n=0;arr.forEach(function(e){var v=wkNum(e[f]);if(!isNaN(v)){s+=v;n++;}});return n?s/n:NaN;}
+function verdictHTML(arr){
+  if(arr.length<2){return '<div class="wk-verdict" style="background:#f2f4f8;color:var(--muted)">Registre pelo menos 2 semanas (de preferência 3 a 4) para a leitura de tendência aparecer aqui.</div>';}
+  var dP,dC,janela;
+  if(arr.length>=4){var rec=arr.slice(-2), old=arr.slice(-4,-2); dP=avg(rec,'peso')-avg(old,'peso'); dC=avg(rec,'cint')-avg(old,'cint'); janela='média das últimas 2 vs 2 anteriores';}
+  else{var last=arr[arr.length-1], first=arr[0]; dP=wkNum(last.peso)-wkNum(first.peso); dC=wkNum(last.cint)-wkNum(first.cint); janela='poucos dados ainda, leitura provisória';}
+  var bg,col,icon,ttl,act;
+  if(!isNaN(dP)&&dP<=-0.3){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
+  else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop de whey), sem zerar a comida.';}
+  else if(!isNaN(dC)&&dC>=1.0){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Cintura subindo com o peso parado';act='Não suba a comida. Provável água, intestino ou medida; segure e remeça na próxima semana. Se persistir 2 semanas, tire ~150 kcal.';}
+  else if(!isNaN(dP)&&dP>=0.3){bg='#f0faf4';col='#1a7a3a';icon='🟢';ttl='Só o peso subiu, cintura segurando';act='É exatamente o alvo. Mantenha a comida como está e não mexa.';}
+  else{bg='#e6efff';col='#2f6bff';icon='🔵';ttl='Praticamente parado';act=(arr.length>=3?'Já faz algumas semanas assim. Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.':'Segure mais 1 a 2 semanas antes de mexer na comida.');}
+  return '<div class="wk-verdict" style="background:'+bg+';color:'+col+'"><div class="vt">'+icon+' '+ttl+'</div>'+act+'<div style="font-size:11px;opacity:.75;margin-top:5px">Δ peso '+(isNaN(dP)?'—':br(dP)+' kg')+' · Δ cintura '+(isNaN(dC)?'—':br(dC)+' cm')+' ('+janela+')</div></div>';
+}
+function renderWeekly(){
+  var arr=wkGet().slice().sort(function(a,b){return a.d<b.d?-1:1});
+  document.getElementById('wk-verdict').innerHTML=verdictHTML(arr);
+  var hh='';
+  for(var i=arr.length-1;i>=0&&i>=arr.length-8;i--){
+    var e=arr[i], prev=arr[i-1];
+    var dp=prev?wkNum(e.peso)-wkNum(prev.peso):NaN, dc=prev?wkNum(e.cint)-wkNum(prev.cint):NaN;
+    hh+='<div class="hr"><span class="hd2">'+fmt(parse(e.d))+'</span><span class="hv">'+(isNaN(wkNum(e.peso))?'—':br(wkNum(e.peso))+' kg')+'</span>'+deltaSpan(dp,'kg',true)+'<span class="hv" style="margin-left:9px">'+(isNaN(wkNum(e.cint))?'—':br(wkNum(e.cint))+' cm')+'</span>'+deltaSpan(dc,'cm',false)+'<button class="del" data-wd="'+e.d+'" title="remover">×</button></div>';
+  }
+  document.getElementById('wk-hist').innerHTML=hh||'<div class="note" style="padding:6px 2px">Sem registros ainda. Lance a primeira medida de jejum acima.</div>';
+}
+
+/* ---------- interações ---------- */
 document.addEventListener('click',function(e){
   var ap=e.target.closest('.aplic');
-  if(ap){var k=ap.dataset.k, st=get(k); set(k,{done:!st.done});
-    ap.classList.toggle('done');
-    ap.innerHTML='<span class="dot"></span>'+(!st.done?'Aplicou ✓':'Aplicar');
-    if(!st.done&&k.endsWith('_tz'))ap.classList.add('tz');
-    return;}
+  if(ap){var k=ap.dataset.k, st=get(k); set(k,{done:!st.done}); ap.classList.toggle('done'); ap.innerHTML='<span class="dot"></span>'+(!st.done?'Aplicou ✓':'Aplicar'); if(!st.done&&k.endsWith('_tz'))ap.classList.add('tz'); return;}
   var ch=e.target.closest('.chip');
-  if(ch){var k2=ch.dataset.k, i=ch.dataset.s, o={}; var cur=get(k2); o['s'+i]=!cur['s'+i]; set(k2,o); ch.classList.toggle('on');}
+  if(ch){var k2=ch.dataset.k, i=ch.dataset.s, o={}; var cur=get(k2); o['s'+i]=!cur['s'+i]; set(k2,o); ch.classList.toggle('on'); return;}
+  var dl=e.target.closest('.del');
+  if(dl){wkSave(wkGet().filter(function(x){return x.d!==dl.dataset.wd})); renderWeekly();}
 });
 document.addEventListener('input',function(e){
   var t=e.target;
@@ -574,87 +506,26 @@ document.addEventListener('input',function(e){
 document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){
   document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});
   document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
-  b.classList.add('on');document.getElementById('t-'+b.dataset.t).classList.add('on');
-  window.scrollTo(0,0);
+  b.classList.add('on');document.getElementById('t-'+b.dataset.t).classList.add('on'); window.scrollTo(0,0);
 });});
-
-function renderTiers(){
-  var cmap={green:'var(--green)',orange:'var(--orange)',muted:'var(--muted2)'};
-  var h='';
-  P.supTiers.forEach(function(t){
-    var c=cmap[t.cor]||'var(--muted2)';
-    h+='<div class="card" style="border-left:4px solid '+c+'"><div class="lbl" style="color:'+c+'">'+t.faixa+'</div>';
-    t.items.forEach(function(it){
-      h+='<div class="li"><span class="bullet" style="background:'+c+'"></span><div><div class="n">'+it.n+(it.med?' 💊':'')+'</div><div class="d">'+it.d+'</div></div></div>';
-    });
-    h+='<div class="note" style="margin-top:8px">'+t.nota+'</div></div>';
-  });
-  document.getElementById('sup-tiers').innerHTML=h;
-}
-/* ---------- LEITURA DA SEMANA ---------- */
-function wkGet(){var o=db();return Array.isArray(o._weekly)?o._weekly:[]}
-function wkSave(arr){var o=db();o._weekly=arr;save(o)}
-function wkNum(v){if(v==null||v==='')return NaN;return parseFloat(String(v).replace(',','.'))}
-function br(n,dec){return n.toFixed(dec==null?1:dec).replace('.',',')}
-function deltaSpan(delta,unit,isPeso){
-  if(isNaN(delta))return '';
-  var a=Math.abs(delta), cls, arrow;
-  if(a<0.1){cls='flat';arrow='•';}
-  else if(delta>0){arrow='▲';cls=isPeso?'pu':'up';}
-  else{arrow='▼';cls=isPeso?'pd':'down';}
-  return ' <span class="dl '+cls+'">'+arrow+br(a)+unit+'</span>';
-}
-function avg(arr,f){var s=0,n=0;arr.forEach(function(e){var v=wkNum(e[f]);if(!isNaN(v)){s+=v;n++;}});return n?s/n:NaN;}
-function verdictHTML(arr){
-  if(arr.length<2){
-    return '<div class="wk-verdict" style="background:#f2f4f8;color:var(--muted)">Registre pelo menos 2 semanas (de preferência 3 a 4) para a leitura de tendência aparecer aqui.</div>';
-  }
-  var dP,dC,janela;
-  if(arr.length>=4){
-    var rec=arr.slice(-2), old=arr.slice(-4,-2);
-    dP=avg(rec,'peso')-avg(old,'peso'); dC=avg(rec,'cint')-avg(old,'cint'); janela='média das últimas 2 vs 2 anteriores';
-  }else{
-    var last=arr[arr.length-1], first=arr[0];
-    dP=wkNum(last.peso)-wkNum(first.peso); dC=wkNum(last.cint)-wkNum(first.cint); janela='poucos dados ainda, leitura provisória';
-  }
-  var bg,col,icon,ttl,act;
-  if(!isNaN(dP)&&dP<=-0.3){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
-  else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop de whey), sem zerar a comida.';}
-  else if(!isNaN(dC)&&dC>=1.0){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Cintura subindo com o peso parado';act='Não suba a comida. Provável água, intestino ou medida; segure e remeça na próxima semana. Se persistir 2 semanas, tire ~150 kcal.';}
-  else if(!isNaN(dP)&&dP>=0.3){bg='#f0faf4';col='#1a7a3a';icon='🟢';ttl='Só o peso subiu, cintura segurando';act='É exatamente o alvo. Mantenha a comida como está e não mexa.';}
-  else{bg='#e6efff';col='#2f6bff';icon='🔵';ttl='Praticamente parado';act=(arr.length>=3?'Já faz algumas semanas assim. Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.':'Segure mais 1 a 2 semanas antes de mexer na comida.');}
-  return '<div class="wk-verdict" style="background:'+bg+';color:'+col+'"><div class="vt">'+icon+' '+ttl+'</div>'+act+
-    '<div style="font-size:11px;opacity:.75;margin-top:5px">Δ peso '+(isNaN(dP)?'—':br(dP)+' kg')+' · Δ cintura '+(isNaN(dC)?'—':br(dC)+' cm')+' ('+janela+')</div></div>';
-}
-function renderWeekly(){
-  var arr=wkGet().slice().sort(function(a,b){return a.d<b.d?-1:1});
-  document.getElementById('wk-verdict').innerHTML=verdictHTML(arr);
-  var hh='';
-  for(var i=arr.length-1;i>=0&&i>=arr.length-8;i--){
-    var e=arr[i], prev=arr[i-1];
-    var dp=prev?wkNum(e.peso)-wkNum(prev.peso):NaN, dc=prev?wkNum(e.cint)-wkNum(prev.cint):NaN;
-    hh+='<div class="hr"><span class="hd2">'+fmt(parse(e.d))+'</span>'+
-      '<span class="hv">'+(isNaN(wkNum(e.peso))?'—':br(wkNum(e.peso))+' kg')+'</span>'+deltaSpan(dp,'kg',true)+
-      '<span class="hv" style="margin-left:9px">'+(isNaN(wkNum(e.cint))?'—':br(wkNum(e.cint))+' cm')+'</span>'+deltaSpan(dc,'cm',false)+
-      '<button class="del" data-wd="'+e.d+'" title="remover">×</button></div>';
-  }
-  document.getElementById('wk-hist').innerHTML=hh||'<div class="note" style="padding:6px 2px">Sem registros ainda. Lance a primeira medida de jejum acima.</div>';
-}
 document.getElementById('wk-add').addEventListener('click',function(){
   var pEl=document.getElementById('wk-peso'), cEl=document.getElementById('wk-cint');
-  var p=pEl.value.trim(), c=cEl.value.trim();
-  if(!p&&!c)return;
+  var p=pEl.value.trim(), c=cEl.value.trim(); if(!p&&!c)return;
   var arr=wkGet(), k=key(today0()), found=false;
   arr.forEach(function(e){if(e.d===k){e.peso=p;e.cint=c;found=true;}});
   if(!found)arr.push({d:k,peso:p,cint:c});
   wkSave(arr); pEl.value='';cEl.value=''; renderWeekly();
 });
-document.addEventListener('click',function(e){
-  var db2=e.target.closest('.del');
-  if(db2){var d=db2.dataset.wd; wkSave(wkGet().filter(function(x){return x.d!==d})); renderWeekly();}
-});
 
-renderInicio();renderSupl();renderTiers();renderTirze();renderCiclo();renderDieta();renderWeekly();
+/* ---------- carga dos dados (anti-cache: sempre pega a versão nova) ---------- */
+var FILES=['inicio','dieta','suplementos','ciclo','tirze'], v='?v='+Date.now();
+Promise.all(FILES.map(function(f){return fetch('dados/'+f+'.json'+v,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(f+'.json '+r.status);return r.json()}).then(function(j){D[f]=j;});}))
+.then(function(){ renderInicio();renderSupl();renderTirze();renderCiclo();renderDieta();renderWeekly(); })
+.catch(function(err){
+  var box=document.createElement('div'); box.className='loaderr';
+  box.innerHTML='<b>Não consegui carregar os dados.</b> '+err.message+'<br>Puxe para recarregar. Se persistir, um dos arquivos em dados/ está com erro.';
+  document.body.insertBefore(box, document.body.firstChild);
+});
 </script>
 </body>
 </html>
