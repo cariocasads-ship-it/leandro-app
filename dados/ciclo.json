@@ -40,7 +40,13 @@
   }
  ],
  "doseLine": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui",
- "doseChange": [
+ "doseChange": {
+  "date": "2026-11-09",
+  "dir": "up",
+  "before": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml",
+  "after": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml"
+ },
+ "doseChanges": [
   {
    "date": "2026-11-09",
    "dir": "up",
