@@ -164,7 +164,7 @@
     <div class="wk-hist" id="wk-hist"></div>
     <div style="border-top:1px solid var(--line);margin-top:10px;padding-top:4px">
       <div class="wk-rule"><span class="tg" style="background:var(--green)"></span><div><div class="ri">Só o peso subiu, cintura parada</div><div class="ra">É o alvo. Mantenha a comida como está.</div></div></div>
-      <div class="wk-rule"><span class="tg" style="background:var(--red)"></span><div><div class="ri">Peso e cintura subindo juntos</div><div class="ra">Superávit grande. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop), sem zerar.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--red)"></span><div><div class="ri">Peso e cintura subindo juntos</div><div class="ra">Superávit grande. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop), sem zerar. Exceção: se mudou a dose do ciclo nos últimos ~14 dias, é provável retenção, espere assentar.</div></div></div>
       <div class="wk-rule"><span class="tg" style="background:var(--blue)"></span><div><div class="ri">Tudo parado por ~3 semanas</div><div class="ra">Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.</div></div></div>
       <div class="wk-rule"><span class="tg" style="background:var(--orange)"></span><div><div class="ri">Peso caiu</div><div class="ra">Você recuou de novo. Retome o superávit, sem susto.</div></div></div>
     </div>
@@ -464,6 +464,13 @@ function deltaSpan(delta,unit,isPeso){
   return ' <span class="dl '+cls+'">'+arrow+br(a)+unit+'</span>';
 }
 function avg(arr,f){var s=0,n=0;arr.forEach(function(e){var v=wkNum(e[f]);if(!isNaN(v)){s+=v;n++;}});return n?s/n:NaN;}
+/* dias desde a última mudança de dose do ciclo; 0 se não houve ou já passou de 14 dias */
+function recentDoseDays(){
+  var dc=D.ciclo&&D.ciclo.doseChange;
+  if(!dc||!dc.date)return 0;
+  var days=Math.round((today0()-parse(dc.date))/DAY);
+  return (days>=0&&days<=14)?days:0;
+}
 function verdictHTML(arr){
   if(arr.length<2){return '<div class="wk-verdict" style="background:#f2f4f8;color:var(--muted)">Registre pelo menos 2 semanas (de preferência 3 a 4) para a leitura de tendência aparecer aqui.</div>';}
   var dP,dC,janela;
@@ -471,7 +478,11 @@ function verdictHTML(arr){
   else{var last=arr[arr.length-1], first=arr[0]; dP=wkNum(last.peso)-wkNum(first.peso); dC=wkNum(last.cint)-wkNum(first.cint); janela='poucos dados ainda, leitura provisória';}
   var bg,col,icon,ttl,act;
   if(!isNaN(dP)&&dP<=-0.3){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
-  else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop de whey), sem zerar a comida.';}
+  else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){
+    var rc=recentDoseDays();
+    if(rc){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso e cintura subiram, mas você mexeu no ciclo há '+rc+(rc===1?' dia':' dias');act='Parte desse ganho pode ser retenção de água do ajuste de dose, não gordura. Não corte caloria agora: espere a dose assentar (cerca de 2 semanas) e releia. Só corte se peso E cintura continuarem subindo depois disso.';}
+    else{bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop de whey), sem zerar a comida.';}
+  }
   else if(!isNaN(dC)&&dC>=1.0){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Cintura subindo com o peso parado';act='Não suba a comida. Provável água, intestino ou medida; segure e remeça na próxima semana. Se persistir 2 semanas, tire ~150 kcal.';}
   else if(!isNaN(dP)&&dP>=0.3){bg='#f0faf4';col='#1a7a3a';icon='🟢';ttl='Só o peso subiu, cintura segurando';act='É exatamente o alvo. Mantenha a comida como está e não mexa.';}
   else{bg='#e6efff';col='#2f6bff';icon='🔵';ttl='Praticamente parado';act=(arr.length>=3?'Já faz algumas semanas assim. Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.':'Segure mais 1 a 2 semanas antes de mexer na comida.');}
