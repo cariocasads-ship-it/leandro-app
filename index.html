@@ -129,6 +129,9 @@
   .dl.up{color:var(--red)}.dl.down{color:var(--green)}.dl.flat{color:var(--muted2)}
   .dl.pu{color:var(--blue)}.dl.pd{color:var(--orange)}
   .del{margin-left:auto;border:none;background:none;color:var(--muted2);font-size:16px;cursor:pointer;padding:0 2px;line-height:1}
+  .wk-bk{display:flex;gap:8px;margin:10px 0 4px}
+  .wk-bk-btn{flex:1;border:1px solid var(--line);background:#fafbfc;color:var(--muted);font-weight:700;font-size:12.5px;padding:8px 10px;border-radius:12px;cursor:pointer;font-family:inherit}
+  .wk-bk-btn:active{background:#eef1f6}
 
   .loading{padding:60px 20px;text-align:center;color:var(--muted);font-size:13px}
   .loaderr{margin:16px;background:#fff5f5;border:1px solid #f6d2d2;border-radius:14px;padding:12px 14px;font-size:12.5px;color:#b23b34}
@@ -162,11 +165,20 @@
     </div>
     <div id="wk-verdict"></div>
     <div class="wk-hist" id="wk-hist"></div>
+    <div class="wk-bk">
+      <button class="wk-bk-btn" id="wk-copy">📋 Copiar histórico</button>
+      <button class="wk-bk-btn" id="wk-restore-toggle">♻️ Restaurar</button>
+    </div>
+    <div class="note" id="wk-bk-msg" style="padding:0 2px 4px">Backup: copie o histórico e guarde numa nota. Restaurar cola de volta, inclusive em outro aparelho.</div>
+    <div id="wk-restore-box" style="display:none">
+      <textarea class="obs" id="wk-restore-txt" rows="3" placeholder="cole aqui o histórico copiado"></textarea>
+      <div class="wk-form"><button class="wk-btn" id="wk-restore-go">Restaurar agora</button><button class="wk-bk-btn" id="wk-restore-cancel" style="flex:0 0 auto">Cancelar</button></div>
+    </div>
     <div style="border-top:1px solid var(--line);margin-top:10px;padding-top:4px">
       <div class="wk-rule"><span class="tg" style="background:var(--green)"></span><div><div class="ri">Só o peso subiu, cintura parada</div><div class="ra">É o alvo. Mantenha a comida como está.</div></div></div>
-      <div class="wk-rule"><span class="tg" style="background:var(--red)"></span><div><div class="ri">Peso e cintura subindo juntos</div><div class="ra">Superávit grande. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop), sem zerar. Exceção: se mudou a dose do ciclo nos últimos ~14 dias, é provável retenção, espere assentar.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--red)"></span><div><div class="ri">Peso e cintura subindo juntos</div><div class="ra">Superávit grande. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop), sem zerar. Exceção: se subiu a dose do ciclo nos últimos ~14 dias, é provável retenção, espere assentar.</div></div></div>
       <div class="wk-rule"><span class="tg" style="background:var(--blue)"></span><div><div class="ri">Tudo parado por ~3 semanas</div><div class="ra">Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.</div></div></div>
-      <div class="wk-rule"><span class="tg" style="background:var(--orange)"></span><div><div class="ri">Peso caiu</div><div class="ra">Você recuou de novo. Retome o superávit, sem susto.</div></div></div>
+      <div class="wk-rule"><span class="tg" style="background:var(--orange)"></span><div><div class="ri">Peso caiu</div><div class="ra">Você recuou de novo. Retome o superávit, sem susto. Exceção: se baixou a dose do ciclo nos últimos ~14 dias, é água saindo, não mexa na comida.</div></div></div>
     </div>
   </div>
   <div class="card">
@@ -378,7 +390,7 @@ function entryHTML(d, kind){
   var doneClass=st.done?' done'+(kind==='tz'?' tz':''):'';
   var lbl=st.done?'Aplicou ✓':'Aplicar';
   var doseInfo='';
-  if(kind==='cy'){var dc=D.ciclo.doseChange; doseInfo=(dc&&d<parse(dc.date))?dc.before:(dc?dc.after:D.ciclo.doseLine);}
+  if(kind==='cy'){doseInfo=doseLineFor(d);}
   var extra='';
   if(kind==='tz'||kind==='cy'){
     extra='<div style="display:flex;gap:8px;margin-bottom:10px"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="peso" placeholder="— kg" value="'+(st.peso||'')+'"><input class="measure-in mi" data-k="'+key(d)+'_'+kind+'" data-f="cint" placeholder="— cm" value="'+(st.cint||'')+'"></div>';
@@ -464,29 +476,89 @@ function deltaSpan(delta,unit,isPeso){
   return ' <span class="dl '+cls+'">'+arrow+br(a)+unit+'</span>';
 }
 function avg(arr,f){var s=0,n=0;arr.forEach(function(e){var v=wkNum(e[f]);if(!isNaN(v)){s+=v;n++;}});return n?s/n:NaN;}
-/* dias desde a última mudança de dose do ciclo; 0 se não houve ou já passou de 14 dias */
-function recentDoseDays(){
-  var dc=D.ciclo&&D.ciclo.doseChange;
-  if(!dc||!dc.date)return 0;
-  var days=Math.round((today0()-parse(dc.date))/DAY);
-  return (days>=0&&days<=14)?days:0;
+/* mudanças de dose do ciclo: ciclo.doseChange pode ser um objeto ou uma lista de {date, dir:'up'|'down', before, after} */
+function doseChanges(){
+  var c=D.ciclo, dc=(c&&c.doseChanges)||(c&&c.doseChange);
+  var a=Array.isArray(dc)?dc.slice():(dc?[dc]:[]);
+  a=a.filter(function(x){return x&&x.date});
+  a.sort(function(x,y){return x.date<y.date?-1:1});
+  return a;
 }
+/* linha de dose vigente numa data (para o histórico de aplicações) */
+function doseLineFor(d){
+  var a=doseChanges(); if(!a.length)return D.ciclo.doseLine;
+  var line=a[0].before||D.ciclo.doseLine;
+  a.forEach(function(x){if(d>=parse(x.date))line=x.after||line;});
+  return line;
+}
+/* mudança de dose recente (até 14 dias) na direção pedida ('up' ou 'down'); null se não houve */
+function recentDoseChange(dir){
+  var a=doseChanges(), best=null;
+  a.forEach(function(x){
+    var days=Math.round((today0()-parse(x.date))/DAY), xd=x.dir||'up';
+    if(days>=0&&days<=14&&xd===dir){if(!best||days<best.days)best={days:days,change:x};}
+  });
+  return best;
+}
+function diasTxt(n){return n===0?'hoje':'há '+n+(n===1?' dia':' dias');}
 function verdictHTML(arr){
   if(arr.length<2){return '<div class="wk-verdict" style="background:#f2f4f8;color:var(--muted)">Registre pelo menos 2 semanas (de preferência 3 a 4) para a leitura de tendência aparecer aqui.</div>';}
   var dP,dC,janela;
   if(arr.length>=4){var rec=arr.slice(-2), old=arr.slice(-4,-2); dP=avg(rec,'peso')-avg(old,'peso'); dC=avg(rec,'cint')-avg(old,'cint'); janela='média das últimas 2 vs 2 anteriores';}
   else{var last=arr[arr.length-1], first=arr[0]; dP=wkNum(last.peso)-wkNum(first.peso); dC=wkNum(last.cint)-wkNum(first.cint); janela='poucos dados ainda, leitura provisória';}
   var bg,col,icon,ttl,act;
-  if(!isNaN(dP)&&dP<=-0.3){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
+  if(!isNaN(dP)&&dP<=-0.3){
+    var rd=recentDoseChange('down');
+    if(rd){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu, mas você baixou a dose '+diasTxt(rd.days);act='Provável água saindo depois da redução de dose ('+fmt(parse(rd.change.date))+'), não perda de músculo nem falta de comida. Não suba a comida por causa disso: segure e releia depois de ~2 semanas.';}
+    else{bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso caiu';act='Você recuou de novo. Retome o superávit leve e sustente; o inchaço da reintrodução passa.';}
+  }
   else if(!isNaN(dC)&&!isNaN(dP)&&dC>=1.0&&dP>=0.3){
-    var rc=recentDoseDays();
-    if(rc){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso e cintura subiram, mas você mexeu no ciclo há '+rc+(rc===1?' dia':' dias');act='Parte desse ganho pode ser retenção de água do ajuste de dose, não gordura. Não corte caloria agora: espere a dose assentar (cerca de 2 semanas) e releia. Só corte se peso E cintura continuarem subindo depois disso.';}
+    var ru=recentDoseChange('up');
+    if(ru){bg='#fff2e0';col='#b4740a';icon='🟠';ttl='Peso e cintura subiram, mas você subiu a dose '+diasTxt(ru.days);act='Parte desse ganho é provável retenção de água da subida de dose ('+fmt(parse(ru.change.date))+'), não gordura. Não corte caloria agora: espere a dose assentar (cerca de 2 semanas) e releia. Só corte se peso E cintura continuarem subindo depois disso.';}
     else{bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Peso e cintura subindo juntos';act='Superávit grande demais. Tire ~150 a 200 kcal (ex.: menos arroz ou 1 scoop de whey), sem zerar a comida.';}
   }
   else if(!isNaN(dC)&&dC>=1.0){bg='#fff5f5';col='#b23b34';icon='🔴';ttl='Cintura subindo com o peso parado';act='Não suba a comida. Provável água, intestino ou medida; segure e remeça na próxima semana. Se persistir 2 semanas, tire ~150 kcal.';}
   else if(!isNaN(dP)&&dP>=0.3){bg='#f0faf4';col='#1a7a3a';icon='🟢';ttl='Só o peso subiu, cintura segurando';act='É exatamente o alvo. Mantenha a comida como está e não mexa.';}
   else{bg='#e6efff';col='#2f6bff';icon='🔵';ttl='Praticamente parado';act=(arr.length>=3?'Já faz algumas semanas assim. Suba ~150 a 200 kcal em carbo (arroz ou fruta) e observe.':'Segure mais 1 a 2 semanas antes de mexer na comida.');}
   return '<div class="wk-verdict" style="background:'+bg+';color:'+col+'"><div class="vt">'+icon+' '+ttl+'</div>'+act+'<div style="font-size:11px;opacity:.75;margin-top:5px">Δ peso '+(isNaN(dP)?'—':br(dP)+' kg')+' · Δ cintura '+(isNaN(dC)?'—':br(dC)+' cm')+' ('+janela+')</div></div>';
+}
+/* ---------- backup / restaurar (histórico fica só no aparelho) ---------- */
+function wkBackupText(){return JSON.stringify(db());}
+function wkRestoreText(txt){
+  txt=String(txt||'').trim(); if(!txt)return null;
+  var imp;
+  if(txt[0]==='{'||txt[0]==='['){imp=JSON.parse(txt);}
+  else{
+    var w=[];
+    txt.split(/\r?\n/).forEach(function(l){
+      l=l.trim(); if(!l)return;
+      var p=l.split(';'); if(p.length<2)return;
+      var d=p[0].trim(), m=d.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if(m)d=m[3]+'-'+m[2]+'-'+m[1];
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(d))return;
+      w.push({d:d,peso:(p[1]||'').trim(),cint:(p[2]||'').trim()});
+    });
+    imp={_weekly:w};
+  }
+  if(Array.isArray(imp))imp={_weekly:imp};
+  if(!imp||typeof imp!=='object')return null;
+  var o=db(), added=0, updated=0;
+  if(Array.isArray(imp._weekly)){
+    var cur=Array.isArray(o._weekly)?o._weekly:[];
+    imp._weekly.forEach(function(e){
+      if(!e||!e.d)return;
+      var f=null; cur.forEach(function(x){if(x.d===e.d)f=x;});
+      if(f){f.peso=e.peso;f.cint=e.cint;updated++;}
+      else{cur.push({d:e.d,peso:e.peso,cint:e.cint});added++;}
+    });
+    o._weekly=cur;
+  }
+  Object.keys(imp).forEach(function(k){
+    if(k==='_weekly')return;
+    if(imp[k]&&typeof imp[k]==='object'&&!Array.isArray(imp[k])){o[k]=Object.assign(o[k]||{},imp[k]);}
+  });
+  save(o);
+  return {added:added,updated:updated,total:(o._weekly||[]).length};
 }
 function renderWeekly(){
   var arr=wkGet().slice().sort(function(a,b){return a.d<b.d?-1:1});
@@ -526,6 +598,36 @@ document.getElementById('wk-add').addEventListener('click',function(){
   arr.forEach(function(e){if(e.d===k){e.peso=p;e.cint=c;found=true;}});
   if(!found)arr.push({d:k,peso:p,cint:c});
   wkSave(arr); pEl.value='';cEl.value=''; renderWeekly();
+});
+/* backup / restaurar */
+document.getElementById('wk-copy').addEventListener('click',function(){
+  var txt=wkBackupText(), n=wkGet().length, msg=document.getElementById('wk-bk-msg');
+  function done(){msg.textContent='Histórico copiado ('+n+' registro'+(n===1?'':'s')+'). Cole numa nota para guardar.';}
+  function fallback(){
+    var box=document.getElementById('wk-restore-box'), ta=document.getElementById('wk-restore-txt');
+    box.style.display='block'; ta.value=txt; ta.focus(); ta.select();
+    msg.textContent='Não consegui copiar sozinho. Selecione o texto abaixo e copie.';
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(fallback);}
+  else{fallback();}
+});
+document.getElementById('wk-restore-toggle').addEventListener('click',function(){
+  var box=document.getElementById('wk-restore-box');
+  box.style.display=box.style.display==='none'?'block':'none';
+  if(box.style.display==='block'){document.getElementById('wk-restore-txt').value='';document.getElementById('wk-restore-txt').focus();}
+});
+document.getElementById('wk-restore-cancel').addEventListener('click',function(){
+  document.getElementById('wk-restore-box').style.display='none';
+});
+document.getElementById('wk-restore-go').addEventListener('click',function(){
+  var ta=document.getElementById('wk-restore-txt'), msg=document.getElementById('wk-bk-msg');
+  try{
+    var r=wkRestoreText(ta.value);
+    if(!r){msg.textContent='Cole o histórico antes de restaurar.';return;}
+    msg.textContent='Restaurado: '+r.added+' novo'+(r.added===1?'':'s')+', '+r.updated+' atualizado'+(r.updated===1?'':'s')+'. Total agora: '+r.total+'.';
+    document.getElementById('wk-restore-box').style.display='none'; ta.value='';
+    renderWeekly();
+  }catch(e){msg.textContent='Texto inválido. Cole exatamente o que foi copiado pelo botão.';}
 });
 
 /* ---------- carga dos dados (anti-cache: sempre pega a versão nova) ---------- */
