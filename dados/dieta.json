@@ -1,9 +1,9 @@
 {
- "versao": "reequilíbrio 14/11",
+ "versao": "reequilíbrio 14/11 · troca azeite→amendoim 16/11",
  "totais": {
-  "c": 279,
-  "p": 217,
-  "g": 85,
+  "c": 284,
+  "p": 224,
+  "g": 79,
   "kcalLabel": "~2.760"
  },
  "refeicoes": [
@@ -16,12 +16,7 @@
      "d": "glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal"
     }
    ],
-   "mc": {
-    "c": 23,
-    "p": 1,
-    "g": 0,
-    "k": 90
-   }
+   "mc": { "c": 23, "p": 1, "g": 0, "k": 90 }
   },
   {
    "th": "Pós-treino",
@@ -30,14 +25,13 @@
     {
      "n": "Overnight 150 g",
      "d": "porção do preparo · P19 · C30 · G3 · 225 kcal"
+    },
+    {
+     "n": "30 g amendoim (triturado ou pasta, por cima)",
+     "d": "gordura boa e sabor, adicionar na porção na hora · P7 · C5 · G14 · 174 kcal"
     }
    ],
-   "mc": {
-    "c": 30,
-    "p": 19,
-    "g": 3,
-    "k": 225
-   }
+   "mc": { "c": 35, "p": 26, "g": 17, "k": 399 }
   },
   {
    "th": "Café da manhã",
@@ -52,12 +46,7 @@
      "d": "P6 · C24 · G2 · 140 kcal"
     }
    ],
-   "mc": {
-    "c": 25,
-    "p": 24,
-    "g": 17,
-    "k": 355
-   }
+   "mc": { "c": 25, "p": 24, "g": 17, "k": 355 }
   },
   {
    "th": "Almoço",
@@ -76,16 +65,11 @@
      "d": "P3 · C14 · G0 · 70 kcal"
     },
     {
-     "n": "15 g azeite",
-     "d": "P0 · C0 · G15 · 135 kcal"
+     "n": "5 g azeite",
+     "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
     }
    ],
-   "mc": {
-    "c": 84,
-    "p": 55,
-    "g": 21,
-    "k": 778
-   }
+   "mc": { "c": 84, "p": 55, "g": 11, "k": 688 }
   },
   {
    "th": "Merenda da tarde",
@@ -100,12 +84,7 @@
      "d": "P6 · C4 · G12 · 145 kcal · por cima do açaí, pela textura e gordura boa"
     }
    ],
-   "mc": {
-    "c": 17,
-    "p": 8,
-    "g": 20,
-    "k": 270
-   }
+   "mc": { "c": 17, "p": 8, "g": 20, "k": 270 }
   },
   {
    "th": "Pré-cardio",
@@ -116,12 +95,7 @@
      "d": "P55 · C16 · G3 · 308 kcal"
     }
    ],
-   "mc": {
-    "c": 16,
-    "p": 55,
-    "g": 3,
-    "k": 308
-   }
+   "mc": { "c": 16, "p": 55, "g": 3, "k": 308 }
   },
   {
    "th": "Jantar",
@@ -140,17 +114,12 @@
      "d": "P3 · C14 · G0 · 70 kcal"
     },
     {
-     "n": "15 g azeite",
-     "d": "P0 · C0 · G15 · 135 kcal"
+     "n": "5 g azeite",
+     "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
     }
    ],
-   "mc": {
-    "c": 84,
-    "p": 55,
-    "g": 21,
-    "k": 778
-   }
+   "mc": { "c": 84, "p": 55, "g": 11, "k": 688 }
   }
  ],
- "nota": "Reequilíbrio de 14/11: proteína desceu de 272 para 212 g (2,28 g/kg, dentro do teto útil mesmo em ciclo) e a gordura subiu de 60 para 86 g por fontes insaturadas (azeite, amendoim, gema), nas mesmas ~2.760 kcal. O frango caiu de 200 para 150 g por refeição; a PTS da merenda saiu e entrou 25 g de amendoim; o carbo ficou quase igual (283 g). Overnight: 250 g aveia + 700 ml leite desnatado + 3 scoops whey, descansa 6 h, rende ~7 porções de 150 g. Pesar e medir a cintura 1x/semana. Objetivo: ganhar músculo sem subir a cintura (97 cm). O carbo só sobe (rumo a 4 g/kg) se a cintura ficar parada 3 semanas; se o umbigo subir, o superávit é que está grande, não o arranjo dos macros."
+ "nota": "Troca de 16/11 por custo: o azeite caiu de 15 para 5 g no almoço e no jantar (perde ~180 kcal de gordura cara) e entraram 30 g de amendoim no overnight do pós-treino (~174 kcal), que é mais barato e dá gosto. Calorias ficam iguais (~2.760); a gordura cai de 85 para ~79 g, ainda bem acima dos 60 g pré-reequilíbrio. Mantidos 5 g de azeite por refeição pelos polifenóis e pelo HDL (31, baixo). Amendoim do pós-treino vai na porção de 150 g na hora de comer, não na batelada do overnight (250 g aveia + 700 ml leite desnatado + 3 scoops whey, descansa 6 h, rende ~7 porções). Merenda mantém os 25 g de amendoim. Validar a troca com a Andréa por alinhamento. Pesar e medir cintura 1x/semana; decisão por tendência, regra inalterada."
 }
