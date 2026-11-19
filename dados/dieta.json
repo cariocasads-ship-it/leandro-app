@@ -1,10 +1,10 @@
 {
- "versao": "reequilíbrio 14/11 · troca azeite→amendoim 16/11",
+ "versao": "fome da desmama 19/11 · +~300 kcal",
  "totais": {
-  "c": 284,
-  "p": 224,
-  "g": 79,
-  "kcalLabel": "~2.760"
+  "c": 345,
+  "p": 233,
+  "g": 80,
+  "kcalLabel": "~3.090"
  },
  "refeicoes": [
   {
@@ -16,22 +16,32 @@
      "d": "glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal"
     }
    ],
-   "mc": { "c": 23, "p": 1, "g": 0, "k": 90 }
+   "mc": {
+    "c": 23,
+    "p": 1,
+    "g": 0,
+    "k": 90
+   }
   },
   {
    "th": "Pós-treino",
    "tm": "~08h",
    "items": [
     {
-     "n": "Overnight 150 g",
-     "d": "porção do preparo · P19 · C30 · G3 · 225 kcal"
+     "n": "Overnight 200 g",
+     "d": "porção maior do mesmo preparo · P25 · C40 · G4 · 300 kcal"
     },
     {
      "n": "30 g amendoim (triturado ou pasta, por cima)",
      "d": "gordura boa e sabor, adicionar na porção na hora · P7 · C5 · G14 · 174 kcal"
     }
    ],
-   "mc": { "c": 35, "p": 26, "g": 17, "k": 399 }
+   "mc": {
+    "c": 45,
+    "p": 32,
+    "g": 18,
+    "k": 474
+   }
   },
   {
    "th": "Café da manhã",
@@ -46,15 +56,20 @@
      "d": "P6 · C24 · G2 · 140 kcal"
     }
    ],
-   "mc": { "c": 25, "p": 24, "g": 17, "k": 355 }
+   "mc": {
+    "c": 25,
+    "p": 24,
+    "g": 17,
+    "k": 355
+   }
   },
   {
    "th": "Almoço",
-   "tm": "~12h",
+   "tm": "~11h45",
    "items": [
     {
-     "n": "250 g arroz branco",
-     "d": "P6 · C70 · G1 · 325 kcal"
+     "n": "300 g arroz branco",
+     "d": "subiu de 250 g p/ segurar a fome da desmama · P7 · C84 · G1 · 390 kcal"
     },
     {
      "n": "150 g frango (peito, air fryer)",
@@ -69,11 +84,16 @@
      "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
     }
    ],
-   "mc": { "c": 84, "p": 55, "g": 11, "k": 688 }
+   "mc": {
+    "c": 98,
+    "p": 56,
+    "g": 11,
+    "k": 753
+   }
   },
   {
    "th": "Merenda da tarde",
-   "tm": "~15h",
+   "tm": "~14h30",
    "items": [
     {
      "n": "200 g açaí (polpa) com adoçante",
@@ -81,29 +101,43 @@
     },
     {
      "n": "25 g amendoim torrado",
-     "d": "P6 · C4 · G12 · 145 kcal · por cima do açaí, pela textura e gordura boa"
+     "d": "P6 · C4 · G12 · 145 kcal · por cima do açaí"
+    },
+    {
+     "n": "1 banana (teste: amassada no açaí ou ao lado)",
+     "d": "volume e carbo p/ a tarde · P1 · C23 · G0 · 90 kcal"
     }
    ],
-   "mc": { "c": 17, "p": 8, "g": 20, "k": 270 }
+   "mc": {
+    "c": 40,
+    "p": 9,
+    "g": 20,
+    "k": 360
+   }
   },
   {
-   "th": "Pré-cardio",
-   "tm": "~17h30",
+   "th": "Shake da tarde",
+   "tm": "~16h",
    "items": [
     {
      "n": "2 scoops whey + 200 ml leite",
-     "d": "P55 · C16 · G3 · 308 kcal"
+     "d": "antecipado de 17h30 p/ 16h: 55 g de proteína matando a fome das 15h30 · P55 · C16 · G3 · 308 kcal"
     }
    ],
-   "mc": { "c": 16, "p": 55, "g": 3, "k": 308 }
+   "mc": {
+    "c": 16,
+    "p": 55,
+    "g": 3,
+    "k": 308
+   }
   },
   {
    "th": "Jantar",
    "tm": "~20h",
    "items": [
     {
-     "n": "250 g arroz branco",
-     "d": "P6 · C70 · G1 · 325 kcal"
+     "n": "300 g arroz branco",
+     "d": "subiu de 250 g · P7 · C84 · G1 · 390 kcal"
     },
     {
      "n": "150 g frango (peito, air fryer)",
@@ -118,8 +152,13 @@
      "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
     }
    ],
-   "mc": { "c": 84, "p": 55, "g": 11, "k": 688 }
+   "mc": {
+    "c": 98,
+    "p": 56,
+    "g": 11,
+    "k": 753
+   }
   }
  ],
- "nota": "Troca de 16/11 por custo: o azeite caiu de 15 para 5 g no almoço e no jantar (perde ~180 kcal de gordura cara) e entraram 30 g de amendoim no overnight do pós-treino (~174 kcal), que é mais barato e dá gosto. Calorias ficam iguais (~2.760); a gordura cai de 85 para ~79 g, ainda bem acima dos 60 g pré-reequilíbrio. Mantidos 5 g de azeite por refeição pelos polifenóis e pelo HDL (31, baixo). Amendoim do pós-treino vai na porção de 150 g na hora de comer, não na batelada do overnight (250 g aveia + 700 ml leite desnatado + 3 scoops whey, descansa 6 h, rende ~7 porções). Merenda mantém os 25 g de amendoim. Validar a troca com a Andréa por alinhamento. Pesar e medir cintura 1x/semana; decisão por tendência, regra inalterada."
+ "nota": "Ajuste de 19/11 pela fome da desmama (tirze em 2,5 mg): overnight 150→200 g (já em uso), arroz 250→300 g no almoço e no jantar, 1 banana na merenda em teste, e o shake saiu de 17h30 para ~16h (sem caloria nova) para fechar o buraco das 15h30. Dia vai de ~2.760 para ~3.090 kcal. Condição: cardio leve recomeça em 20/11 (caminhada inclinada zona 2, 20–30 min, 3–4x/sem); com cardio rodando, 3.090 é superávit leve sobre a manutenção (~3.000–3.100). Nos dias de cardio, 1 banana ~30 min antes (+90 kcal) fica fora da conta fixa. Gatilho mantido: cintura no umbigo 1x/semana; se encostar em 99 cm, o corte sai do arroz que entrou agora, não da proteína. Em 2,5 mg a sensibilidade à insulina da tirze cai: vigiar a cintura com mais atenção."
 }
