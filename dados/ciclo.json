@@ -37,16 +37,32 @@
    "total": "1,5 ml",
    "mg": "150",
    "color": "orange"
+  },
+  {
+   "nm": "Dianabol",
+   "sub": "Metandrostenolona · oral, pré-treino · desde 01/11",
+   "amt": "30",
+   "unit": "mg",
+   "freq": "diário",
+   "total": "30 mg/dia",
+   "mg": "210",
+   "color": "red"
   }
  ],
- "doseLine": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui",
+ "doseLine": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui · Dianabol 30 mg/dia (oral, pré-treino)",
  "doseChange": {
-  "date": "2026-11-09",
-  "dir": "up",
-  "before": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml",
-  "after": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml"
+  "date": "2026-11-15",
+  "dir": "down",
+  "before": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml",
+  "after": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml"
  },
  "doseChanges": [
+  {
+   "date": "2026-11-01",
+   "dir": "up",
+   "before": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml",
+   "after": "+ Dianabol 30 mg/dia (oral, pré-treino)"
+  },
   {
    "date": "2026-11-09",
    "dir": "up",
@@ -60,7 +76,7 @@
    "after": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml"
   }
  ],
- "risco": "<b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,5 ml + Trembolona 0,5 ml, 3x por semana (dom, ter, qui, à noite). Deca voltou de 0,7 para 0,5 ml em 15/11 (~100 mg/aplicação, ~300 mg/sem; total ~750 mg/sem) para aliviar retenção e estradiol. Nas próximas ~2 semanas o peso e a cintura tendem a cair um pouco: é água saindo, não gordura nem falta de comida; não reaja ao número da balança.",
+ "risco": "<b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,5 ml + Trembolona 0,5 ml, 3x por semana (dom, ter, qui, à noite), ~750 mg/sem injetável. Desde 01/11: Dianabol 30 mg/dia oral no pré-treino (~210 mg/sem; carga total ~960 mg/sem). O Dianabol aromatiza forte e retém muita água e sódio: enquanto ele estiver no stack, peso e cintura rodam acima do real e a queda de água esperada após a redução da Deca (15/11) pode não aparecer — não ler cintura alta como superávit de comida nesse período. Pontos de atenção: oral 17-alfa com histórico de enzimas hepáticas elevadas, HDL em 31 e estradiol 108 sem controle. Próxima coleta: incluir TGO/TGP, GGT, lipidograma e estradiol (LC-MS/MS).",
  "symptoms": [
   ["Retenção", "💧"],
   ["Pressão", "❤️"],
