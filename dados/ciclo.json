@@ -37,24 +37,14 @@
    "total": "1,5 ml",
    "mg": "150",
    "color": "orange"
-  },
-  {
-   "nm": "Dianabol",
-   "sub": "Metandrostenolona · oral, pré-treino · desde 01/11",
-   "amt": "30",
-   "unit": "mg",
-   "freq": "diário",
-   "total": "30 mg/dia",
-   "mg": "210",
-   "color": "red"
   }
  ],
- "doseLine": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui · Dianabol 30 mg/dia (oral, pré-treino)",
+ "doseLine": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (noite) · Dom/Ter/Qui · sem orais (Dianabol encerrado em 20/11)",
  "doseChange": {
-  "date": "2026-11-15",
+  "date": "2026-11-20",
   "dir": "down",
-  "before": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml",
-  "after": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml"
+  "before": "Injetáveis + Dianabol 30 mg/dia (oral, pré-treino)",
+  "after": "Só injetáveis: Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml (~750 mg/sem)"
  },
  "doseChanges": [
   {
@@ -74,9 +64,15 @@
    "dir": "down",
    "before": "Enantato 0,4 + Deca 0,7 + Trembo 0,5 ml",
    "after": "Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml"
+  },
+  {
+   "date": "2026-11-20",
+   "dir": "down",
+   "before": "Injetáveis + Dianabol 30 mg/dia (oral)",
+   "after": "Só injetáveis: Enantato 0,4 + Deca 0,5 + Trembo 0,5 ml"
   }
  ],
- "risco": "<b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,5 ml + Trembolona 0,5 ml, 3x por semana (dom, ter, qui, à noite), ~750 mg/sem injetável. Desde 01/11: Dianabol 30 mg/dia oral no pré-treino (~210 mg/sem; carga total ~960 mg/sem). O Dianabol aromatiza forte e retém muita água e sódio: enquanto ele estiver no stack, peso e cintura rodam acima do real e a queda de água esperada após a redução da Deca (15/11) pode não aparecer — não ler cintura alta como superávit de comida nesse período. Pontos de atenção: oral 17-alfa com histórico de enzimas hepáticas elevadas, HDL em 31 e estradiol 108 sem controle. Próxima coleta: incluir TGO/TGP, GGT, lipidograma e estradiol (LC-MS/MS).",
+ "risco": "<b>Ciclo iniciado em 11/10.</b> Enantato 0,4 ml + Deca 0,5 ml + Trembolona 0,5 ml, 3x por semana (dom, ter, qui, à noite), ~750 mg/sem injetável. <b>Dianabol encerrado em 20/11</b> (rodou de 01 a 20/11; saída antecipada, o previsto era 30/11). A água e o sódio que ele segurava drenam em 1 a 2 semanas: peso e cintura devem cair até o início de dezembro sem perda de músculo; não é murchar, é retenção saindo. Fita e espelho voltam a ser confiáveis por volta de 04 a 08/12; até lá, não reagir à cintura nem mexer em caloria. Pendências de exame: TGO/TGP, GGT, lipidograma, estradiol por LC-MS/MS e hematócrito (vinha 53-54%). HDL 31 e E2 108 seguem como pontos de atenção.",
  "symptoms": [
   ["Retenção", "💧"],
   ["Pressão", "❤️"],
