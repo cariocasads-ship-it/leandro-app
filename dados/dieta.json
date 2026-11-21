@@ -1,164 +1,58 @@
 {
- "versao": "fome da desmama 19/11 · +~300 kcal",
- "totais": {
-  "c": 345,
-  "p": 233,
-  "g": 80,
-  "kcalLabel": "~3.090"
- },
+ "versao": "travessia 21/11 a 05/12 (tirze 3,75, sem fome)",
+ "totais": { "c": 309, "p": 190, "g": 63, "kcalLabel": "~2.600" },
  "refeicoes": [
   {
    "th": "Pré-treino",
    "tm": "~05h",
    "items": [
-    {
-     "n": "1 banana média",
-     "d": "glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal"
-    }
+    { "n": "1 banana média", "d": "glicose p/ iniciar o treino · P1 · C23 · G0 · 90 kcal" },
+    { "n": "15 g proteína de soja (1 scoop)", "d": "repõe parte da proteína do café que saiu · P12 · C2 · G1 · 62 kcal" }
    ],
-   "mc": {
-    "c": 23,
-    "p": 1,
-    "g": 0,
-    "k": 90
-   }
+   "mc": { "c": 25, "p": 13, "g": 1, "k": 152 }
   },
   {
    "th": "Pós-treino",
    "tm": "~08h",
    "items": [
-    {
-     "n": "Overnight 200 g",
-     "d": "porção maior do mesmo preparo · P25 · C40 · G4 · 300 kcal"
-    },
-    {
-     "n": "30 g amendoim (triturado ou pasta, por cima)",
-     "d": "gordura boa e sabor, adicionar na porção na hora · P7 · C5 · G14 · 174 kcal"
-    }
+    { "n": "Overnight 200 g", "d": "P25 · C40 · G4 · 300 kcal" },
+    { "n": "30 g amendoim (triturado ou pasta, por cima)", "d": "gordura boa e sabor · P7 · C5 · G14 · 174 kcal" },
+    { "n": "30 g proteína de soja", "d": "repõe a proteína do whey que saiu · P24 · C3 · G2 · 125 kcal" }
    ],
-   "mc": {
-    "c": 45,
-    "p": 32,
-    "g": 18,
-    "k": 474
-   }
-  },
-  {
-   "th": "Café da manhã",
-   "tm": "~09h",
-   "items": [
-    {
-     "n": "3 ovos inteiros",
-     "d": "P18 · C1 · G15 · 215 kcal"
-    },
-    {
-     "n": "2 fatias pão integral",
-     "d": "P6 · C24 · G2 · 140 kcal"
-    }
-   ],
-   "mc": {
-    "c": 25,
-    "p": 24,
-    "g": 17,
-    "k": 355
-   }
+   "mc": { "c": 48, "p": 56, "g": 20, "k": 599 }
   },
   {
    "th": "Almoço",
-   "tm": "~11h45",
+   "tm": "~12h",
    "items": [
-    {
-     "n": "300 g arroz branco",
-     "d": "subiu de 250 g p/ segurar a fome da desmama · P7 · C84 · G1 · 390 kcal"
-    },
-    {
-     "n": "150 g frango (peito, air fryer)",
-     "d": "P46 · C0 · G5 · 248 kcal"
-    },
-    {
-     "n": "200 g legumes (quiabo + abóbora)",
-     "d": "P3 · C14 · G0 · 70 kcal"
-    },
-    {
-     "n": "5 g azeite",
-     "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
-    }
+    { "n": "300 g arroz branco", "d": "P7 · C84 · G1 · 390 kcal" },
+    { "n": "150 g frango (peito, air fryer)", "d": "P46 · C0 · G5 · 248 kcal" },
+    { "n": "200 g legumes (quiabo + abóbora)", "d": "P3 · C14 · G0 · 70 kcal" },
+    { "n": "5 g azeite", "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal" }
    ],
-   "mc": {
-    "c": 98,
-    "p": 56,
-    "g": 11,
-    "k": 753
-   }
+   "mc": { "c": 98, "p": 56, "g": 11, "k": 753 }
   },
   {
    "th": "Merenda da tarde",
-   "tm": "~14h30",
+   "tm": "~15h",
    "items": [
-    {
-     "n": "200 g açaí (polpa) com adoçante",
-     "d": "P2 · C13 · G8 · 125 kcal"
-    },
-    {
-     "n": "25 g amendoim torrado",
-     "d": "P6 · C4 · G12 · 145 kcal · por cima do açaí"
-    },
-    {
-     "n": "1 banana (teste: amassada no açaí ou ao lado)",
-     "d": "volume e carbo p/ a tarde · P1 · C23 · G0 · 90 kcal"
-    }
+    { "n": "200 g açaí (polpa) com adoçante", "d": "P2 · C13 · G8 · 125 kcal" },
+    { "n": "25 g amendoim torrado", "d": "por cima do açaí · P6 · C4 · G12 · 145 kcal" },
+    { "n": "1 banana média", "d": "P1 · C23 · G0 · 90 kcal" }
    ],
-   "mc": {
-    "c": 40,
-    "p": 9,
-    "g": 20,
-    "k": 360
-   }
-  },
-  {
-   "th": "Shake da tarde",
-   "tm": "~16h",
-   "items": [
-    {
-     "n": "2 scoops whey + 200 ml leite",
-     "d": "antecipado de 17h30 p/ 16h: 55 g de proteína matando a fome das 15h30 · P55 · C16 · G3 · 308 kcal"
-    }
-   ],
-   "mc": {
-    "c": 16,
-    "p": 55,
-    "g": 3,
-    "k": 308
-   }
+   "mc": { "c": 40, "p": 9, "g": 20, "k": 360 }
   },
   {
    "th": "Jantar",
    "tm": "~20h",
    "items": [
-    {
-     "n": "300 g arroz branco",
-     "d": "subiu de 250 g · P7 · C84 · G1 · 390 kcal"
-    },
-    {
-     "n": "150 g frango (peito, air fryer)",
-     "d": "P46 · C0 · G5 · 248 kcal"
-    },
-    {
-     "n": "200 g legumes",
-     "d": "P3 · C14 · G0 · 70 kcal"
-    },
-    {
-     "n": "5 g azeite",
-     "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal"
-    }
+    { "n": "300 g arroz branco", "d": "P7 · C84 · G1 · 390 kcal" },
+    { "n": "150 g frango (peito, air fryer)", "d": "P46 · C0 · G5 · 248 kcal" },
+    { "n": "200 g legumes", "d": "P3 · C14 · G0 · 70 kcal" },
+    { "n": "5 g azeite", "d": "dose mínima pelo HDL · P0 · C0 · G5 · 45 kcal" }
    ],
-   "mc": {
-    "c": 98,
-    "p": 56,
-    "g": 11,
-    "k": 753
-   }
+   "mc": { "c": 98, "p": 56, "g": 11, "k": 753 }
   }
  ],
- "nota": "Ajuste de 19/11 pela fome da desmama (tirze em 2,5 mg): overnight 150→200 g (já em uso), arroz 250→300 g no almoço e no jantar, 1 banana na merenda em teste, e o shake saiu de 17h30 para ~16h (sem caloria nova) para fechar o buraco das 15h30. Dia vai de ~2.760 para ~3.090 kcal. Condição: cardio leve recomeça em 20/11 (caminhada inclinada zona 2, 20–30 min, 3–4x/sem); com cardio rodando, 3.090 é superávit leve sobre a manutenção (~3.000–3.100). Nos dias de cardio, 1 banana ~30 min antes (+90 kcal) fica fora da conta fixa. Gatilho mantido: cintura no umbigo 1x/semana; se encostar em 99 cm, o corte sai do arroz que entrou agora, não da proteína. Em 2,5 mg a sensibilidade à insulina da tirze cai: vigiar a cintura com mais atenção."
+ "nota": "FASE DE TRAVESSIA (21/11 a ~05/12). A tirzepatida subiu para 3,75 mg e cortou a fome, então saíram o café (3 ovos + pão) e o shake pré-cardio (2 whey); a proteína foi reposta com soja (15 g no pré-treino, 30 g no overnight), mantendo ~190 g (~2 g/kg). Fica em ~2.600 kcal, um degrau abaixo da manutenção (~2.760): não é bulk nem déficit agressivo. Objetivo do período é segurar massa e deixar a água do Dianabol (encerrado 20/11) drenar, não construir. Viagem a São Paulo de 30/11 a 04/12 sem treino, dieta ou hormônio. Dieta-alvo de RETOMADA (quando a fome voltar, após descer a tirze) é a de ~3.090 kcal. Fita e peso: não decidir nada até ~05/12; a série limpa recomeça na volta da viagem."
 }
